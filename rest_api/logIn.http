@@ -1,0 +1,53 @@
+@baseUrl=https://pre-cic.z1platform.com/api/v4/
+
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiMjJmMTUwMTg3OTAwOWFhZDBhZDAyNmQ4NzViOTU0NDViZTM3YzQzZGE2Y2Y0NTNhYTZlNWE1YTEzMjQ3NzYxOThjZWMxZTU0MjVkNDRjYzMiLCJpYXQiOjE2NzUwNDE4NDQuNjQ1NjY4LCJuYmYiOjE2NzUwNDE4NDQuNjQ1NjcyLCJleHAiOjE3MDY1Nzc4NDQuNjMzNjA3LCJzdWIiOiI4NTEiLCJzY29wZXMiOlsiKiJdfQ.S8-3Xoo5zpU0qRB3KCZkQGQ61Wjzz4Y3NOaIZTsJKrl1pwUlEFviz5M4kNrwTk8WpTI7myiYk_-99flLWBkEOq6WNSfhMtsCavQUMqXniaUKfDKLry1dioO8lBbGUA_3e24GXSXIe2syzxoyZJnQpdrSFv_UQdKn0TJAi-x60l7DVj37NhpEe2TCd3w-DUEWvBL3OimQwftP250VAO8SQ1apV-mVaW5KR_xdXz1W-uhSzVETB3aTDLiTIcO4e59arOFYlIibVgya4GLG5AWOmPSXW8CV7se0sNGnQyADZoP8fa-dNMjdU921zeH2BvOyEtxYSo8hlL92VIHYndKgGsx_KeqVqZSoHnAFzJ0PZKM0NBC4jro7j-JPzAUfFupBC0VMoHYxlOt7ZMQCHrDDgNXTUHk3TrDFccaFVCz7e_8TvfSFU8KBgFg3I8nanJMUwWjiCvqsdNS8pFX8IYxhXJFcsQW2TWj1JhUMmWwdYx1kzublJgMOGxD4FdOe_kOvnd6WIXWm1XMZQU6Azo2jaIFVK-74BU0sNGy3plPkf9RUBka5wAAq6vd_uif_3XkSCsCc59cPy_IJgh-tJ7C8mm4Q03PmDksqWMqRRdH9KqTrhl4MN0FfbDN_7EJ6dddQwoOnIs08B9pVTh2evNPPk2aZyt2odlWgQfUH2ZJR-Fs
+
+POST {{baseUrl}}login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "phone" : "+85510305096",
+    "password" : "Admin@2022"   
+}
+
+###
+POST {{baseUrl}}request-otp
+Accept: application/json
+Content-Type: application/json
+
+{
+    "phone" : "+855889002920"
+}
+
+###
+POST {{baseUrl}}verify-otp
+Accept: application/json
+Content-Type: application/json
+
+{
+    "phone" : "+855889002920",
+    "verify_code": "4893"
+}
+
+
+###
+POST {{baseUrl}}user/set-password
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+{
+    "password" : "Theara123",
+    "password_confirmation":"Theara123"
+}
+
+###
+POST https://pre-cic.z1platform.com/api/v4/register
+Content-Type: application/json
+Accept: application/json
+
+{
+    "phone" : "+855889002920"
+}
