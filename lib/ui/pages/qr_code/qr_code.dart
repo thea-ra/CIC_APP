@@ -18,6 +18,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
   final con = Get.put(QRCodeController());
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
+  QRViewController? controller;
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -25,9 +26,9 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      con.controller!.pauseCamera();
+      controller!.pauseCamera();
     } else if (Platform.isIOS) {
-      con.controller!.resumeCamera();
+      controller!.resumeCamera();
     }
   }
 
@@ -80,7 +81,11 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                             borderLength: 30,
                             borderWidth: 10,
                             cutOutSize: scanArea),
-                        onQRViewCreated: con.onQRViewCreated,
+                        onQRViewCreated: (controller) {
+                          setState(() {
+                            _onQRViewCreated;
+                          });
+                        },
                       ),
                     ),
                   ),
@@ -168,22 +173,23 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                       )),
                 ],
               )
-            : const Text('Data'),
+            : const Text('No page'),
       ),
     );
   }
-  // void _onQRViewCreated(QRViewController controller) {
-  //   this.controller = controller;
-  //   controller.scannedDataStream.listen((scanData) {
-  //     setState(() {
-  //       result = scanData;
-  //     });
-  //   });
-  // }
+
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) {
+      setState(() {
+        result = scanData;
+      });
+    });
+  }
 
   @override
   void dispose() {
-    con.controller?.dispose();
+    controller?.dispose();
     super.dispose();
   }
 }
