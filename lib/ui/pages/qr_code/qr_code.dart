@@ -73,20 +73,15 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: QRView(
-                        key: qrKey,
-                        overlay: QrScannerOverlayShape(
-                            overlayColor: const Color(0xff848F92),
-                            borderColor: const Color(0xffF2F2F2),
-                            borderRadius: 10,
-                            borderLength: 30,
-                            borderWidth: 10,
-                            cutOutSize: scanArea),
-                        onQRViewCreated: (controller) {
-                          setState(() {
-                            _onQRViewCreated;
-                          });
-                        },
-                      ),
+                          key: qrKey,
+                          overlay: QrScannerOverlayShape(
+                              overlayColor: const Color(0xff848F92),
+                              borderColor: const Color(0xffF2F2F2),
+                              borderRadius: 10,
+                              borderLength: 30,
+                              borderWidth: 10,
+                              cutOutSize: scanArea),
+                          onQRViewCreated: _onQRViewCreated),
                     ),
                   ),
                   Center(
@@ -177,7 +172,6 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
       ),
     );
   }
-
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {

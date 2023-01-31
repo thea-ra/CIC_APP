@@ -1,3 +1,4 @@
+import 'package:cic_project/ui/share/component/equity_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -22,11 +23,11 @@ class _EquityScreenState extends State<EquityScreen> {
   Widget build(BuildContext context) {
     final con = Get.put(HomeController());
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 10),
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 33),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 23),
         child: Column(
           children: [
             Container(
@@ -127,17 +128,49 @@ class _EquityScreenState extends State<EquityScreen> {
                 ],
               ),
             ),
-            Obx((() => Container(
-                  child: con.isClick.value
-                      ? const Padding(
-                          padding: EdgeInsets.only(top: 24),
-                          child: Togglebutton(
-                            lefttext: 'Detail Summary',
-                            righttext: 'Interest Schedule',
-                          ),
-                        )
-                      : null,
-                )))
+            Obx(
+              (() => Container(
+                    child: con.isClick.value
+                        ? const Padding(
+                            padding: EdgeInsets.only(top: 24),
+                            child: Togglebutton(
+                              lefttext: 'Detail Summary',
+                              righttext: 'Interest Schedule',
+                            ),
+                          )
+                        : null,
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Container(
+                  width: double.infinity,
+                  color: const Color(0xffFFFFFF),
+                  child: const Investmentchat()),
+            ),
+            DataTable(
+                columns: const [
+                  DataColumn(
+                    label: Text('Date'),
+                  ),
+                  DataColumn(
+                    label: Text('UT'),
+                  ),
+                  DataColumn(
+                    label: Text('Price'),
+                  ),
+                  DataColumn(
+                    label: Text('Total'),
+                  ),
+                ],
+                rows: con.graphlist.map((e) {
+                  return DataRow(cells: [
+                    DataCell(Text(e.date.toString())),
+                    DataCell(Text(e.year.toString())),
+                    DataCell(Text(e.price.toString())),
+                    DataCell(Text(e.price.toString())),
+                  ]);
+                }).toList())
           ],
         ),
       ),

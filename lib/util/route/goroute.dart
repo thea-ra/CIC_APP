@@ -1,3 +1,4 @@
+import 'package:cic_project/ui/pages/account/screen/profile_screen.dart';
 import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
 import 'package:cic_project/ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
@@ -50,7 +51,7 @@ final router = GoRouter(
           path: '/account',
           name: 'Account',
           builder: (_, state) {
-            return MyInvest(
+            return ProfileScreen(
               key: state.pageKey,
             );
           },
