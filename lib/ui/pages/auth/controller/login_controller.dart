@@ -13,7 +13,7 @@ class Login extends GetxController {
         'phone===============: ${con.phoneController.value.text.substring(1)}');
     debugPrint('password===============: ${con.passwordController.value.text}');
     await con.apiBaseHelper.onNetworkRequesting(
-        url: 'login',
+        url: 'v4/login',
         methode: METHODE.post,
         isAuthorize: false,
         body: {
@@ -22,10 +22,8 @@ class Login extends GetxController {
         }).then((res) {
       debugPrint('success===============');
       LocalStorage.storeData(key: 'token', value: res['access_token']);
-      debugPrint('success===============111');
-      debugPrint('my token===============$res[access_token]');
       context.go('/');
-      debugPrint('success===============222');
+     
     }).onError((ErrorModel error, stackTrace) {
       print(
           "error from body login :${error.bodyString} : status: ${error.statusCode}");

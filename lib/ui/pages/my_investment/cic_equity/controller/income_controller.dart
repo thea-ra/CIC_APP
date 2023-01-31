@@ -18,6 +18,7 @@ class IncomeController extends GetxController {
   final apibasehelper = Get.put(ApiBaseHelper());
   final globle = Get.put(GlobleData());
   final mydata = <ModelIncome>[].obs;
+
   Future<List<ModelIncome>> getIncome() async {
     try {
  

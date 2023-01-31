@@ -27,7 +27,7 @@ class HomeController extends GetxController {
     isLoading(true);
     await apihelper
         .onNetworkRequesting(
-            url: 'service/qm?partial=menu',
+            url: 'v4/service/qm?partial=menu',
             methode: METHODE.get,
             isAuthorize: false)
         .then(

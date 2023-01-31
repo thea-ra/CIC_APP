@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:cic_project/ui/pages/account/model/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -13,6 +17,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _MyAppState extends State<ProfileScreen> {
+  String? imagePicker = profiledModel.image;
   final _controller = PageController();
   @override
   Widget build(BuildContext context) {
@@ -40,12 +45,11 @@ class _MyAppState extends State<ProfileScreen> {
                       padding: const EdgeInsets.all(14.0),
                       child: InkWell(
                           onTap: () {},
-                          child: SvgPicture.asset(
-                              'assets/svg/Vector (Stroke).svg')),
+                          child: SvgPicture.asset('asset/svg/edit_white.svg')),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(14.0),
-                      child: SvgPicture.asset('assets/svg/Settings 02.svg'),
+                      child: SvgPicture.asset('asset/svg/Setting.svg'),
                     ),
                   ],
                   flexibleSpace: FlexibleSpaceBar(
@@ -66,7 +70,7 @@ class _MyAppState extends State<ProfileScreen> {
                                   blurRadius: 50,
                                   offset: Offset(0, -9)),
                             ],
-                            color: Colors.white,
+                            color: Color(0xffFFFFFF),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
                               topRight: Radius.circular(20),
@@ -78,7 +82,7 @@ class _MyAppState extends State<ProfileScreen> {
                             child: Column(
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.only(top: 48),
+                                  margin: const EdgeInsets.only(top: 24),
                                   child: Center(
                                     child: Text(
                                       widget.userName.toString(),
@@ -93,13 +97,8 @@ class _MyAppState extends State<ProfileScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SvgPicture.asset(
-                                          'assets/svg/Shield Done.svg'),
-                                      Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 5),
-                                          child:
-                                              const Text('Marketing Manager')),
+                                      SvgPicture.asset('asset/svg/sheild.svg'),
+                                      const Text('Marketing Manager'),
                                     ],
                                   ),
                                 ),
@@ -108,7 +107,7 @@ class _MyAppState extends State<ProfileScreen> {
                                   style: TextStyle(color: Colors.blue),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.only(top: 48),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -116,7 +115,7 @@ class _MyAppState extends State<ProfileScreen> {
                                       Column(
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/svg/Call.svg'),
+                                              'asset/svg/Call.svg'),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
                                             child: Text('Call'),
@@ -126,7 +125,7 @@ class _MyAppState extends State<ProfileScreen> {
                                       Column(
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/svg/Message.svg'),
+                                              'asset/svg/Message.svg'),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
                                             child: Text('Message'),
@@ -136,17 +135,17 @@ class _MyAppState extends State<ProfileScreen> {
                                       Column(
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/svg/Locations.svg'),
+                                              'asset/svg/Locations.svg'),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
-                                            child: Text('Locations'),
+                                            child: Text('Telegram'),
                                           ),
                                         ],
                                       ),
                                       Column(
                                         children: [
                                           SvgPicture.asset(
-                                              'assets/svg/website.svg'),
+                                              'asset/svg/google.svg'),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
                                             child: Text('website'),
@@ -173,29 +172,42 @@ class _MyAppState extends State<ProfileScreen> {
                             width: 100,
                             height: 100,
                             child: Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(width: 3, color: Colors.blue),
-                                shape: BoxShape.circle,
-                                color: Colors.blue,
-                                image: const DecorationImage(
-                                  image: NetworkImage(
-                                      'https://wallpaperaccess.com/full/138728.jpg'),
-                                  fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 3, color: Colors.blue),
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue,
                                 ),
-                              ),
-                            ),
+                                child: imagePicker!.startsWith('asset/image/')
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                          image: AssetImage(
+                                              imagePicker.toString()),
+                                        )),
+                                      )
+                                    : CircleAvatar(
+                                        backgroundImage: FileImage(File(
+                                          imagePicker.toString(),
+                                        )),
+                                        radius: 55,
+                                      )),
                           ),
                         ),
                         Positioned(
                           top: 130,
                           left: 90,
                           right: 0,
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: SvgPicture.asset('assets/svg/camera.svg'),
+                          child: InkWell(
+                            onTap: () {
+                              getFromGallery();
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: SvgPicture.asset('asset/svg/camara.svg'),
+                            ),
                           ),
                         )
                       ],
@@ -207,13 +219,14 @@ class _MyAppState extends State<ProfileScreen> {
             ];
           },
           body: SingleChildScrollView(
+
             child: Column(
               children: [
                 Column(
                   children: [
                     Container(
                       margin:
-                          const EdgeInsets.only(top: 120, left: 20, right: 20),
+                          const EdgeInsets.only(top: 90, left: 20, right: 20),
                       height: 40,
                       decoration: BoxDecoration(
                         color: Colors.grey.withOpacity(0.5),
@@ -241,14 +254,16 @@ class _MyAppState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    Container(
                       // color: Colors.pink,
+                      color: const Color(0xffFFFFFF),
                       width: double.infinity,
                       height: 610,
                       child: TabBarView(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 16, top: 26),
+                            padding: const EdgeInsets.only(
+                                left: 20, top: 26, right: 16),
                             child: SizedBox(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -266,6 +281,11 @@ class _MyAppState extends State<ProfileScreen> {
                                     child: Text(
                                       'Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit .',
                                       textAlign: TextAlign.justify,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff0A0B09),
+                                          fontFamily: 'DMSans'),
                                     ),
                                   )
                                 ],
@@ -275,41 +295,55 @@ class _MyAppState extends State<ProfileScreen> {
                           Column(
                             children: [
                               Container(
-                                margin: const EdgeInsets.only(top: 10),
+                                margin: const EdgeInsets.only(
+                                    top: 30, left: 16, right: 0, bottom: 31),
                                 // color: Colors.blue,
                                 width: double.infinity,
 
                                 child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const CircleAvatar(
-                                      radius: 22,
-                                      backgroundImage:
-                                          AssetImage('asset/image/cic.png'),
+                                    Container(
+                                      width: 54,
+                                      height: 54,
+                                      decoration: BoxDecoration(
+                                          color: const Color(0xffE5E5E5),
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: SvgPicture.asset(
+                                            'asset/svg/cic.svg'),
+                                      ),
                                     ),
                                     Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: const [
-                                          Text(
-                                            'Cambodia Investors\nCorporation',
-                                            style: TextStyle(
-                                                // color: AppColor.darkColor,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          Text(
-                                            'Beyond Investment Opportunity',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              // color: AppColor.mainColor,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: const [
+                                            Text(
+                                              'Cambodia Investors\nCorporation',
+                                              style: TextStyle(
+                                                  // color: AppColor.darkColor,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                          ),
-                                        ],
+                                            Text(
+                                              'Beyond Investment Opportunity',
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                // color: AppColor.mainColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     PopupMenuButton<dynamic>(
-                                      padding: const EdgeInsets.only(left: 120),
+                                      position: PopupMenuPosition.under,
                                       shape: ContinuousRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20)),
@@ -322,7 +356,7 @@ class _MyAppState extends State<ProfileScreen> {
                                                 padding:
                                                     const EdgeInsets.all(1.0),
                                                 child: SvgPicture.asset(
-                                                    'assets/svg/phone_smaill.svg'),
+                                                    'asset/svg/Call.svg'),
                                               ),
                                               title:
                                                   const Text('023 334 56 78'),
@@ -331,8 +365,8 @@ class _MyAppState extends State<ProfileScreen> {
                                           const PopupMenuDivider(),
                                           PopupMenuItem(
                                             child: ListTile(
-                                              leading: Image.asset(
-                                                  'assets/svg/Message.png'),
+                                              leading: SvgPicture.asset(
+                                                  'asset/svg/Message.svg'),
                                               title:
                                                   const Text('chim@gmail.com'),
                                             ),
@@ -344,7 +378,7 @@ class _MyAppState extends State<ProfileScreen> {
                                                 padding:
                                                     const EdgeInsets.all(1.0),
                                                 child: SvgPicture.asset(
-                                                    'assets/svg/Location.svg'),
+                                                    'asset/svg/Locations.svg'),
                                               ),
                                               title: const Text(
                                                   'cic-association.com'),
@@ -357,7 +391,7 @@ class _MyAppState extends State<ProfileScreen> {
                                                 padding:
                                                     const EdgeInsets.all(1.0),
                                                 child: SvgPicture.asset(
-                                                    'assets/svg/Vectors.svg'),
+                                                    'asset/svg/edits.svg'),
                                               ),
                                               title: const Text(
                                                   'Edit company info'),
@@ -369,9 +403,8 @@ class _MyAppState extends State<ProfileScreen> {
                                               leading: Padding(
                                                 padding:
                                                     const EdgeInsets.all(1.0),
-                                                child: Container(
-                                                    child: SvgPicture.asset(
-                                                        'assets/svg/Edit Square.svg')),
+                                                child: SvgPicture.asset(
+                                                    'asset/svg/edits.svg'),
                                               ),
                                               title: const Text(
                                                 'Edit company info',
@@ -410,12 +443,13 @@ class _MyAppState extends State<ProfileScreen> {
                                             height: 10,
                                           ),
                                           Text(
-                                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                fontFamily: 'DM Sans'),
-                                          ),
+                                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
+                                              textAlign: TextAlign.justify,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Color(0xff0A0B09),
+                                                  fontFamily: 'DMSans')),
                                           SizedBox(
                                             height: 10,
                                           ),
@@ -429,41 +463,43 @@ class _MyAppState extends State<ProfileScreen> {
                                             height: 10,
                                           ),
                                           Text(
-                                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14),
-                                          ),
+                                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
+                                              textAlign: TextAlign.justify,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Color(0xff0A0B09),
+                                                  fontFamily: 'DMSans')),
                                         ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 231,
-                                // color: Colors.red,
-                                child: ListView.builder(
-                                  itemCount: 4,
-                                  controller: _controller,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  'https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?cs=srgb&dl=pexels-pixabay-206359.jpg&fm=jpg'),
-                                              fit: BoxFit.cover),
-                                          color: Colors.yellow,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10))),
-                                      margin: const EdgeInsets.only(
-                                          left: 30, top: 10, bottom: 10),
-                                      width: 324,
-                                      height: 100,
-                                    );
-                                  },
+                              Expanded(
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  height: 231,
+                                  child: ListView.builder(
+                                    itemCount: 4,
+                                    controller: _controller,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PDCtsc1-RHs0tqdtxluCE1iFIwnUWcu12FxVXAAYYC3s9zfxoK8ch7nsu25c5icVAjs&usqp=CAU'),
+                                                fit: BoxFit.cover),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        margin: const EdgeInsets.only(
+                                            left: 20, top: 10, right: 20),
+                                        width: 324,
+                                        height: 100,
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                               SmoothPageIndicator(
@@ -481,11 +517,24 @@ class _MyAppState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
+             
               ],
             ),
           ),
+      
         ),
       ),
     );
+  }
+
+  getFromGallery() async {
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        imagePicker = pickedFile.path;
+      });
+    }
   }
 }

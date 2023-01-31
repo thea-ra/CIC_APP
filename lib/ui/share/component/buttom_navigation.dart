@@ -1,8 +1,6 @@
-import 'package:cic_project/ui/pages/qr_code/controller/qrcode_controller.dart';
 import 'package:cic_project/ui/pages/qr_code/qr_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
@@ -21,7 +19,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
     return Scaffold(
       body: child,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xffFFFFFF),
+        showUnselectedLabels: true,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset('asset/svg/homesvg.svg'),
@@ -30,16 +28,20 @@ class ScaffoldWithNavBar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: SvgPicture.asset('asset/svg/Qrcode.svg'),
             label: 'QR Scan',
-            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset('asset/svg/event.svg'),
+            label: 'Event',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset('asset/svg/account.svg'),
             label: 'Account',
-            backgroundColor: Colors.amber,
           ),
         ],
         currentIndex: _calculateSelectedIndex(context),
         onTap: (int idx) => _onItemTapped(idx, context),
+        selectedLabelStyle: const TextStyle(
+            fontSize: 11, color: Colors.black, fontWeight: FontWeight.w400),
       ),
     );
   }
@@ -52,8 +54,11 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location.startsWith('/income')) {
       return 1;
     }
-    if (location.startsWith('/account')) {
+    if (location.startsWith('/event')) {
       return 2;
+    }
+    if (location.startsWith('/account')) {
+      return 3;
     }
     return 0;
   }
@@ -70,6 +75,11 @@ class ScaffoldWithNavBar extends StatelessWidget {
         break;
       case 2:
         GoRouter.of(context).go('/account');
+
+        break;
+      case 3:
+        GoRouter.of(context).go('/account');
+
         break;
     }
   }

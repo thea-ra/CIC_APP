@@ -15,7 +15,7 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/',
+  initialLocation: '/slashscreen',
   debugLogDiagnostics: true,
   routes: [
     ShellRoute(
@@ -30,7 +30,7 @@ final router = GoRouter(
         // This screen is displayed on the ShellRoute's Navigator.
         GoRoute(
           path: '/',
-          name: 'Homescreen',
+          name: 'Home Screen',
           builder: (_, state) {
             return HomeScreen(
               key: state.pageKey,
@@ -90,13 +90,12 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/slashscreen',
-      parentNavigatorKey: _rootNavigatorKey,
-      name: 'SlashScreen',
+      name: 'Slash Screen',
       builder: (_, state) {
         return SlashSrceen(
           key: state.pageKey,
         );
       },
-    )
+    ),
   ],
 );
