@@ -2,6 +2,7 @@ import 'package:cic_project/ui/pages/account/model/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -419,22 +420,28 @@ class _MyAppState extends State<ProfileScreen> {
                                                   ),
                                                   const PopupMenuDivider(),
                                                   PopupMenuItem(
-                                                    child: ListTile(
-                                                      leading: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(1.0),
-                                                        child: SvgPicture.asset(
-                                                          'asset/svg/edits.svg',
-                                                          color: const Color(
-                                                              0xff0F50A4),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        context.go('/update');
+                                                      },
+                                                      child: ListTile(
+                                                        leading: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(1.0),
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            'asset/svg/edits.svg',
+                                                            color: const Color(
+                                                                0xff0F50A4),
+                                                          ),
                                                         ),
-                                                      ),
-                                                      title: const Text(
-                                                        'Edit company info',
-                                                        style: TextStyle(
-                                                            color: Color(
-                                                                0xff0F50A4)),
+                                                        title: const Text(
+                                                          'Edit company info',
+                                                          style: TextStyle(
+                                                              color: Color(
+                                                                  0xff0F50A4)),
+                                                        ),
                                                       ),
                                                     ),
                                                   )

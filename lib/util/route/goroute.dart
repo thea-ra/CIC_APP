@@ -1,4 +1,5 @@
 import 'package:cic_project/ui/pages/account/screen/profile_screen.dart';
+import 'package:cic_project/ui/pages/account/screen/update_info.dart';
 import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
 import 'package:cic_project/ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
@@ -93,6 +94,15 @@ final router = GoRouter(
       name: 'Slash Screen',
       builder: (_, state) {
         return SlashSrceen(
+          key: state.pageKey,
+        );
+      },
+    ),
+    GoRoute(
+      path: '/update',
+      name: 'Update',
+      builder: (_, state) {
+        return UpdateInfo(
           key: state.pageKey,
         );
       },
