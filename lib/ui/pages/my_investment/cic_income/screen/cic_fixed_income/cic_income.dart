@@ -138,9 +138,12 @@ class CICFixedIncome extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  CustomeButton(
-                    text: 'About FIF',
-                    color: Color(0xff0F50A4),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: CustomeButton(
+                      text: 'About FIF',
+                      color: Color(0xff0F50A4),
+                    ),
                   ),
                   CustomeButton(
                     text: 'Invest more',

@@ -22,24 +22,20 @@ class _EquityScreenState extends State<EquityScreen> {
   @override
   Widget build(BuildContext context) {
     final con = Get.put(HomeController());
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 23),
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: AssetImage('asset/image/background.png'),
-                    fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Stack(
-                children: [
-                  Column(
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color(0xffFFFFFF),
+                      borderRadius: BorderRadius.circular(14)),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
@@ -94,85 +90,85 @@ class _EquityScreenState extends State<EquityScreen> {
                       )
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 110),
-                    child:
-                        Center(child: SvgPicture.asset('asset/svg/line.svg')),
-                  )
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 110),
+                  child: Center(child: SvgPicture.asset('asset/svg/line.svg')),
+                )
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 14, right: 14, top: 31),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const IconText(
-                    svgpic: 'asset/svg/history.svg',
-                    text: 'UT History',
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 14, right: 14, top: 31),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const IconText(
+                  svgpic: 'asset/svg/history.svg',
+                  text: 'UT History',
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      con.isClick.value = !con.isClick.value;
+                    });
+                  },
+                  child: const Text(
+                    'Views',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xff0685CF),
+                        fontWeight: FontWeight.w500),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        con.isClick.value = !con.isClick.value;
-                      });
-                    },
-                    child: const Text(
-                      'Views',
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xff0685CF),
-                          fontWeight: FontWeight.w500),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
-            Obx(
-              (() => Container(
-                    child: con.isClick.value
-                        ? const Padding(
-                            padding: EdgeInsets.only(top: 24),
-                            child: Togglebutton(
-                              lefttext: 'Detail Summary',
-                              righttext: 'Interest Schedule',
-                            ),
-                          )
-                        : null,
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Container(
-                  width: double.infinity,
-                  color: const Color(0xffFFFFFF),
-                  child: const Investmentchat()),
-            ),
-            DataTable(
-                columns: const [
-                  DataColumn(
-                    label: Text('Date'),
-                  ),
-                  DataColumn(
-                    label: Text('UT'),
-                  ),
-                  DataColumn(
-                    label: Text('Price'),
-                  ),
-                  DataColumn(
-                    label: Text('Total'),
-                  ),
-                ],
-                rows: con.graphlist.map((e) {
-                  return DataRow(cells: [
-                    DataCell(Text(e.date.toString())),
-                    DataCell(Text(e.year.toString())),
-                    DataCell(Text(e.price.toString())),
-                    DataCell(Text(e.price.toString())),
-                  ]);
-                }).toList())
-          ],
-        ),
+          ),
+          Obx(
+            (() => Container(
+                  child: con.isClick.value
+                      ? const Padding(
+                          padding: EdgeInsets.only(top: 24),
+                          child: Togglebutton(
+                            lefttext: 'Detail Summary',
+                            righttext: 'Interest Schedule',
+                          ),
+                        )
+                      : null,
+                )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 14, right: 14),
+            child: Container(
+                width: double.infinity,
+                color: const Color(0xffFFFFFF),
+                child: const Investmentchat()),
+          ),
+          DataTable(
+              showBottomBorder: true,
+              columns: const [
+                DataColumn(
+                  label: Text('Date'),
+                ),
+                DataColumn(
+                  label: Text('UT'),
+                ),
+                DataColumn(
+                  label: Text('Price'),
+                ),
+                DataColumn(
+                  label: Text('Total'),
+                ),
+              ],
+              rows: con.graphlist.map((e) {
+                return DataRow(cells: [
+                  DataCell(Text(e.date.toString())),
+                  DataCell(Text(e.year.toString())),
+                  DataCell(Text(e.price.toString())),
+                  DataCell(Text(e.price.toString())),
+                ]);
+              }).toList()),
+        ],
       ),
     );
   }

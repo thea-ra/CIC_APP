@@ -1,5 +1,4 @@
 import 'package:cic_project/ui/pages/home/home_model/home_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../../../core/model/graph/graph_model.dart';
 import '../../../../core/model/investment/investment.dart';
@@ -10,7 +9,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     fetchData();
-    investment();
+    // investment();
     ongetGraph();
     // TODO: implement onInit
     super.onInit();
@@ -42,25 +41,25 @@ class HomeController extends GetxController {
     return homeList;
   }
 
-  Future<InvestmentModel> investment() async {
-    await apihelper
-        .onNetworkRequesting(
-            url: 'price', methode: METHODE.get, isAuthorize: true)
-        .then((res) {
-      investData.value = InvestmentModel.fromJson(res['data']);
-      debugPrint('data = $investData');
-    }).onError((ErrorModel error, stackTrace) {
-      debugPrint(error.bodyString.toString());
-    });
+  // Future<InvestmentModel> investment() async {
+  //   await apihelper
+  //       .onNetworkRequesting(
+  //           url: 'v4/dashboard', methode: METHODE.get, isAuthorize: true)
+  //       .then((res) {
+  //     investData.value = InvestmentModel.fromJson(res['data']);
+  //     debugPrint('data = $investData');
+  //   }).onError((ErrorModel error, stackTrace) {
+  //     debugPrint(error.bodyString.toString());
+  //   });
 
-    return investData.value;
-  }
+  //   return investData.value;
+  // }
 
   Future<List<Synfusion>> ongetGraph() async {
     isLoading(true);
     await apihelper
         .onNetworkRequesting(
-            url: 'dashboard', methode: METHODE.get, isAuthorize: true)
+            url: 'v4/dashboard', methode: METHODE.get, isAuthorize: true)
         .then((response) {
       isLoading(true);
       response['evolution'].map((e) {

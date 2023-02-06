@@ -1,10 +1,11 @@
-import 'dart:io';
-
 import 'package:cic_project/ui/pages/account/model/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../controller/account_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
   final int? id;
@@ -19,6 +20,8 @@ class ProfileScreen extends StatefulWidget {
 class _MyAppState extends State<ProfileScreen> {
   String? imagePicker = profiledModel.image;
   final _controller = PageController();
+  final con = Get.put(AccountController());
+
   @override
   Widget build(BuildContext context) {
     // print(con.getUser());
@@ -60,7 +63,7 @@ class _MyAppState extends State<ProfileScreen> {
                         //////
                         Container(
                           width: double.infinity,
-                          height: 270,
+                          height: 290,
                           margin: const EdgeInsets.only(top: 150),
                           decoration: const BoxDecoration(
                             boxShadow: [
@@ -82,13 +85,16 @@ class _MyAppState extends State<ProfileScreen> {
                             child: Column(
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.only(top: 24),
+                                  margin: const EdgeInsets.only(top: 65),
                                   child: Center(
-                                    child: Text(
-                                      widget.userName.toString(),
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                                    child: Obx(
+                                      () => Text(
+                                        con.datamemeber.value.fullname
+                                            .toString(),
+                                        style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -115,10 +121,10 @@ class _MyAppState extends State<ProfileScreen> {
                                       Column(
                                         children: [
                                           SvgPicture.asset(
-                                              'asset/svg/Call.svg'),
+                                              'asset/svg/call.svg'),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
-                                            child: Text('Call'),
+                                            child: Text('call'),
                                           ),
                                         ],
                                       ),
@@ -159,55 +165,50 @@ class _MyAppState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        Positioned(
-                          top: 100,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.red,
-                              border: Border.all(width: 3, color: Colors.white),
-                            ),
-                            width: 100,
-                            height: 100,
-                            child: Container(
-                                width: 100,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 3, color: Colors.blue),
-                                  shape: BoxShape.circle,
-                                  color: Colors.blue,
+                        Obx(
+                          () => con.isloading.value
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Positioned(
+                                  top: 100,
+                                  left: 0,
+                                  right: 0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.red,
+                                      border: Border.all(
+                                          width: 3, color: Colors.white),
+                                    ),
+                                    width: 100,
+                                    height: 100,
+                                    child: Container(
+                                      width: 100,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(con
+                                              .datamemeber.value.profile
+                                              .toString()),
+                                          fit: BoxFit.contain,
+                                        ),
+                                        border: Border.all(
+                                            width: 3, color: Colors.blue),
+                                        shape: BoxShape.circle,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                child: imagePicker!.startsWith('asset/image/')
-                                    ? Container(
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                          image: AssetImage(
-                                              imagePicker.toString()),
-                                        )),
-                                      )
-                                    : CircleAvatar(
-                                        backgroundImage: FileImage(File(
-                                          imagePicker.toString(),
-                                        )),
-                                        radius: 55,
-                                      )),
-                          ),
                         ),
                         Positioned(
                           top: 130,
                           left: 90,
                           right: 0,
-                          child: InkWell(
-                            onTap: () {
-                              getFromGallery();
-                            },
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset('asset/svg/camara.svg'),
-                            ),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: SvgPicture.asset('asset/svg/camara.svg'),
                           ),
                         )
                       ],
@@ -219,14 +220,14 @@ class _MyAppState extends State<ProfileScreen> {
             ];
           },
           body: SingleChildScrollView(
-
+            padding: EdgeInsets.zero,
             child: Column(
               children: [
                 Column(
                   children: [
                     Container(
                       margin:
-                          const EdgeInsets.only(top: 90, left: 20, right: 20),
+                          const EdgeInsets.only(top: 120, left: 20, right: 20),
                       height: 40,
                       decoration: BoxDecoration(
                         color: Colors.grey.withOpacity(0.5),
@@ -342,92 +343,118 @@ class _MyAppState extends State<ProfileScreen> {
                                         ),
                                       ),
                                     ),
-                                    PopupMenuButton<dynamic>(
-                                      position: PopupMenuPosition.under,
-                                      shape: ContinuousRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
-                                      iconSize: 25,
-                                      itemBuilder: (context) {
-                                        return [
-                                          PopupMenuItem(
-                                            child: ListTile(
-                                              leading: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(1.0),
-                                                child: SvgPicture.asset(
-                                                    'asset/svg/Call.svg'),
-                                              ),
-                                              title:
-                                                  const Text('023 334 56 78'),
-                                            ),
-                                          ),
-                                          const PopupMenuDivider(),
-                                          PopupMenuItem(
-                                            child: ListTile(
-                                              leading: SvgPicture.asset(
-                                                  'asset/svg/Message.svg'),
-                                              title:
-                                                  const Text('chim@gmail.com'),
-                                            ),
-                                          ),
-                                          const PopupMenuDivider(),
-                                          PopupMenuItem(
-                                            child: ListTile(
-                                              leading: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(1.0),
-                                                child: SvgPicture.asset(
-                                                    'asset/svg/Locations.svg'),
-                                              ),
-                                              title: const Text(
-                                                  'cic-association.com'),
-                                            ),
-                                          ),
-                                          const PopupMenuDivider(),
-                                          PopupMenuItem(
-                                            child: ListTile(
-                                              leading: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(1.0),
-                                                child: SvgPicture.asset(
-                                                    'asset/svg/edits.svg'),
-                                              ),
-                                              title: const Text(
-                                                  'Edit company info'),
-                                            ),
-                                          ),
-                                          const PopupMenuDivider(),
-                                          PopupMenuItem(
-                                            child: ListTile(
-                                              leading: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(1.0),
-                                                child: SvgPicture.asset(
-                                                    'asset/svg/edits.svg'),
-                                              ),
-                                              title: const Text(
-                                                'Edit company info',
-                                                style: TextStyle(
-                                                    // color: AppColor.mainColor),
+                                    Obx(
+                                      () => con.isloading.value
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator())
+                                          : PopupMenuButton<dynamic>(
+                                              position: PopupMenuPosition.under,
+                                              shape: ContinuousRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                              iconSize: 25,
+                                              itemBuilder: (context) {
+                                                return [
+                                                  PopupMenuItem(
+                                                    child: ListTile(
+                                                      leading: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(1.0),
+                                                        child: SvgPicture.asset(
+                                                            'asset/svg/cell_phone.svg'),
+                                                      ),
+                                                      title: Text(con
+                                                          .datamemeber
+                                                          .value
+                                                          .phone
+                                                          .toString()),
                                                     ),
-                                              ),
+                                                  ),
+                                                  const PopupMenuDivider(),
+                                                  PopupMenuItem(
+                                                    child: ListTile(
+                                                      leading: SvgPicture.asset(
+                                                          'asset/svg/mail.svg'),
+                                                      title: Text(con
+                                                                  .datamemeber
+                                                                  .value
+                                                                  .email ==
+                                                              ""
+                                                          ? "noemail@gmail.com"
+                                                          : con.datamemeber
+                                                              .value.email
+                                                              .toString()),
+                                                    ),
+                                                  ),
+                                                  const PopupMenuDivider(),
+                                                  PopupMenuItem(
+                                                    child: ListTile(
+                                                      leading: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(1.0),
+                                                        child: SvgPicture.asset(
+                                                            'asset/svg/Location.svg'),
+                                                      ),
+                                                      title: const Text(
+                                                          'cic-association.com'),
+                                                    ),
+                                                  ),
+                                                  const PopupMenuDivider(),
+                                                  PopupMenuItem(
+                                                    child: ListTile(
+                                                      leading: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(1.0),
+                                                        child: SvgPicture.asset(
+                                                            'asset/svg/map.svg'),
+                                                      ),
+                                                      title: const Text(
+                                                          'Edit company info'),
+                                                    ),
+                                                  ),
+                                                  const PopupMenuDivider(),
+                                                  PopupMenuItem(
+                                                    child: ListTile(
+                                                      leading: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(1.0),
+                                                        child: SvgPicture.asset(
+                                                          'asset/svg/edits.svg',
+                                                          color: const Color(
+                                                              0xff0F50A4),
+                                                        ),
+                                                      ),
+                                                      title: const Text(
+                                                        'Edit company info',
+                                                        style: TextStyle(
+                                                            color: Color(
+                                                                0xff0F50A4)),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ];
+                                              },
                                             ),
-                                          )
-                                        ];
-                                      },
                                     ),
                                   ],
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 20, right: 20, top: 10),
+                                  left: 20,
+                                  right: 20,
+                                ),
                                 child: Column(
                                   children: [
                                     SizedBox(
                                       width: double.infinity,
-                                      height: 260,
+                                      // height: 280,
                                       // color: Colors.green,
                                       child: Column(
                                         crossAxisAlignment:
@@ -517,11 +544,9 @@ class _MyAppState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-             
               ],
             ),
           ),
-      
         ),
       ),
     );

@@ -24,20 +24,26 @@ class TotalUT extends StatelessWidget {
           width: 24.5,
           height: 18.35,
         ),
-        Column(
-          children: [
-            Text(
-              '$title',
-              style: TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.w500, color: colors),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 3),
-              child: Text('$subtile',
-                  style: TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.w700, color: color)),
-            )
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14.5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '$title',
+                style: TextStyle(
+                    fontSize: 14, fontWeight: FontWeight.w500, color: colors),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 3),
+                child: Text('$subtile',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: color)),
+              )
+            ],
+          ),
         )
       ],
     );
