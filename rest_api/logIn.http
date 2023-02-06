@@ -51,9 +51,43 @@ Accept: application/json
     "phone" : "+855889002920"
 }
 
+<<<<<<< HEAD
 
 ###
 Get {{baseUrl}}v4/user?id=$memberId
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
+=======
+###
+GET {{baseUrl}}v4/slide?module=privilege
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{baseUrl}}v4/privilege/category
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{baseUrl}}v4/privilege/shop?page=1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{baseUrl}}v4/privilege/shop?favorite
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### favorite or unfavorite  
+PUT {{baseUrl}}v4/privilege/shop/3?is_favorite=true
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+>>>>>>> refs/remotes/origin/master
