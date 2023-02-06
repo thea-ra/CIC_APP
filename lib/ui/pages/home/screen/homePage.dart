@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../util/helper/globle_data.dart';
+import '../../auth/controller/logout_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final logout = Get.put(Logout());
+    final con = Get.put(Logout());
     return Scaffold(
       body: Column(
         children: [
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        // logout.logout(context);
+                        con.logout(context);
                       },
                       child: SvgPicture.asset(
                         'asset/svg/air.svg',
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           //Carosel slider
           Padding(
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 20),
             child: CarouselSlider(
               options: CarouselOptions(
                 height: 160,
@@ -121,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Obx(
             () => Padding(
-              padding: const EdgeInsets.only(top: 5, bottom: 10),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: AnimatedSmoothIndicator(
                 activeIndex: pref.currentpage.value,
                 count: 3,
@@ -130,9 +131,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 19),
+            child: AspectRatio(
+              aspectRatio: 335 / 335,
               child: Container(
+                margin: const EdgeInsets.only(
+                    top: 20, right: 20, left: 20, bottom: 20),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -144,64 +147,62 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       : Stack(
                           children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 15, bottom: 30),
-                              child: GridView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  gridDelegate:
-                                      const SliverGridDelegateWithMaxCrossAxisExtent(
-                                          maxCrossAxisExtent: 200,
-                                          childAspectRatio: 3 / 2,
-                                          mainAxisSpacing: 20),
-                                  itemCount: data.homeList.length,
-                                  itemBuilder: (BuildContext ctx, index) {
-                                    final mydata = data.homeList[index];
-                                    String selected = '';
-                                    return GestureDetector(
-                                      onTap: () {
-                                        selected = mydata.label.toString();
-                                        selected == 'Investment'
-                                            ? context.go('/myinvest')
-                                            : null;
-                                      },
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                              width: 30,
-                                              height: 30,
-                                              child: SvgPicture.network(
-                                                  mydata.icon.toString())),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 14),
-                                            child: Text(
-                                              mydata.label.toString(),
-                                              style: const TextStyle(
-                                                  fontFamily: 'DMSans'),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 80, bottom: 90),
+                            GridView.builder(
+                                padding: const EdgeInsets.only(top: 59),
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 250,
+                                        childAspectRatio: 3 / 2.2,
+                                        mainAxisSpacing: 20),
+                                itemCount: data.homeList.length,
+                                itemBuilder: (BuildContext ctx, index) {
+                                  final mydata = data.homeList[index];
+                                  String selected = '';
+                                  return GestureDetector(
+                                    onTap: () {
+                                      selected = mydata.label.toString();
+                                      selected == 'Investment'
+                                          ? context.go('/myinvest')
+                                          : null;
+                                    },
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                            width: 30,
+                                            height: 30,
+                                            child: SvgPicture.network(
+                                                mydata.icon.toString())),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 14),
+                                          child: Text(
+                                            mydata.label.toString(),
+                                            style: const TextStyle(
+                                                fontFamily: 'DMSans'),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }),
+                            AspectRatio(
+                              aspectRatio: 318 / 401,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  SvgPicture.asset(
-                                    'asset/svg/horizontalline.svg',
-                                    width: 1,
-                                    height: 111,
+                                  AspectRatio(
+                                    aspectRatio: 3 / 0.05,
+                                    child: SvgPicture.asset(
+                                      'asset/svg/horizontalline.svg',
+                                    ),
                                   ),
-                                  SvgPicture.asset(
-                                    'asset/svg/horizontalline.svg',
-                                    width: 1,
-                                    height: 80,
+                                  AspectRatio(
+                                    aspectRatio: 3 / 0.05,
+                                    child: SvgPicture.asset(
+                                      'asset/svg/horizontalline.svg',
+                                    ),
                                   ),
                                 ],
                               ),
@@ -219,7 +220,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          
         ],
       ),
     );

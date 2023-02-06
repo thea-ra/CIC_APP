@@ -39,40 +39,43 @@ class _MyInvestState extends State<MyInvest> {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : Column(
-                  children: [
-                    SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: data.list.map((e) {
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    data.selected.value = e;
-                                    debugPrint(data.selected.value);
-                                  });
-                                },
-                                child: Text(
-                                  e,
-                                  style: const TextStyle(
-                                      fontSize: 13,
-                                      color: Color(0xffFFFFFF),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: 'DMSans'),
+              : Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Column(
+                    children: [
+                      SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: data.list.map((e) {
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      data.selected.value = e;
+                                      debugPrint(data.selected.value);
+                                    });
+                                  },
+                                  child: Text(
+                                    e,
+                                    style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Color(0xffFFFFFF),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: 'DMSans'),
+                                  ),
                                 ),
-                              ),
-                            );
-                          }).toList(),
-                        )),
-                    Expanded(
-                        child: data.selected.value == 'CIC FIXED INCOME FUND'
-                            ? const CICFixedIncome()
-                            : data.selected.value == 'CIC EQUIT FUND'
-                                ? const EquityScreen()
-                                : const CICFixedIncome())
-                  ],
+                              );
+                            }).toList(),
+                          )),
+                      Expanded(
+                          child: data.selected.value == 'CIC FIXED INCOME FUND'
+                              ? const CICFixedIncome()
+                              : data.selected.value == 'CIC EQUIT FUND'
+                                  ? const EquityScreen()
+                                  : const CICFixedIncome())
+                    ],
+                  ),
                 ))))
         ],
       ),
