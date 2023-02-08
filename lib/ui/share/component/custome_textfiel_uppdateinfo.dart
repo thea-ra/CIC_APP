@@ -10,7 +10,7 @@ class TextFieldInput extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20, top: 28, right: 20),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: 44,
+        height: 48,
         child: TextField(
           controller: controller,
           decoration: InputDecoration(

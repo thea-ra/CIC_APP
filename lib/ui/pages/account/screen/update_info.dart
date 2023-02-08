@@ -44,7 +44,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
                 )
               : InkWell(
                   onTap: () {
-                    con.updateUser(context);
+                    con.updataCompany(context, con.companyData.value.id);
                   },
                   child: const Text(
                     'Done',
@@ -92,7 +92,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
             ),
             TextFieldInput(
               text: 'Input Slogan',
-              controller: con.titleController.value,
+              controller: con.sloganController.value,
             ),
             TextFieldInput(
               text: 'Phone Number',
@@ -108,7 +108,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
             ),
             TextFieldInput(
               text: 'Link Website',
-              controller: con.lastnameController.value,
+              controller: con.aboutController.value,
             )
           ],
         ),

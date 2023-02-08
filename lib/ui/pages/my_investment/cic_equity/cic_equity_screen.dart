@@ -1,4 +1,3 @@
-import 'package:cic_project/ui/share/component/equity_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -6,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../share/component/cic_graph.dart';
 import '../../../share/component/currentUT.dart';
 import '../../../share/component/icon_text.dart';
-import '../../../share/component/togglebutton.dart';
 import '../../../share/component/total_ut.dart';
 import '../../../share/component/twoline.dart';
 import '../../home/controller/home_controller.dart';
@@ -124,50 +122,6 @@ class _EquityScreenState extends State<EquityScreen> {
               ],
             ),
           ),
-          Obx(
-            (() => Container(
-                  child: con.isClick.value
-                      ? const Padding(
-                          padding: EdgeInsets.only(top: 24),
-                          child: Togglebutton(
-                            lefttext: 'Detail Summary',
-                            righttext: 'Interest Schedule',
-                          ),
-                        )
-                      : null,
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 14, right: 14),
-            child: Container(
-                width: double.infinity,
-                color: const Color(0xffFFFFFF),
-                child: const Investmentchat()),
-          ),
-          DataTable(
-              showBottomBorder: true,
-              columns: const [
-                DataColumn(
-                  label: Text('Date'),
-                ),
-                DataColumn(
-                  label: Text('UT'),
-                ),
-                DataColumn(
-                  label: Text('Price'),
-                ),
-                DataColumn(
-                  label: Text('Total'),
-                ),
-              ],
-              rows: con.graphlist.map((e) {
-                return DataRow(cells: [
-                  DataCell(Text(e.date.toString())),
-                  DataCell(Text(e.year.toString())),
-                  DataCell(Text(e.price.toString())),
-                  DataCell(Text(e.price.toString())),
-                ]);
-              }).toList()),
         ],
       ),
     );
