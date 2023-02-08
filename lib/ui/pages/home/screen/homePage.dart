@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
               aspectRatio: 335 / 335,
               child: Container(
                 margin: const EdgeInsets.only(
-                    top: 20, right: 20, left: 20, bottom: 20),
+                    top: 10, right: 20, left: 20, bottom: 20),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Stack(
                           children: [
                             GridView.builder(
-                                padding: const EdgeInsets.only(top: 59),
+                                padding: const EdgeInsets.only(top: 35),
                                 physics: const NeverScrollableScrollPhysics(),
                                 gridDelegate:
                                     const SliverGridDelegateWithMaxCrossAxisExtent(

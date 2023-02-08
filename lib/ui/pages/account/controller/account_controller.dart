@@ -12,9 +12,18 @@ class AccountController extends GetxController {
     super.onInit();
   }
 
+  final currentpage = 0.obs;
   final isloading = false.obs;
   final datamemeber = AccountModel().obs;
   final apibasehelper = ApiBaseHelper();
+  final emailContoller = TextEditingController().obs;
+  final company = AccountModel().obs;
+  final companyController = TextEditingController().obs;
+  final sloganController = TextEditingController().obs;
+  final phoneController = TextEditingController().obs;
+  final titleController = TextEditingController().obs;
+  final locationController = TextEditingController().obs;
+  final lastnameController = TextEditingController().obs;
 
   //Get data from api
   Future<AccountModel> fetchData() async {
@@ -34,5 +43,40 @@ class AccountController extends GetxController {
     }
     isloading(false);
     return datamemeber.value;
+  }
+
+// Update function
+  @override
+  Future<dynamic> updateUser(BuildContext context) async {
+    debugPrint("Function updateUser Worded");
+    isloading(true);
+    try {
+      await apibasehelper.onNetworkRequesting(
+          url: 'v4/user',
+          methode: METHODE.post,
+          isAuthorize: true,
+          body: {
+            "company_name": "ABC",
+            "title": titleController.value.text,
+            "phone": phoneController.value.text,
+            'email': emailContoller.value.text,
+            'last_name': lastnameController.value.text,
+          }).then((value) {
+        debugPrint('value => : $value');
+        fetchData();
+        // context.go('/account');
+      });
+    } catch (e) {}
+    isloading(false);
+  }
+
+  void collectionController() {
+    companyController.value.text = datamemeber.value.firstname.toString();
+    sloganController.value.text = datamemeber.value.fullname.toString();
+    phoneController.value.text = datamemeber.value.phone.toString();
+    emailContoller.value.text = datamemeber.value.email.toString();
+    titleController.value.text = datamemeber.value.title.toString();
+    locationController.value.text =
+        datamemeber.value.companies!['logo'].toString();
   }
 }

@@ -132,12 +132,12 @@ class CICFixedIncome extends StatelessWidget {
               ),
             ),
           ),
-          SafeArea(
+          const SafeArea(
               top: false,
-              minimum: const EdgeInsets.only(left: 20.0, right: 20.0),
+              minimum: EdgeInsets.only(left: 20.0, right: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: CustomeButton(

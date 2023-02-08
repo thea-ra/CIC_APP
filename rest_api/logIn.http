@@ -1,13 +1,13 @@
 @baseUrl=https://cicstaging.z1central.com/api/
 
-@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiOGYzOTczMTA0MmU4OWJhODE3NTU2ZmFiY2I3YTdkMDFmNjc5ZmY3NWExNzY1ZDk1MzNjOGU0NTQwYTRjOWI1ZmFlNTY5N2NmZTI5MzY5M2EiLCJpYXQiOjE2NzU2NTYxMzYuMjYwNjI4LCJuYmYiOjE2NzU2NTYxMzYuMjYwNjMxLCJleHAiOjE3MDcxOTIxMzYuMjUxNjE3LCJzdWIiOiI1MiIsInNjb3BlcyI6WyIqIl19.j5zKuMc_luCYM3QEQP8jRKy1Mw5NwKqBFy-eC5mjbMkEypmjkSEMBJK5SAA_WngycvFNHhxlGRzq2g3eu4hEuFPyYZitQm3BCaWqmOkCNvAydkYFUcObDMj6O2I5J27GVydpBYyZajBhlXDPyKX1Q40dVejAzrbi8lJnlDrG9-mF6GiniEHHBu-n7xUMOMFXUgIbN0_Pj_hZ6ZQOsUs-eYKaybwBH_FtogMmWXY01OZQDFdVvyw4RK0nR3RUvrSHwv9rgZJ4yMZQ1uDy5kaBfIu4NlsOClGmo2LddMx3JRXwUu_WuZgfJxiyQJgXE4ZqPRxkV0GtROmhBOkMLBe6uWhSAzTdXibflDbXUBXNWghkkI4ZGx6hrkJyyaOEHJOMj80iOSMeX7wYrqEFpkQDRH-oU74fLhvm0konxbkG3fN4eFC547C_ZdCtvbuD-eYcLPrjZ_2WJ6_Su_bmFOnYkNIsU0VHSAE6jEJw28YagiomOL7RV-p_A9aZBHqzCiRKbt5Ep3QnWj9bNHd8SLNIGdUBMygXyIXEEani4asziB1TFgcay9Q2bYRCJPTEvAWgjeCHLfYEG6F4yhJ2Q-bhyCj9F2M0ntufyVNyKM-NCY3eVe96NT9GZuAyiph_PC_TiGbwvIX3SOVL61m63PqrDMuiWNslM737jW_AnQAhkv4
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiMjQ2MjU4NzFlMjM4ZjZhMzRjNmI4Y2U3NWZlZTE0MDU4NDNjZTEyZGJkOGM3NjkxNThkYmI3MDdhYmY4NDI0YzcyYmRhNDBiNGI2MTQxNGQiLCJpYXQiOjE2NzU3NDA2MDcuNjU0NzgsIm5iZiI6MTY3NTc0MDYwNy42NTQ3ODMsImV4cCI6MTcwNzI3NjYwNy42NDI1MDIsInN1YiI6IjUyIiwic2NvcGVzIjpbIioiXX0.XTGrb45Q7MeFBkDT90mRtfD57B05aa6_tSiKcVe2ApwWGkKycX_5E-a04bmowDGInQ3Hx47vZMUD6j_U1tCi3pneC2zge-askeJIipPpKvwoy3iD50n583vUJROaun90USnREL5tsJLhQYM9qLvyXXA_inouSjfztYkaYXozqqvCdG2jiu2Lp21KptkvzDD9JZFFfNTVa5Q2ChWcJ-5JNqqdDKH7skHXG5cWazloHpjcaO9fUWdsHsTlLUYFXjPcJzfNVDyW7RfZ7pn-PfFfY4AoylL9ROJYigNGdoBbyCHaL2r0PL27gPdr0RpgmBdGPhoIB9IFxiMpnAK2jOwm5mfWgJ2b6Ju3fzwZuJmqTCcaON_gg5wFbshtgdAoapm2gnxOvZZY1sD5so80j60gqiT4oU5-7A92gZMkaY22b4k5FqqJ51DsDo_k1Fcl3tS0SiDuSNjyaqRLgnbYUR02swocGDAT6yqK65Hu6Ke98FXRxyM044rHlcpNS63uf0hMoX-HU8naWrraF_oupoAixDBDInnursgPXYvehccr4Ooq8J8o5mgYGm7mNeNtWm_VrrIE0lfwPvwAM5OPlwwi-9k1ZMYqe_WImioUdYcYgCS8nmN1HfUq1jYlSdPrw_UPTjWy8dGnKpNvtXr4IpnlsJjb8fpGdVTs05d62j2M-Mo
 POST {{baseUrl}}v4/login
 Accept: application/json
 Content-Type: application/json
 
 {
     "phone" : "+855889002920",
-    "password" : "Theara12"   
+    "password" : "Theara123"   
 }
 
 ###
@@ -50,11 +50,9 @@ Accept: application/json
 {
     "phone" : "+855889002920"
 }
-
-<<<<<<< HEAD
-
+    
 ###
-Get {{baseUrl}}v4/user?id=$memberId
+Get {{baseUrl}}v4/user
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -90,4 +88,3 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
->>>>>>> refs/remotes/origin/master

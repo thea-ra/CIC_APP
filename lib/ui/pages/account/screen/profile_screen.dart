@@ -105,7 +105,12 @@ class _MyAppState extends State<ProfileScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SvgPicture.asset('asset/svg/sheild.svg'),
-                                      const Text('Marketing Manager'),
+                                      Obx(() => con.isloading.value
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator())
+                                          : Text(con.datamemeber.value.lastname
+                                              .toString())),
                                     ],
                                   ),
                                 ),
@@ -269,8 +274,8 @@ class _MyAppState extends State<ProfileScreen> {
                             child: SizedBox(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Padding(
+                                children: [
+                                  const Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
                                       'About',
@@ -279,11 +284,14 @@ class _MyAppState extends State<ProfileScreen> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit .',
+                                      con.datamemeber.value.about == ''
+                                          ? ''
+                                          : con.datamemeber.value.about
+                                              .toString(),
                                       textAlign: TextAlign.justify,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                           color: Color(0xff0A0B09),
@@ -318,29 +326,32 @@ class _MyAppState extends State<ProfileScreen> {
                                             'asset/svg/cic.svg'),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: const [
-                                            Text(
-                                              'Cambodia Investors\nCorporation',
-                                              style: TextStyle(
-                                                  // color: AppColor.darkColor,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            Text(
-                                              'Beyond Investment Opportunity',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                // color: AppColor.mainColor,
+                                    Obx(
+                                      () => Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 20),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                '${con.datamemeber.value.lastname}',
+                                                style: const TextStyle(
+                                                    // color: AppColor.darkColor,
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
-                                            ),
-                                          ],
+                                              Text(
+                                                '${con.datamemeber.value.about}',
+                                                style: const TextStyle(
+                                                  fontSize: 12,
+                                                  // color: AppColor.mainColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -415,7 +426,7 @@ class _MyAppState extends State<ProfileScreen> {
                                                             'asset/svg/map.svg'),
                                                       ),
                                                       title: const Text(
-                                                          'Edit company info'),
+                                                          "Edit Address"),
                                                     ),
                                                   ),
                                                   const PopupMenuDivider(),
@@ -466,17 +477,17 @@ class _MyAppState extends State<ProfileScreen> {
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        children: const [
-                                          Text(
+                                        children: [
+                                          const Text(
                                             'Product and Service',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 16),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
-                                          Text(
+                                          const Text(
                                               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
                                               textAlign: TextAlign.justify,
                                               style: TextStyle(
@@ -484,22 +495,23 @@ class _MyAppState extends State<ProfileScreen> {
                                                   fontWeight: FontWeight.w400,
                                                   color: Color(0xff0A0B09),
                                                   fontFamily: 'DMSans')),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
-                                          Text(
+                                          const Text(
                                             'About',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 16),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                           Text(
-                                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
+                                              con.datamemeber.value.about
+                                                  .toString(),
                                               textAlign: TextAlign.justify,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w400,
                                                   color: Color(0xff0A0B09),

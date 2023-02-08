@@ -14,7 +14,7 @@ class CustomeButton extends StatelessWidget {
           color: background),
       child: Center(
           child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 55),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
         child: Text(
           text.toString(),
           style: TextStyle(
