@@ -3,6 +3,8 @@ import 'package:cic_project/ui/pages/account/screen/update_info.dart';
 import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
 import 'package:cic_project/ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
+import 'package:cic_project/ui/pages/privilege/screen/detail_shop.dart';
+import 'package:cic_project/ui/pages/privilege/screen/previlege_home_screen.dart';
 import 'package:cic_project/ui/pages/splash/slash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -106,6 +108,23 @@ final router = GoRouter(
           key: state.pageKey,
         );
       },
+    ),
+    GoRoute(
+      path: '/previlege',
+      name: 'previlege',
+      builder: (_, state) {
+        return NewClass(
+          key: state.pageKey,
+        );
+      },
+      routes: [
+        GoRoute(
+          path: 'shopdetail',
+          builder: (_, state) {
+            return DetailShop(key: state.pageKey);
+          },
+        ),
+      ],
     ),
   ],
 );

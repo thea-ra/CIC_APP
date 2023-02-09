@@ -29,6 +29,7 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                automaticallyImplyLeading: false,
                 backgroundColor: AppColor.mainColor,
                 pinned: true,
                 // floating: false,
@@ -284,7 +285,7 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
                     labelStyle: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
-                        color: Theme.of(context).backgroundColor),
+                        color: Theme.of(context).colorScheme.background),
                     // indicatorColor: Theme.of(context).hintColor,
                     indicatorColor: Colors.transparent,
                     labelColor: AppColor.darkGrey,

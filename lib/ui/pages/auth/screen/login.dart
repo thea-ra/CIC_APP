@@ -43,10 +43,10 @@ class _UserLoginState extends State<UserLogin> {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 44, right: 44, top: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 44, right: 44, top: 8),
               child: Row(
-                children: [
+                children: const [
                   Text(
                     'Welcome back to',
                     style: TextStyle(

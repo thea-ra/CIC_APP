@@ -1,3 +1,4 @@
+import 'package:cic_project/ui/pages/privilege/controller/previlege_controller.dart';
 import 'package:cic_project/ui/share/component/custom_favourite.dart';
 import 'package:cic_project/util/color/app_color.dart';
 import 'package:cic_project/util/textstyle/custom_textstyle.dart';
@@ -7,8 +8,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../controller/slider_image_cotroller.dart';
 
 class IosFirstPage extends StatefulWidget {
   const IosFirstPage({Key? key}) : super(key: key);

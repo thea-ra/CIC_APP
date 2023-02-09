@@ -31,10 +31,10 @@ class _FirstLoginScreenState extends State<FirstLoginScreen> {
           ),
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 42, left: 310),
+              Padding(
+                padding: const EdgeInsets.only(top: 42, left: 310),
                 child: Row(
-                  children: [
+                  children: const [
                     Text(
                       'En',
                       style: TextStyle(fontSize: 14),

@@ -1,4 +1,4 @@
-import 'package:cic_project/ui/pages/privilege/controller/slider_image_cotroller.dart';
+import 'package:cic_project/ui/pages/privilege/controller/previlege_controller.dart';
 import 'package:cic_project/ui/share/component/custom_favourite.dart';
 import 'package:cic_project/util/color/app_color.dart';
 import 'package:cic_project/util/textstyle/custom_textstyle.dart';
