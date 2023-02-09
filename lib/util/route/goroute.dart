@@ -1,8 +1,8 @@
 import 'package:cic_project/ui/pages/account/screen/profile_screen.dart';
+import 'package:cic_project/ui/pages/account/screen/update_info.dart';
 import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
 import 'package:cic_project/ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
-import 'package:cic_project/ui/pages/privilege/screen/detail_shop.dart';
 import 'package:cic_project/ui/pages/splash/slash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -99,21 +99,13 @@ final router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/previlege',
-      name: 'previlege',
+      path: '/update',
+      name: 'Update',
       builder: (_, state) {
-        return HomeScreen(
+        return UpdateInfo(
           key: state.pageKey,
         );
       },
-      routes: [
-        GoRoute(
-          path: 'shopdetail',
-          builder: (_, state) {
-            return DetailShop(key: state.pageKey);
-          },
-        ),
-      ],
     ),
   ],
 );

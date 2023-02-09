@@ -67,8 +67,12 @@ dependencies:
   adaptive_action_sheet: ^2.0.2
   qr_code_scanner: ^1.0.1
   cached_network_image: ^3.2.3
+<<<<<<< HEAD
   sizer: ^2.0.15
   telegram: ^0.0.3
+=======
+  mason_cli: ^0.1.0-dev.44
+>>>>>>> refs/remotes/origin/master
 
 
 
@@ -82,7 +86,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+<<<<<<< HEAD
   build_runner: ^2.3.3
+=======
+  build_runner: ^2.4.0
+>>>>>>> refs/remotes/origin/master
   json_serializable: ^6.6.1
 
 # For information on the generic Dart part of this file, see the
