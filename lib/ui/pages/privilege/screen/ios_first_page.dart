@@ -20,6 +20,7 @@ class _IosFirstPageState extends State<IosFirstPage> {
   @override
   void initState() {
     conPrevilege.getShop(onSelect: 'Home');
+
     // TODO: implement initState
     super.initState();
   }
@@ -204,13 +205,13 @@ class _IosFirstPageState extends State<IosFirstPage> {
                                     children: [
                                       Container(
                                         alignment: Alignment.topLeft,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  '${element.value.shopLogo}'),
-                                              fit: BoxFit.cover),
+                                        decoration: const BoxDecoration(
+                                          // image: DecorationImage(
+                                          //     image: NetworkImage(
+                                          //         '${element.value.shopLogo}'),
+                                          //     fit: BoxFit.cover),
                                           color: Colors.white,
-                                          borderRadius: const BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                             Radius.circular(10),
                                           ),
                                         ),
