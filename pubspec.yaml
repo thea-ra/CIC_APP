@@ -68,7 +68,6 @@ dependencies:
   qr_code_scanner: ^1.0.1
   cached_network_image: ^3.2.3
   mason_cli: ^0.1.0-dev.44
-  sizer: ^2.0.15
   shimmer: ^2.0.0
 
 
