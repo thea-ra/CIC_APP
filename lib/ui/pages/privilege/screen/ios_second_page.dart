@@ -289,7 +289,9 @@ class _IosSecondPageState extends State<IosSecondPage> {
                                           SizedBox(
                                             child: GestureDetector(
                                               child: SvgPicture.asset(
-                                                  'asset/svg/Location.svg'),
+                                                'asset/svg/Location.svg',
+                                                height: 12,
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(

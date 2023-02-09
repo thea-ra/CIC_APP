@@ -65,7 +65,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ###
-GET {{baseUrl}}v4/privilege/shop?page=1
+GET {{baseUrl}}v4/privilege/shop/20
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -82,4 +82,15 @@ Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
+### favorite or unfavorite  
+PUT {{baseUrl}}v4/privilege/category?origin=${googleMapCon.currentLatStore.value},${googleMapCon.currentLngStore.value}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### favorite or unfavorite  
+Get {{baseUrl}}v4/privilege/category?origin=11.59313872370917, 104.88328750528721
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
 

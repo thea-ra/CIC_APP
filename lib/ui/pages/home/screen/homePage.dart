@@ -64,10 +64,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color(0xffF2F2F2)),
                     ),
                   )),
-                  SvgPicture.asset(
-                    'asset/svg/Bell.svg',
-                    width: 20.63,
-                    height: 24.38,
+                  GestureDetector(
+                    onTap: () {
+                      context.go('/previlege');
+                    },
+                    child: SvgPicture.asset(
+                      'asset/svg/Bell.svg',
+                      width: 20.63,
+                      height: 24.38,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(

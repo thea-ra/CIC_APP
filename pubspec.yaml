@@ -68,6 +68,8 @@ dependencies:
   qr_code_scanner: ^1.0.1
   shimmer: ^2.0.0
   cached_network_image: ^3.2.3
+  sizer: ^2.0.15
+  telegram: ^0.0.3
 
 
 
