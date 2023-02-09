@@ -44,6 +44,22 @@ mixin _$AccountModel {
   String? get phone => throw _privateConstructorUsedError;
   @JsonKey(name: "email")
   String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: "company_name")
+  String? get companyname => throw _privateConstructorUsedError;
+  @JsonKey(name: "about")
+  String? get about => throw _privateConstructorUsedError;
+  @JsonKey(name: "companies")
+  Map<String, dynamic>? get companies => throw _privateConstructorUsedError;
+  @JsonKey(name: "title")
+  String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: "name")
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: "logo")
+  String? get logo => throw _privateConstructorUsedError;
+  @JsonKey(name: "website")
+  String? get website => throw _privateConstructorUsedError;
+  @JsonKey(name: "address")
+  String? get address => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,7 +85,15 @@ abstract class $AccountModelCopyWith<$Res> {
       @JsonKey(name: "last_name") String? lastname,
       @JsonKey(name: "date_of_birth") String? dataofbirth,
       @JsonKey(name: "phone") String? phone,
-      @JsonKey(name: "email") String? email});
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "company_name") String? companyname,
+      @JsonKey(name: "about") String? about,
+      @JsonKey(name: "companies") Map<String, dynamic>? companies,
+      @JsonKey(name: "title") String? title,
+      @JsonKey(name: "name") String? name,
+      @JsonKey(name: "logo") String? logo,
+      @JsonKey(name: "website") String? website,
+      @JsonKey(name: "address") String? address});
 }
 
 /// @nodoc
@@ -97,6 +121,14 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
     Object? dataofbirth = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? companyname = freezed,
+    Object? about = freezed,
+    Object? companies = freezed,
+    Object? title = freezed,
+    Object? name = freezed,
+    Object? logo = freezed,
+    Object? website = freezed,
+    Object? address = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -147,6 +179,38 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      companyname: freezed == companyname
+          ? _value.companyname
+          : companyname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      about: freezed == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companies: freezed == companies
+          ? _value.companies
+          : companies // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -171,7 +235,15 @@ abstract class _$$_AccountModelCopyWith<$Res>
       @JsonKey(name: "last_name") String? lastname,
       @JsonKey(name: "date_of_birth") String? dataofbirth,
       @JsonKey(name: "phone") String? phone,
-      @JsonKey(name: "email") String? email});
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "company_name") String? companyname,
+      @JsonKey(name: "about") String? about,
+      @JsonKey(name: "companies") Map<String, dynamic>? companies,
+      @JsonKey(name: "title") String? title,
+      @JsonKey(name: "name") String? name,
+      @JsonKey(name: "logo") String? logo,
+      @JsonKey(name: "website") String? website,
+      @JsonKey(name: "address") String? address});
 }
 
 /// @nodoc
@@ -197,6 +269,14 @@ class __$$_AccountModelCopyWithImpl<$Res>
     Object? dataofbirth = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? companyname = freezed,
+    Object? about = freezed,
+    Object? companies = freezed,
+    Object? title = freezed,
+    Object? name = freezed,
+    Object? logo = freezed,
+    Object? website = freezed,
+    Object? address = freezed,
   }) {
     return _then(_$_AccountModel(
       id: freezed == id
@@ -247,6 +327,38 @@ class __$$_AccountModelCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      companyname: freezed == companyname
+          ? _value.companyname
+          : companyname // ignore: cast_nullable_to_non_nullable
+              as String?,
+      about: freezed == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
+              as String?,
+      companies: freezed == companies
+          ? _value._companies
+          : companies // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logo: freezed == logo
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -266,7 +378,16 @@ class _$_AccountModel implements _AccountModel {
       @JsonKey(name: "last_name") this.lastname,
       @JsonKey(name: "date_of_birth") this.dataofbirth,
       @JsonKey(name: "phone") this.phone,
-      @JsonKey(name: "email") this.email});
+      @JsonKey(name: "email") this.email,
+      @JsonKey(name: "company_name") this.companyname,
+      @JsonKey(name: "about") this.about,
+      @JsonKey(name: "companies") final Map<String, dynamic>? companies,
+      @JsonKey(name: "title") this.title,
+      @JsonKey(name: "name") this.name,
+      @JsonKey(name: "logo") this.logo,
+      @JsonKey(name: "website") this.website,
+      @JsonKey(name: "address") this.address})
+      : _companies = companies;
 
   factory _$_AccountModel.fromJson(Map<String, dynamic> json) =>
       _$$_AccountModelFromJson(json);
@@ -307,10 +428,42 @@ class _$_AccountModel implements _AccountModel {
   @override
   @JsonKey(name: "email")
   final String? email;
+  @override
+  @JsonKey(name: "company_name")
+  final String? companyname;
+  @override
+  @JsonKey(name: "about")
+  final String? about;
+  final Map<String, dynamic>? _companies;
+  @override
+  @JsonKey(name: "companies")
+  Map<String, dynamic>? get companies {
+    final value = _companies;
+    if (value == null) return null;
+    if (_companies is EqualUnmodifiableMapView) return _companies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  @JsonKey(name: "title")
+  final String? title;
+  @override
+  @JsonKey(name: "name")
+  final String? name;
+  @override
+  @JsonKey(name: "logo")
+  final String? logo;
+  @override
+  @JsonKey(name: "website")
+  final String? website;
+  @override
+  @JsonKey(name: "address")
+  final String? address;
 
   @override
   String toString() {
-    return 'AccountModel(id: $id, code: $code, iscustomer: $iscustomer, customerid: $customerid, profile: $profile, firstname: $firstname, fullname: $fullname, investmentAmount: $investmentAmount, lastname: $lastname, dataofbirth: $dataofbirth, phone: $phone, email: $email)';
+    return 'AccountModel(id: $id, code: $code, iscustomer: $iscustomer, customerid: $customerid, profile: $profile, firstname: $firstname, fullname: $fullname, investmentAmount: $investmentAmount, lastname: $lastname, dataofbirth: $dataofbirth, phone: $phone, email: $email, companyname: $companyname, about: $about, companies: $companies, title: $title, name: $name, logo: $logo, website: $website, address: $address)';
   }
 
   @override
@@ -336,25 +489,44 @@ class _$_AccountModel implements _AccountModel {
             (identical(other.dataofbirth, dataofbirth) ||
                 other.dataofbirth == dataofbirth) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.companyname, companyname) ||
+                other.companyname == companyname) &&
+            (identical(other.about, about) || other.about == about) &&
+            const DeepCollectionEquality()
+                .equals(other._companies, _companies) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.logo, logo) || other.logo == logo) &&
+            (identical(other.website, website) || other.website == website) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      code,
-      iscustomer,
-      customerid,
-      profile,
-      firstname,
-      fullname,
-      investmentAmount,
-      lastname,
-      dataofbirth,
-      phone,
-      email);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        code,
+        iscustomer,
+        customerid,
+        profile,
+        firstname,
+        fullname,
+        investmentAmount,
+        lastname,
+        dataofbirth,
+        phone,
+        email,
+        companyname,
+        about,
+        const DeepCollectionEquality().hash(_companies),
+        title,
+        name,
+        logo,
+        website,
+        address
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -383,7 +555,15 @@ abstract class _AccountModel implements AccountModel {
       @JsonKey(name: "last_name") final String? lastname,
       @JsonKey(name: "date_of_birth") final String? dataofbirth,
       @JsonKey(name: "phone") final String? phone,
-      @JsonKey(name: "email") final String? email}) = _$_AccountModel;
+      @JsonKey(name: "email") final String? email,
+      @JsonKey(name: "company_name") final String? companyname,
+      @JsonKey(name: "about") final String? about,
+      @JsonKey(name: "companies") final Map<String, dynamic>? companies,
+      @JsonKey(name: "title") final String? title,
+      @JsonKey(name: "name") final String? name,
+      @JsonKey(name: "logo") final String? logo,
+      @JsonKey(name: "website") final String? website,
+      @JsonKey(name: "address") final String? address}) = _$_AccountModel;
 
   factory _AccountModel.fromJson(Map<String, dynamic> json) =
       _$_AccountModel.fromJson;
@@ -424,6 +604,30 @@ abstract class _AccountModel implements AccountModel {
   @override
   @JsonKey(name: "email")
   String? get email;
+  @override
+  @JsonKey(name: "company_name")
+  String? get companyname;
+  @override
+  @JsonKey(name: "about")
+  String? get about;
+  @override
+  @JsonKey(name: "companies")
+  Map<String, dynamic>? get companies;
+  @override
+  @JsonKey(name: "title")
+  String? get title;
+  @override
+  @JsonKey(name: "name")
+  String? get name;
+  @override
+  @JsonKey(name: "logo")
+  String? get logo;
+  @override
+  @JsonKey(name: "website")
+  String? get website;
+  @override
+  @JsonKey(name: "address")
+  String? get address;
   @override
   @JsonKey(ignore: true)
   _$$_AccountModelCopyWith<_$_AccountModel> get copyWith =>

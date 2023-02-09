@@ -43,10 +43,10 @@ class _UserLoginState extends State<UserLogin> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 44, right: 44, top: 8),
+            const Padding(
+              padding: EdgeInsets.only(left: 44, right: 44, top: 8),
               child: Row(
-                children: const [
+                children: [
                   Text(
                     'Welcome back to',
                     style: TextStyle(
@@ -73,7 +73,7 @@ class _UserLoginState extends State<UserLogin> {
                   children: [
                     ComponentTextfiel(
                       text: 'Phone number',
-                      icons: 'asset/svg/call.svg',
+                      icons: 'asset/svg/cell_phone.svg',
                       color: const Color(0xff0F50A4),
                       controller: glo.phoneController.value,
                     ),

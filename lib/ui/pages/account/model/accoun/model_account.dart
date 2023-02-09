@@ -18,6 +18,14 @@ class AccountModel with _$AccountModel {
     @JsonKey(name: "date_of_birth") final String? dataofbirth,
     @JsonKey(name: "phone") final String? phone,
     @JsonKey(name: "email") final String? email,
+    @JsonKey(name: "company_name") final String? companyname,
+    @JsonKey(name: "about") final String? about,
+    @JsonKey(name: "companies") final Map<String, dynamic>? companies,
+    @JsonKey(name: "title") final String? title,
+    @JsonKey(name: "name") final String? name,
+    @JsonKey(name: "logo") final String? logo,
+    @JsonKey(name: "website") final String? website,
+    @JsonKey(name: "address") final String? address,
   }) = _AccountModel;
 
   factory AccountModel.fromJson(Map<String, dynamic> json) =>

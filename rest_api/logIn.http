@@ -1,14 +1,13 @@
-@baseUrl= https://cicstaging.z1central.com/api/
+@baseUrl=https://cicstaging.z1central.com/api/
 
-@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiYTVjNjM2ZTBjZmI0NmMwZGNjMWFiYjJlMzE4YzczZjk2OTA3MGY5Yjc2NGE3ZDQ1MjRkYjViOGI4NGE3ZjUxZWY1ZDg0MTBkNGI5M2I4NDQiLCJpYXQiOjE2NzUxNTQzMjEuOTU1MTg4LCJuYmYiOjE2NzUxNTQzMjEuOTU1MTkyLCJleHAiOjE3MDY2OTAzMjEuOTQ2Njc0LCJzdWIiOiI1MiIsInNjb3BlcyI6WyIqIl19.E74HO88l7TDNa36VN6vywwh7px5fjeYCZKMvOXpa0W2tl_mSA0DuagosD2fjz9C5fi34B48NQEE7SBVhP2ome7iRQT75wl8pZcO0fY7sMKBMpORakQVNfD37n0zZ3FRao8Q-d9Ue3T6Z_xrO82LnBHI5xc_YQj8MrGgoTpmPgrKH3JAwG_RA-XEb0_fART0vL-t2sizG6jNLoSJho-fEFJi9jdycfCFS-uAe3MY3s43xlBM8M_4ekWRIWRCu2yCkmTrDHRuWFTe2FI1Ovp609b63YE4YBVuYb-7rTXWOrtMeBeKRpk-vcSpRPPmuvKJwhHtmSw5_FeCwwgf9V2-3cIDrm5YLJyZyW4W_TcyfK17qqr58uU5SyoG3XkVZwysHsKEWn-QjyPQRf8UzUUAuhM3geOOCfWkshYySGFjmYbbFpDrHfP6ClJqhS5B33NWnTLLMrnT0xTMwJA9widbFrefftnxezE77dc-NR7W2Rgvnw8Qrqjw_eFpavIryhPZQrCgKQ-cFfUwFMQudIzCtReYxUar8NCJrUWlwugTJ-VxtyAvbieTO2EEjeQxWzo6bC9kZz83Ky-mZ-WqslzGPVUOET-k8-lYxny2iAbGqh-KaCIWeSvq3DSC2oNj7ttpTaKjKtbFmPveESZqrGRwkIt5z6tbztPH_02qpNUDimQ8
-
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiMjQ2MjU4NzFlMjM4ZjZhMzRjNmI4Y2U3NWZlZTE0MDU4NDNjZTEyZGJkOGM3NjkxNThkYmI3MDdhYmY4NDI0YzcyYmRhNDBiNGI2MTQxNGQiLCJpYXQiOjE2NzU3NDA2MDcuNjU0NzgsIm5iZiI6MTY3NTc0MDYwNy42NTQ3ODMsImV4cCI6MTcwNzI3NjYwNy42NDI1MDIsInN1YiI6IjUyIiwic2NvcGVzIjpbIioiXX0.XTGrb45Q7MeFBkDT90mRtfD57B05aa6_tSiKcVe2ApwWGkKycX_5E-a04bmowDGInQ3Hx47vZMUD6j_U1tCi3pneC2zge-askeJIipPpKvwoy3iD50n583vUJROaun90USnREL5tsJLhQYM9qLvyXXA_inouSjfztYkaYXozqqvCdG2jiu2Lp21KptkvzDD9JZFFfNTVa5Q2ChWcJ-5JNqqdDKH7skHXG5cWazloHpjcaO9fUWdsHsTlLUYFXjPcJzfNVDyW7RfZ7pn-PfFfY4AoylL9ROJYigNGdoBbyCHaL2r0PL27gPdr0RpgmBdGPhoIB9IFxiMpnAK2jOwm5mfWgJ2b6Ju3fzwZuJmqTCcaON_gg5wFbshtgdAoapm2gnxOvZZY1sD5so80j60gqiT4oU5-7A92gZMkaY22b4k5FqqJ51DsDo_k1Fcl3tS0SiDuSNjyaqRLgnbYUR02swocGDAT6yqK65Hu6Ke98FXRxyM044rHlcpNS63uf0hMoX-HU8naWrraF_oupoAixDBDInnursgPXYvehccr4Ooq8J8o5mgYGm7mNeNtWm_VrrIE0lfwPvwAM5OPlwwi-9k1ZMYqe_WImioUdYcYgCS8nmN1HfUq1jYlSdPrw_UPTjWy8dGnKpNvtXr4IpnlsJjb8fpGdVTs05d62j2M-Mo
 POST {{baseUrl}}v4/login
 Accept: application/json
 Content-Type: application/json
 
 {
     "phone" : "+855889002920",
-    "password" : "Theara12"   
+    "password" : "Theara123"   
 }
 
 ###
@@ -51,7 +50,13 @@ Accept: application/json
 {
     "phone" : "+855889002920"
 }
-
+    
+###
+Get {{baseUrl}}v4/user
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+=======
 ###
 GET {{baseUrl}}v4/slide?module=privilege
 Accept: application/json

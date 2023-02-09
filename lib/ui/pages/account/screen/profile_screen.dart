@@ -1,11 +1,11 @@
-import 'package:cic_project/ui/pages/account/model/profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../controller/account_controller.dart';
+import '../model/profile/profile_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   final int? id;
@@ -93,6 +93,7 @@ class _MyAppState extends State<ProfileScreen> {
                                             .toString(),
                                         style: const TextStyle(
                                             fontSize: 20,
+                                            fontFamily: 'DMSans',
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -104,13 +105,14 @@ class _MyAppState extends State<ProfileScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SvgPicture.asset('asset/svg/sheild.svg'),
-                                      const Text('Marketing Manager'),
+                                      Obx(() => con.isloading.value
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator())
+                                          : Text(con.datamemeber.value.fullname
+                                              .toString())),
                                     ],
                                   ),
-                                ),
-                                const Text(
-                                  'Cambodia Investors Corporation',
-                                  style: TextStyle(color: Colors.blue),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 48),
@@ -151,7 +153,8 @@ class _MyAppState extends State<ProfileScreen> {
                                       Column(
                                         children: [
                                           SvgPicture.asset(
-                                              'asset/svg/google.svg'),
+                                            'asset/svg/google.svg',
+                                          ),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
                                             child: Text('website'),
@@ -166,41 +169,37 @@ class _MyAppState extends State<ProfileScreen> {
                           ),
                         ),
                         Obx(
-                          () => con.isloading.value
-                              ? const Center(
-                                  child: CircularProgressIndicator(),
-                                )
-                              : Positioned(
-                                  top: 100,
-                                  left: 0,
-                                  right: 0,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.red,
-                                      border: Border.all(
-                                          width: 3, color: Colors.white),
-                                    ),
-                                    width: 100,
-                                    height: 100,
-                                    child: Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(con
-                                              .datamemeber.value.profile
-                                              .toString()),
-                                          fit: BoxFit.contain,
-                                        ),
-                                        border: Border.all(
-                                            width: 3, color: Colors.blue),
-                                        shape: BoxShape.circle,
-                                        color: Colors.blue,
-                                      ),
-                                    ),
+                          () => Positioned(
+                            top: 100,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red,
+                                border:
+                                    Border.all(width: 3, color: Colors.white),
+                              ),
+                              width: 100,
+                              height: 100,
+                              child: Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(con
+                                        .datamemeber.value.profile
+                                        .toString()),
+                                    fit: BoxFit.contain,
                                   ),
+                                  border:
+                                      Border.all(width: 3, color: Colors.blue),
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue,
                                 ),
+                              ),
+                            ),
+                          ),
                         ),
                         Positioned(
                           top: 130,
@@ -219,142 +218,150 @@ class _MyAppState extends State<ProfileScreen> {
               )
             ];
           },
-          body: SingleChildScrollView(
-            padding: EdgeInsets.zero,
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      margin:
-                          const EdgeInsets.only(top: 120, left: 20, right: 20),
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(2.0),
-                        child: TabBar(
-                          labelColor: Colors.black,
-                          indicatorColor: Colors.red,
-                          indicator: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                          tabs: [
-                            Tab(
-                              text: 'Persional Profile',
-                            ),
-                            Tab(
-                              text: 'Company Profile ',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      // color: Colors.pink,
-                      color: const Color(0xffFFFFFF),
-                      width: double.infinity,
-                      height: 610,
-                      child: TabBarView(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 20, top: 26, right: 16),
-                            child: SizedBox(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'About',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+          body: Obx(
+            () => con.isloading.value
+                ? const Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(
+                                  top: 120, left: 20, right: 20),
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.5),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(2.0),
+                                child: TabBar(
+                                  labelColor: Colors.black,
+                                  indicatorColor: Colors.red,
+                                  indicator: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit .',
-                                      textAlign: TextAlign.justify,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xff0A0B09),
-                                          fontFamily: 'DMSans'),
+                                  tabs: [
+                                    Tab(
+                                      text: 'Persional Profile',
                                     ),
-                                  )
-                                ],
+                                    Tab(
+                                      text: 'Company Profile ',
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(
-                                    top: 30, left: 16, right: 0, bottom: 31),
-                                // color: Colors.blue,
-                                width: double.infinity,
-
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 54,
-                                      height: 54,
-                                      decoration: BoxDecoration(
-                                          color: const Color(0xffE5E5E5),
-                                          borderRadius:
-                                              BorderRadius.circular(30)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: SvgPicture.asset(
-                                            'asset/svg/cic.svg'),
+                            Container(
+                              // color: Colors.pink,
+                              color: const Color(0xffFFFFFF),
+                              width: double.infinity,
+                              height: 610,
+                              child: TabBarView(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20, top: 26, right: 16),
+                                    child: SizedBox(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'About',
+                                              style: TextStyle(
+                                                  fontFamily: 'DMSans',
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              '${con.companyData.value.companyname}',
+                                              textAlign: TextAlign.justify,
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Color(0xff0A0B09),
+                                                  fontFamily: 'DMSans'),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20),
-                                        child: Column(
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        margin: const EdgeInsets.only(
+                                            top: 30,
+                                            left: 16,
+                                            right: 0,
+                                            bottom: 31),
+                                        // color: Colors.blue,
+                                        width: double.infinity,
+
+                                        child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: const [
-                                            Text(
-                                              'Cambodia Investors\nCorporation',
-                                              style: TextStyle(
-                                                  // color: AppColor.darkColor,
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            Text(
-                                              'Beyond Investment Opportunity',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                // color: AppColor.mainColor,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Obx(
-                                      () => con.isloading.value
-                                          ? const Center(
-                                              child:
-                                                  CircularProgressIndicator())
-                                          : PopupMenuButton<dynamic>(
-                                              position: PopupMenuPosition.under,
-                                              shape: ContinuousRectangleBorder(
+                                          children: [
+                                            Container(
+                                              width: 54,
+                                              height: 54,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      '${con.companyData.value.companylogo}',
+                                                    ),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  color:
+                                                      const Color(0xffE5E5E5),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          20)),
-                                              iconSize: 25,
+                                                          30)),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 20),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      '${con.companyData.value.companyname}',
+                                                      style: const TextStyle(
+                                                          // color: AppColor.darkColor,
+                                                          fontSize: 16,
+                                                          color:
+                                                              Color(0xff0A0B09),
+                                                          fontFamily: 'DMSans',
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                    Text(
+                                                      '${con.companyData.value.companyslogan}',
+                                                      style: const TextStyle(
+                                                        fontSize: 12,
+                                                        fontFamily: 'DMSans',
+                                                        // color: AppColor.mainColor,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            PopupMenuButton<dynamic>(
+                                              icon: const Icon(Icons.more_vert),
+                                              position: PopupMenuPosition.under,
                                               itemBuilder: (context) {
                                                 return [
                                                   PopupMenuItem(
@@ -367,10 +374,14 @@ class _MyAppState extends State<ProfileScreen> {
                                                             'asset/svg/cell_phone.svg'),
                                                       ),
                                                       title: Text(con
-                                                          .datamemeber
-                                                          .value
-                                                          .phone
-                                                          .toString()),
+                                                                  .companyData
+                                                                  .value
+                                                                  .phone ==
+                                                              ""
+                                                          ? "noemail@gmail.com"
+                                                          : con.companyData
+                                                              .value.phone
+                                                              .toString()),
                                                     ),
                                                   ),
                                                   const PopupMenuDivider(),
@@ -379,12 +390,12 @@ class _MyAppState extends State<ProfileScreen> {
                                                       leading: SvgPicture.asset(
                                                           'asset/svg/mail.svg'),
                                                       title: Text(con
-                                                                  .datamemeber
+                                                                  .companyData
                                                                   .value
                                                                   .email ==
                                                               ""
                                                           ? "noemail@gmail.com"
-                                                          : con.datamemeber
+                                                          : con.companyData
                                                               .value.email
                                                               .toString()),
                                                     ),
@@ -399,8 +410,15 @@ class _MyAppState extends State<ProfileScreen> {
                                                         child: SvgPicture.asset(
                                                             'asset/svg/Location.svg'),
                                                       ),
-                                                      title: const Text(
-                                                          'cic-association.com'),
+                                                      title: Text(con
+                                                                  .companyData
+                                                                  .value
+                                                                  .address ==
+                                                              ""
+                                                          ? "noemail@gmail.com"
+                                                          : con.companyData
+                                                              .value.address
+                                                              .toString()),
                                                     ),
                                                   ),
                                                   const PopupMenuDivider(),
@@ -414,138 +432,168 @@ class _MyAppState extends State<ProfileScreen> {
                                                             'asset/svg/map.svg'),
                                                       ),
                                                       title: const Text(
-                                                          'Edit company info'),
+                                                          "Edit Address"),
                                                     ),
                                                   ),
                                                   const PopupMenuDivider(),
                                                   PopupMenuItem(
-                                                    child: ListTile(
-                                                      leading: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(1.0),
-                                                        child: SvgPicture.asset(
-                                                          'asset/svg/edits.svg',
-                                                          color: const Color(
-                                                              0xff0F50A4),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        context.go('/update');
+                                                      },
+                                                      child: ListTile(
+                                                        leading: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(1.0),
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            'asset/svg/edits.svg',
+                                                            color: const Color(
+                                                                0xff0F50A4),
+                                                          ),
                                                         ),
-                                                      ),
-                                                      title: const Text(
-                                                        'Edit company info',
-                                                        style: TextStyle(
-                                                            color: Color(
-                                                                0xff0F50A4)),
+                                                        title: const Text(
+                                                          'Edit company info',
+                                                          style: TextStyle(
+                                                              color: Color(
+                                                                  0xff0F50A4)),
+                                                        ),
                                                       ),
                                                     ),
                                                   )
                                                 ];
                                               },
                                             ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 20,
-                                ),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      width: double.infinity,
-                                      // height: 280,
-                                      // color: Colors.green,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: const [
-                                          Text(
-                                            'Product and Service',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 16),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
-                                              textAlign: TextAlign.justify,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color(0xff0A0B09),
-                                                  fontFamily: 'DMSans')),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            'About',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 16),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida sit tortor nisl fringilla porttitor viverra scelerisque. Turpis nisl et facilisis aliquam ultricies interdum lectus eget facilisis aliquam.',
-                                              textAlign: TextAlign.justify,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Color(0xff0A0B09),
-                                                  fontFamily: 'DMSans')),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: 231,
-                                  child: ListView.builder(
-                                    itemCount: 4,
-                                    controller: _controller,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PDCtsc1-RHs0tqdtxluCE1iFIwnUWcu12FxVXAAYYC3s9zfxoK8ch7nsu25c5icVAjs&usqp=CAU'),
-                                                fit: BoxFit.cover),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10))),
-                                        margin: const EdgeInsets.only(
-                                            left: 20, top: 10, right: 20),
-                                        width: 324,
-                                        height: 100,
-                                      );
-                                    },
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 20,
+                                          right: 20,
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              width: double.infinity,
+                                              // height: 280,
+                                              // color: Colors.green,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    con.companyData.value
+                                                                .report ==
+                                                            ""
+                                                        ? ""
+                                                        : '${con.companyData.value.report}',
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 16),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                      con.datamemeber.value
+                                                          .about
+                                                          .toString(),
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                      style: const TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color:
+                                                              Color(0xff0A0B09),
+                                                          fontFamily:
+                                                              'DMSans')),
+                                                  Text(
+                                                    con.companyData.value
+                                                                .companyproductandservice ==
+                                                            ""
+                                                        ? ""
+                                                        : '${con.companyData.value.companyproductandservice}',
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 16),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                      '${con.companyData.value.companyproductandservice}',
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                      style: const TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color:
+                                                              Color(0xff0A0B09),
+                                                          fontFamily:
+                                                              'DMSans')),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      // Expanded(
+                                      //   child: SizedBox(
+                                      //     width: double.infinity,
+                                      //     height: 231,
+                                      //     child: ListView.builder(
+                                      //       itemCount: 4,
+                                      //       controller: _controller,
+                                      //       scrollDirection: Axis.horizontal,
+                                      //       itemBuilder: (context, index) {
+                                      //         return Container(
+                                      //           decoration: const BoxDecoration(
+                                      //               image: DecorationImage(
+                                      //                   image: NetworkImage(
+                                      //                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PDCtsc1-RHs0tqdtxluCE1iFIwnUWcu12FxVXAAYYC3s9zfxoK8ch7nsu25c5icVAjs&usqp=CAU'),
+                                      //                   fit: BoxFit.cover),
+                                      //               borderRadius:
+                                      //                   BorderRadius.all(
+                                      //                       Radius.circular(
+                                      //                           10))),
+                                      //           margin: const EdgeInsets.only(
+                                      //               left: 20,
+                                      //               top: 10,
+                                      //               right: 20),
+                                      //           width: 324,
+                                      //           height: 100,
+                                      //         );
+                                      //       },
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      // SmoothPageIndicator(
+                                      //   controller: _controller,
+                                      //   count: 3,
+                                      //   effect: const SlideEffect(
+                                      //     dotHeight: 3,
+                                      //     dotWidth: 16,
+                                      //   ),
+                                      // ),
+                                    ],
                                   ),
-                                ),
+                                ],
                               ),
-                              SmoothPageIndicator(
-                                controller: _controller,
-                                count: 3,
-                                effect: const SlideEffect(
-                                  dotHeight: 3,
-                                  dotWidth: 16,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
           ),
         ),
       ),

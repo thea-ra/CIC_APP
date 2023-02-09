@@ -3,7 +3,6 @@ import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
 import 'package:cic_project/ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
 import 'package:cic_project/ui/pages/privilege/screen/detail_shop.dart';
-import 'package:cic_project/ui/pages/privilege/screen/new.dart';
 import 'package:cic_project/ui/pages/splash/slash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -103,7 +102,7 @@ final router = GoRouter(
       path: '/previlege',
       name: 'previlege',
       builder: (_, state) {
-        return NewClass(
+        return HomeScreen(
           key: state.pageKey,
         );
       },

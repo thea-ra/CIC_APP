@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
 import '../../../util/helper/local_storage.dart';
-import '../privilege/controller/slider_image_cotroller.dart';
 
 class SlashSrceen extends StatefulWidget {
-  SlashSrceen({super.key});
-  final con = Get.put(SliderImageController());
+  const SlashSrceen({super.key});
 
   @override
   State<SlashSrceen> createState() => _SlashSrceenState();

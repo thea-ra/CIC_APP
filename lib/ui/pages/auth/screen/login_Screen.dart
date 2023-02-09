@@ -31,10 +31,10 @@ class _FirstLoginScreenState extends State<FirstLoginScreen> {
           ),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 42, left: 310),
+              const Padding(
+                padding: EdgeInsets.only(top: 42, left: 310),
                 child: Row(
-                  children: const [
+                  children: [
                     Text(
                       'En',
                       style: TextStyle(fontSize: 14),
@@ -83,7 +83,7 @@ class _FirstLoginScreenState extends State<FirstLoginScreen> {
                               )));
                 },
                 child: const PhoneBotton(
-                  svgpic: 'asset/svg/call.svg',
+                  svgpic: 'asset/svg/cell_phone.svg',
                   phoneNumber: 'Phone number',
                 ),
               ),
