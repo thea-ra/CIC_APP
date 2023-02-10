@@ -2,6 +2,7 @@ import 'package:cic_project/util/color/app_color.dart';
 import 'package:cic_project/util/textstyle/custom_textstyle.dart';
 import 'package:flutter/material.dart';
 
+// ignore: non_constant_identifier_names
 CustomAppbar(
     {Widget? leading,
     BuildContext? context,

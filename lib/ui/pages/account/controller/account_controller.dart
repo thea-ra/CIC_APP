@@ -15,20 +15,18 @@ class AccountController extends GetxController {
     super.onInit();
   }
 
+  final ischeck = false.obs;
+  final isControll = false.obs;
   final currentpage = 0.obs;
   final isloading = false.obs;
   final datamemeber = AccountModel().obs;
   final companyList = <ModelCompany>[].obs;
   final companyData = ModelCompany().obs;
   final apibasehelper = ApiBaseHelper();
-  final emailContoller = TextEditingController().obs;
-  final company = AccountModel().obs;
-  final companyController = TextEditingController().obs;
-  final sloganController = TextEditingController().obs;
-  final phoneController = TextEditingController().obs;
-  final titleController = TextEditingController().obs;
-  final locationController = TextEditingController().obs;
-  final aboutController = TextEditingController().obs;
+  final user = AccountModel().obs;
+  final compareVal = ModelCompany().obs;
+
+  //final compareValcopy = ModelCompany().obs;
 
   //Get data from api
   Future<AccountModel> fetchData() async {
@@ -83,22 +81,12 @@ class AccountController extends GetxController {
           isAuthorize: true,
           body: {
             "company_id": id,
-            "company_name": companyController.value.text == ''
-                ? companyData.value.companyname
-                : companyController.value.text,
-            "company_slogan": sloganController.value.text == ''
-                ? companyData.value.companyslogan
-                : sloganController.value.text,
-            "phone_number": phoneController.value.text == ''
-                ? companyData.value.phone
-                : phoneController.value.text,
-            'email': emailContoller.value.text == ''
-                ? companyData.value.email
-                : emailContoller.value.text,
-            'address': locationController.value.text == ''
-                ? companyData.value.address
-                : locationController.value.text,
-            'personal_interest': aboutController.value.text
+            "company_name": compareVal.value.companyname,
+            "company_slogan": compareVal.value.companyslogan,
+            "phone_number": compareVal.value.phone,
+            'email': compareVal.value.email,
+            'address': compareVal.value.address,
+            'personal_interest': compareVal.value.website,
           }).then((value) {
         debugPrint('value => : $value');
         fetchData();
@@ -109,13 +97,28 @@ class AccountController extends GetxController {
     isloading(false);
   }
 
-  void collectionController() {
-    companyController.value.text = companyData.value.companyname.toString();
-    sloganController.value.text = companyData.value.companyslogan.toString();
-    phoneController.value.text = companyData.value.phone.toString();
-    emailContoller.value.text = companyData.value.email.toString();
-    titleController.value.text = companyData.value.companyname.toString();
-    locationController.value.text =
-        datamemeber.value.companies!['logo'].toString();
+  Future<dynamic> updateUser(BuildContext context, int? id) async {
+    debugPrint("Function updateUser Worded");
+    isloading(true);
+    try {
+      await apibasehelper.onNetworkRequesting(
+          url: 'v4/member-profile/update',
+          methode: METHODE.post,
+          isAuthorize: true,
+          body: {
+            'member_id': id,
+            'full_name': user.value.fullname,
+            'title': user.value.title,
+            'phone': user.value.phone,
+            'email': user.value.email,
+            'website': user.value.website,
+            'about': user.value.about,
+          }).then((value) {
+        debugPrint('value => : $value');
+        fetchData();
+        context.go('/account');
+      });
+    } catch (e) {}
+    isloading(false);
   }
 }

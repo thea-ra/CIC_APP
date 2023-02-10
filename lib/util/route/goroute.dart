@@ -1,5 +1,5 @@
 import 'package:cic_project/ui/pages/account/screen/profile_screen.dart';
-import 'package:cic_project/ui/pages/account/screen/update_info.dart';
+import 'package:cic_project/ui/pages/account/screen/update_company.dart';
 import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
 import 'package:cic_project/ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
@@ -9,6 +9,8 @@ import 'package:cic_project/ui/pages/splash/slash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../ui/pages/account/screen/add_company.dart';
+import '../../ui/pages/account/screen/update_user.dart';
 import '../../ui/pages/qr_code/qr_code.dart';
 import '../../ui/pages/salary_saving/salary_saving.dart';
 import '../../ui/share/component/buttom_navigation.dart';
@@ -55,6 +57,16 @@ final router = GoRouter(
           name: 'Account',
           builder: (_, state) {
             return ProfileScreen(
+              key: state.pageKey,
+            );
+          },
+        ),
+        GoRoute(
+          parentNavigatorKey: _shellNavigatorKey,
+          path: '/addcompany',
+          name: 'Add Company',
+          builder: (_, state) {
+            return AddCompany(
               key: state.pageKey,
             );
           },
@@ -114,6 +126,15 @@ final router = GoRouter(
       name: 'previlege',
       builder: (_, state) {
         return NewClass(
+          key: state.pageKey,
+        );
+      },
+    ),
+    GoRoute(
+      path: '/user',
+      name: 'user',
+      builder: (_, state) {
+        return UpdateUser(
           key: state.pageKey,
         );
       },

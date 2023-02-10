@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
-
+import '../../../share/component/no_description.dart';
 import '../controller/account_controller.dart';
-import '../model/profile/profile_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   final int? id;
@@ -18,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _MyAppState extends State<ProfileScreen> {
-  String? imagePicker = profiledModel.image;
+  // String? imagePicker = profiledModel.image;
   final _controller = PageController();
   final con = Get.put(AccountController());
 
@@ -47,7 +45,10 @@ class _MyAppState extends State<ProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            con.user.value = con.datamemeber.value;
+                            context.go('/user');
+                          },
                           child: SvgPicture.asset('asset/svg/edit_white.svg')),
                     ),
                     Padding(
@@ -132,18 +133,34 @@ class _MyAppState extends State<ProfileScreen> {
                                       ),
                                       Column(
                                         children: [
-                                          SvgPicture.asset(
-                                              'asset/svg/Message.svg'),
+                                          Obx(
+                                            () => SvgPicture.asset(
+                                                'asset/svg/Message.svg',
+                                                color: con.companyData.value
+                                                            .messenger ==
+                                                        ''
+                                                    ? Colors.grey
+                                                    : null),
+                                          ),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
-                                            child: Text('Message'),
+                                            child: Text(
+                                              'Message',
+                                            ),
                                           ),
                                         ],
                                       ),
                                       Column(
                                         children: [
-                                          SvgPicture.asset(
-                                              'asset/svg/Locations.svg'),
+                                          Obx(
+                                            () => SvgPicture.asset(
+                                                'asset/svg/Locations.svg',
+                                                color: con.companyData.value
+                                                            .telegram ==
+                                                        ''
+                                                    ? Colors.grey
+                                                    : null),
+                                          ),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
                                             child: Text('Telegram'),
@@ -153,11 +170,17 @@ class _MyAppState extends State<ProfileScreen> {
                                       Column(
                                         children: [
                                           SvgPicture.asset(
-                                            'asset/svg/google.svg',
-                                          ),
+                                              'asset/svg/google.svg',
+                                              color: con.companyData.value
+                                                          .website ==
+                                                      ''
+                                                  ? Colors.grey
+                                                  : null),
                                           const Padding(
                                             padding: EdgeInsets.all(2.0),
-                                            child: Text('website'),
+                                            child: Text(
+                                              'website',
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -219,52 +242,87 @@ class _MyAppState extends State<ProfileScreen> {
             ];
           },
           body: Obx(
-            () => con.isloading.value
-                ? const Center(child: CircularProgressIndicator())
-                : SingleChildScrollView(
-                    padding: EdgeInsets.zero,
-                    child: Column(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  top: 120, left: 20, right: 20),
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.withOpacity(0.5),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(2.0),
-                                child: TabBar(
-                                  labelColor: Colors.black,
-                                  indicatorColor: Colors.red,
-                                  indicator: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
-                                  tabs: [
-                                    Tab(
-                                      text: 'Persional Profile',
-                                    ),
-                                    Tab(
-                                      text: 'Company Profile ',
-                                    ),
-                                  ],
-                                ),
+            () => SingleChildScrollView(
+              padding: EdgeInsets.zero,
+              child: Column(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                            top: 120, left: 20, right: 20),
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: TabBar(
+                            labelColor: Colors.black,
+                            indicatorColor: Colors.red,
+                            indicator: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
                               ),
                             ),
-                            Container(
-                              // color: Colors.pink,
-                              color: const Color(0xffFFFFFF),
-                              width: double.infinity,
-                              height: 610,
-                              child: TabBarView(
-                                children: [
-                                  Padding(
+                            tabs: [
+                              Tab(
+                                text: 'Persional Profile',
+                              ),
+                              Tab(
+                                text: 'Company Profile ',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        // color: Colors.pink,
+                        color: const Color(0xffFFFFFF),
+                        width: double.infinity,
+                        height: 610,
+                        child: TabBarView(
+                          children: [
+                            con.datamemeber.value.about == ''
+                                ? Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 20, left: 20, right: 20),
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          height: 300,
+                                          child: SvgPicture.asset(
+                                            'asset/svg/empty.svg',
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ),
+                                      const Text(
+                                        'No Descriptions!',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: 'DMSans',
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff111111)),
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'You have not completed your personal profile yet, please go to edit butto to fill in your personal profile',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontFamily: 'DMSans',
+                                              fontWeight: FontWeight.w500,
+                                              color: Color(0xff111111)),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Padding(
                                     padding: const EdgeInsets.only(
                                         left: 20, top: 26, right: 16),
                                     child: SizedBox(
@@ -284,7 +342,7 @@ class _MyAppState extends State<ProfileScreen> {
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Text(
-                                              '${con.companyData.value.companyname}',
+                                              '${con.datamemeber.value.title}',
                                               textAlign: TextAlign.justify,
                                               style: const TextStyle(
                                                   fontSize: 14,
@@ -297,7 +355,17 @@ class _MyAppState extends State<ProfileScreen> {
                                       ),
                                     ),
                                   ),
-                                  Column(
+                            con.companyData.value.website == ''
+                                ? InkWell(
+                                    onTap: () {
+                                      context.go('/addcompany');
+                                    },
+                                    child: const NoDescription(
+                                      text: 'Add Company',
+                                      svgpic: 'asset/svg/add.svg',
+                                    ),
+                                  )
+                                : Column(
                                     children: [
                                       Container(
                                         margin: const EdgeInsets.only(
@@ -322,8 +390,8 @@ class _MyAppState extends State<ProfileScreen> {
                                                     ),
                                                     fit: BoxFit.cover,
                                                   ),
-                                                  color:
-                                                      const Color(0xffE5E5E5),
+                                                  color: const Color.fromARGB(
+                                                      255, 207, 176, 176),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30)),
@@ -374,14 +442,10 @@ class _MyAppState extends State<ProfileScreen> {
                                                             'asset/svg/cell_phone.svg'),
                                                       ),
                                                       title: Text(con
-                                                                  .companyData
-                                                                  .value
-                                                                  .phone ==
-                                                              ""
-                                                          ? "noemail@gmail.com"
-                                                          : con.companyData
-                                                              .value.phone
-                                                              .toString()),
+                                                          .companyData
+                                                          .value
+                                                          .phone
+                                                          .toString()),
                                                     ),
                                                   ),
                                                   const PopupMenuDivider(),
@@ -439,6 +503,9 @@ class _MyAppState extends State<ProfileScreen> {
                                                   PopupMenuItem(
                                                     child: InkWell(
                                                       onTap: () {
+                                                        con.compareVal.value =
+                                                            con.companyData
+                                                                .value;
                                                         context.go('/update');
                                                       },
                                                       child: ListTile(
@@ -546,68 +613,30 @@ class _MyAppState extends State<ProfileScreen> {
                                           ],
                                         ),
                                       ),
-                                      // Expanded(
-                                      //   child: SizedBox(
-                                      //     width: double.infinity,
-                                      //     height: 231,
-                                      //     child: ListView.builder(
-                                      //       itemCount: 4,
-                                      //       controller: _controller,
-                                      //       scrollDirection: Axis.horizontal,
-                                      //       itemBuilder: (context, index) {
-                                      //         return Container(
-                                      //           decoration: const BoxDecoration(
-                                      //               image: DecorationImage(
-                                      //                   image: NetworkImage(
-                                      //                       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4PDCtsc1-RHs0tqdtxluCE1iFIwnUWcu12FxVXAAYYC3s9zfxoK8ch7nsu25c5icVAjs&usqp=CAU'),
-                                      //                   fit: BoxFit.cover),
-                                      //               borderRadius:
-                                      //                   BorderRadius.all(
-                                      //                       Radius.circular(
-                                      //                           10))),
-                                      //           margin: const EdgeInsets.only(
-                                      //               left: 20,
-                                      //               top: 10,
-                                      //               right: 20),
-                                      //           width: 324,
-                                      //           height: 100,
-                                      //         );
-                                      //       },
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // SmoothPageIndicator(
-                                      //   controller: _controller,
-                                      //   count: 3,
-                                      //   effect: const SlideEffect(
-                                      //     dotHeight: 3,
-                                      //     dotWidth: 16,
-                                      //   ),
-                                      // ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
     );
   }
 
-  getFromGallery() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-    );
-    if (pickedFile != null) {
-      setState(() {
-        imagePicker = pickedFile.path;
-      });
-    }
-  }
+  // getFromGallery() async {
+  //   XFile? pickedFile = await ImagePicker().pickImage(
+  //     source: ImageSource.gallery,
+  //   );
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       imagePicker = pickedFile.path;
+  //     });
+  //   }
+  // }
 }
