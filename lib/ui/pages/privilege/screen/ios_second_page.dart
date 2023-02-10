@@ -5,6 +5,7 @@ import 'package:cic_project/util/textstyle/custom_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
 class IosSecondPage extends StatefulWidget {
@@ -181,153 +182,165 @@ class _IosSecondPageState extends State<IosSecondPage> {
                       .map(
                         (element) => Stack(
                           children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
+                            GestureDetector(
+                              onTap: () {
+                                context.go(
+                                    '/previlege/iso-second/detail-iso-second');
+                                conPrevilege.getShopId(id: element.value.id);
+                                conPrevilege.update();
+                              },
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
                                 ),
-                              ),
-                              margin: const EdgeInsets.only(bottom: 18),
-                              width: double.infinity,
-                              height: 104,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.topLeft,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              '${element.value.shopLogo}'),
-                                          fit: BoxFit.cover),
-                                      color: Colors.white,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                    ),
-                                    margin: const EdgeInsets.only(left: 10),
-                                    width: 84,
-                                    height: 84,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5, top: 5),
-                                      child: GetBuilder<SliderImageController>(
-                                        init: SliderImageController(),
-                                        initState: (_) {},
-                                        builder: (conPrevilege) {
-                                          return CustomFavorite(
-                                            backgroudColor:
-                                                Colors.grey.withOpacity(0.5),
-                                            isfav: !element.value.isFavorite!,
-                                            onPressed: () {
-                                              conPrevilege.key.value =
-                                                  element.key;
-                                              // conPrevilege.isfav.value =
-                                              //     !conPrevilege.isfav.value;
-                                              element.value.isFavorite =
-                                                  !element.value.isFavorite!;
-                                              conPrevilege.updateFav(
-                                                id: element.value.id.toString(),
-                                                boolFav:
-                                                    element.value.isFavorite,
-                                              );
-                                              conPrevilege.update();
-                                            },
-                                          );
-                                        },
-                                      ),
-                                      // child: CircleAvatar(
-                                      //   backgroundColor: AppColor.darkGrey25
-                                      //       .withOpacity(0.5),
-                                      //   maxRadius: 15,
-                                      //   child: SvgPicture.asset(
-                                      //     'asset/svg/Heart.svg',
-                                      //     height: 18,
-                                      //   ),
-                                      // ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '${element.value.status}',
-                                        style: CustomTextstyle.sizeA.copyWith(
-                                          color: Colors.green,
-                                          fontSize: 12,
+                                margin: const EdgeInsets.only(bottom: 18),
+                                width: double.infinity,
+                                height: 104,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.topLeft,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                '${element.value.shopLogo}'),
+                                            fit: BoxFit.cover),
+                                        color: Colors.white,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(10),
                                         ),
                                       ),
-                                      Text(
-                                        '${element.value.shopNameInEnglish}',
-                                        style: CustomTextstyle.sizebBlack
-                                            .copyWith(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14),
+                                      margin: const EdgeInsets.only(left: 10),
+                                      width: 84,
+                                      height: 84,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 5, top: 5),
+                                        child:
+                                            GetBuilder<SliderImageController>(
+                                          init: SliderImageController(),
+                                          initState: (_) {},
+                                          builder: (conPrevilege) {
+                                            return CustomFavorite(
+                                              backgroudColor:
+                                                  Colors.grey.withOpacity(0.5),
+                                              isfav: !element.value.isFavorite!,
+                                              onPressed: () {
+                                                conPrevilege.key.value =
+                                                    element.key;
+                                                // conPrevilege.isfav.value =
+                                                //     !conPrevilege.isfav.value;
+                                                element.value.isFavorite =
+                                                    !element.value.isFavorite!;
+                                                conPrevilege.updateFav(
+                                                  id: element.value.id
+                                                      .toString(),
+                                                  boolFav:
+                                                      element.value.isFavorite,
+                                                );
+                                                conPrevilege.update();
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        // child: CircleAvatar(
+                                        //   backgroundColor: AppColor.darkGrey25
+                                        //       .withOpacity(0.5),
+                                        //   maxRadius: 15,
+                                        //   child: SvgPicture.asset(
+                                        //     'asset/svg/Heart.svg',
+                                        //     height: 18,
+                                        //   ),
+                                        // ),
                                       ),
-                                      SizedBox(
-                                        width: 200,
-                                        child: Text(
-                                          '${element.value.slogan}',
-                                          style: CustomTextstyle.sizeABlack
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '${element.value.status}',
+                                          style: CustomTextstyle.sizeA.copyWith(
+                                            color: Colors.green,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${element.value.shopNameInEnglish}',
+                                          style: CustomTextstyle.sizebBlack
                                               .copyWith(
-                                                  color: AppColor.darkGrey25,
-                                                  fontSize: 12),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 14),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            child: GestureDetector(
-                                              child: SvgPicture.asset(
-                                                'asset/svg/Location.svg',
-                                                height: 12,
+                                        SizedBox(
+                                          width: 200,
+                                          child: Text(
+                                            '${element.value.slogan}',
+                                            style: CustomTextstyle.sizeABlack
+                                                .copyWith(
+                                                    color: AppColor.darkGrey25,
+                                                    fontSize: 12),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              child: GestureDetector(
+                                                child: SvgPicture.asset(
+                                                  'asset/svg/Location.svg',
+                                                  height: 12,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
-                                          SizedBox(
-                                            width: 200,
-                                            // height: 30,
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            SizedBox(
+                                              width: 200,
+                                              // height: 30,
 
-                                            child: Text(
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              '${element.value.fullAddress}',
-                                              style: CustomTextstyle.sizeABlack
-                                                  .copyWith(
-                                                fontSize: 12,
-                                                color: AppColor.darkGrey
-                                                    .withOpacity(0.7),
+                                              child: Text(
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                '${element.value.fullAddress}',
+                                                style: CustomTextstyle
+                                                    .sizeABlack
+                                                    .copyWith(
+                                                  fontSize: 12,
+                                                  color: AppColor.darkGrey
+                                                      .withOpacity(0.7),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          // const SizedBox(
-                                          //   width: 100,
-                                          //   height: 30,
-                                          //   // color: Colors.red,
-                                          //   child: Text(
-                                          //       'Name Name Name Name Namme',
-                                          //       style: TextStyle(),
-                                          //       maxLines: 1,
-                                          //       overflow: TextOverflow.ellipsis),
-                                          // ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                            // const SizedBox(
+                                            //   width: 100,
+                                            //   height: 30,
+                                            //   // color: Colors.red,
+                                            //   child: Text(
+                                            //       'Name Name Name Name Namme',
+                                            //       style: TextStyle(),
+                                            //       maxLines: 1,
+                                            //       overflow: TextOverflow.ellipsis),
+                                            // ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             Positioned(
