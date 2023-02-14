@@ -5,6 +5,7 @@ import 'package:cic_project/util/textstyle/custom_textstyle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailShop extends StatefulWidget {
   // final String? name;
@@ -35,71 +36,65 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
     return Scaffold(
       body:
           // debugPrint("${con.isloadingShopId.value}");
-          GetBuilder<SliderImageController>(
-              init: SliderImageController(),
-              builder: (con) {
-                return DefaultTabController(
+          Obx(
+        () {
+          debugPrint("${con.shopmodelId.value.isFavorite}");
+          return con.isloadingShopId.value
+              ? const Center(child: CircularProgressIndicator())
+              : DefaultTabController(
                   length: _tabController.length,
                   child: NestedScrollView(
                     headerSliverBuilder: (context, innerBoxIsScrolled) {
                       return [
                         SliverAppBar(
+                          elevation: 0,
                           automaticallyImplyLeading: false,
                           backgroundColor: Colors.white,
                           pinned: true,
                           // floating: false,
-                          title: Container(
-                              width: double.infinity,
-                              height: 150,
-                              color: Colors.transparent,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor:
-                                        AppColor.darkGrey25.withOpacity(0.8),
-                                    maxRadius: 21,
-                                    child: IconButton(
-                                      onPressed: () {
-                                        context.go('/previlege');
-                                      },
-                                      icon: const Icon(
-                                        Icons.arrow_back_ios_new,
-                                        color: Colors.black,
-                                      ),
+                          title: SizedBox(
+                            width: double.infinity,
+                            height: 150,
+                            // color: Colors.transparent,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor:
+                                      AppColor.darkGrey25.withOpacity(0.8),
+                                  maxRadius: 15,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      context.go('/previlege');
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_back_ios_new,
+                                      color: Colors.black,
+                                      size: 14,
                                     ),
                                   ),
-                                  GetBuilder<SliderImageController>(
-                                    init: SliderImageController(),
-                                    initState: (_) {},
-                                    builder: (con) {
-                                      return CustomFavorite(
-                                        height: 40,
-                                        width: 40,
-                                        logoHeight1: 25,
-                                        logoHeight2: 25,
-                                        backgroudColor: AppColor.darkGrey25
-                                            .withOpacity(0.8),
-                                        isfav:
-                                            !con.shopmodelId.value.isFavorite!,
-                                        onPressed: () {
-                                          con.shopmodelId.value.isFavorite =
-                                              !con.shopmodelId.value
-                                                  .isFavorite!;
-                                          con.updateFav(
-                                            id: con.shopmodelId.value.id
-                                                .toString(),
-                                            boolFav: con
-                                                .shopmodelId.value.isFavorite,
-                                          );
-                                          con.update();
-                                        },
-                                      );
-                                    },
-                                  ),
-                                ],
-                              )),
+                                ),
+                                CustomFavorite(
+                                  height: 30,
+                                  width: 30,
+                                  logoHeight1: 20,
+                                  logoHeight2: 20,
+                                  backgroudColor:
+                                      AppColor.darkGrey25.withOpacity(0.8),
+                                  isfav: !con.shopmodelId.value.isFavorite!,
+                                  onPressed: () {
+                                    con.shopmodelId.value.isFavorite =
+                                        !con.shopmodelId.value.isFavorite!;
+                                    con.updateFav(
+                                      id: con.shopmodelId.value.id.toString(),
+                                      boolFav: con.shopmodelId.value.isFavorite,
+                                    );
+                                    con.update();
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
                           centerTitle: true,
                           expandedHeight: 500,
                           flexibleSpace: FlexibleSpaceBar(
@@ -194,6 +189,8 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
                                                           )),
                                                     ),
                                                     Obx(() => SizedBox(
+                                                          width:
+                                                              Get.width * 0.5,
                                                           child: Text(
                                                             maxLines: 1,
                                                             overflow:
@@ -214,11 +211,12 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
                                               ],
                                             ),
                                             Container(
+                                              // color: Colors.red,
                                               margin: const EdgeInsets.only(
                                                   right: 15, top: 10),
                                               alignment: Alignment.topCenter,
                                               child: Text(
-                                                '20%',
+                                                '${con.shopmodelId.value.discountRate}%',
                                                 style: CustomTextstyle
                                                     .sizeABlack
                                                     .copyWith(
@@ -394,29 +392,89 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
                     },
                     body: TabBarView(
                       controller: _tabController,
-                      children: const [
-                        Icon(Icons.flight, size: 350),
-                        Icon(Icons.directions_transit, size: 350),
-                        Icon(Icons.directions_car, size: 350),
+                      children: [
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child: Container(
+                                  margin: const EdgeInsets.all(20),
+                                  width: double.infinity,
+                                  height: 200,
+                                  // color: Colors.red,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Description',
+                                        style: CustomTextstyle.sizebBlack
+                                            .copyWith(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.only(left: 20),
+                                        child: Text(
+                                            '${con.shopmodelId.value.fullAddress}'),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        'Our Service',
+                                        style: CustomTextstyle.sizebBlack
+                                            .copyWith(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      // Container(
+                                      //   margin: const EdgeInsets.only(left: 20),
+                                      //   child: Text(con.shopmodelId.value
+                                      //           .productOrService ??
+                                      //       ""),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        ...con.shopmodelId.value.openingDays!
+                            .map(
+                              (e) => ListTile(
+                                contentPadding:
+                                    const EdgeInsets.only(left: 50, right: 50),
+                                leading: Text(
+                                  e.dayName.toString(),
+                                ),
+                                trailing: Text(
+                                  e.shiftAHours.toString(),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        const Icon(Icons.directions_car, size: 350),
                       ],
                     ),
                   ),
                 );
-              }),
+        },
+      ),
       bottomNavigationBar: BottomAppBar(
           elevation: 0,
           child: Container(
-            margin: const EdgeInsets.all(
-              20,
-            ),
             decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                    color: Colors.white,
-                    spreadRadius: 1,
-                    blurRadius: 10,
-                    offset: Offset.zero)
-              ],
               borderRadius: const BorderRadius.all(
                 Radius.circular(10),
               ),
@@ -426,10 +484,51 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
             height: 50,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Icon(Icons.location_on, size: 30),
-                Icon(Icons.phone_in_talk_outlined, size: 30),
-                Icon(Icons.telegram_sharp, size: 30),
+              children: [
+                IconButton(
+                  onPressed: () async {
+                    print('tab ');
+                    String lat = "${con.shopmodelId.value.latitude}";
+                    String lng = "${con.shopmodelId.value.longitude}";
+                    String mapUrl = "geo:$lat,$lng";
+                    if (await canLaunchUrl(Uri.parse(mapUrl))) {
+                      await launchUrl(Uri.parse(mapUrl));
+                    } else {
+                      throw "Couldn't launch Map";
+                    }
+                  },
+                  icon: const Icon(Icons.location_on, size: 25),
+                ),
+                IconButton(
+                  onPressed: () async {
+                    print('object');
+                    String telephoneNumber =
+                        '${con.shopmodelId.value.contacts![1].mobile}';
+                    String telephoneUrl = "tel:$telephoneNumber";
+                    print(telephoneUrl);
+                    if (await canLaunch(telephoneUrl)) {
+                      await launch(telephoneUrl);
+                    } else {
+                      throw "Error occured trying to call that number.";
+                    }
+                  },
+                  icon: const Icon(Icons.phone_in_talk_outlined, size: 25),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.telegram_sharp,
+                    size: 25,
+                  ),
+                  onPressed: () async {
+                    print('yes');
+                    var url =
+                        Uri.parse('${con.shopmodelId.value.telegramLink}');
+                    await launchUrl(
+                      url,
+                      mode: LaunchMode.externalNonBrowserApplication,
+                    );
+                  },
+                ),
               ],
             ),
           )),

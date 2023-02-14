@@ -8,7 +8,7 @@ class CustomFavorite extends StatelessWidget {
   final double? height;
   final VoidCallback? onPressed;
   final Color? backgroudColor;
-  final isfav;
+  final bool isfav;
   const CustomFavorite({
     super.key,
     this.backgroudColor,
@@ -30,9 +30,9 @@ class CustomFavorite extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: Center(
-        child: IconButton(
-          onPressed: onPressed,
-          icon: isfav
+        child: GestureDetector(
+          onTap: onPressed,
+          child: isfav
               ? SvgPicture.asset(
                   'asset/svg/Heart.svg',
                   height: logoHeight1 ?? 20,

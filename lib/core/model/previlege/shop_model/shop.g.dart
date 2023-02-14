@@ -24,6 +24,17 @@ _$_PrivilegeShopModel _$$_PrivilegeShopModelFromJson(
       fullAddress: json['full_address'] as String?,
       shopLogo: json['shop_logo'] as String?,
       numberShop: json['number_shop'] as int?,
+      contacts: (json['contacts'] as List<dynamic>?)
+          ?.map((e) => PhoneModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      telegramLink: json['telegram_link'] as String?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+      productOrService: json['product_or_service'] as String?,
+      openingDays: (json['opening_days'] as List<dynamic>?)
+          ?.map((e) => OpendayModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      phone: json['phone'] as int?,
     );
 
 Map<String, dynamic> _$$_PrivilegeShopModelToJson(
@@ -44,4 +55,11 @@ Map<String, dynamic> _$$_PrivilegeShopModelToJson(
       'full_address': instance.fullAddress,
       'shop_logo': instance.shopLogo,
       'number_shop': instance.numberShop,
+      'contacts': instance.contacts,
+      'telegram_link': instance.telegramLink,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'product_or_service': instance.productOrService,
+      'opening_days': instance.openingDays,
+      'phone': instance.phone,
     };

@@ -353,11 +353,16 @@ class _NewState extends State<PrivilageHomePage>
                           const SizedBox(
                             width: 15,
                           ),
-                          CircleAvatar(
-                            minRadius: 16,
-                            backgroundColor:
-                                AppColor.mainColor.withOpacity(0.1),
-                            child: const Icon(Icons.search_rounded),
+                          GestureDetector(
+                            onTap: () {
+                              print('object');
+                            },
+                            child: CircleAvatar(
+                              minRadius: 16,
+                              backgroundColor:
+                                  AppColor.mainColor.withOpacity(0.1),
+                              child: const Icon(Icons.search_rounded),
+                            ),
                           ),
                         ],
                       ),

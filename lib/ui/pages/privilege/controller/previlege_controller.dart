@@ -133,6 +133,7 @@ class SliderImageController extends GetxController {
   final shopmodelId = PrivilegeShopModel().obs;
   final shopmodelListId = <PrivilegeShopModel>[].obs;
   Future<PrivilegeShopModel> getShopId({int? id}) async {
+    isloadingShopId(true);
     await apibasehelper
         .onNetworkRequesting(
       url: 'v4/privilege/shop/$id',
@@ -155,6 +156,7 @@ class SliderImageController extends GetxController {
     getSliderImage();
     getCategory();
     getShop();
+    getShopId();
     // TODO: implement onInit
     super.onInit();
   }

@@ -309,7 +309,8 @@ class _IosSecondPageState extends State<IosSecondPage> {
                                               width: 8,
                                             ),
                                             SizedBox(
-                                              width: 200,
+                                              // color: Colors.red,
+                                              width: Get.width * 0.5,
                                               // height: 30,
 
                                               child: Text(

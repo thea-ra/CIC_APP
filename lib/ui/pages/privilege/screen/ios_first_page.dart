@@ -314,7 +314,7 @@ class _IosFirstPageState extends State<IosFirstPage> {
                                               width: 8,
                                             ),
                                             SizedBox(
-                                              width: 200,
+                                              width: Get.width * 0.5,
                                               // height: 30,
 
                                               child: Text(
@@ -362,7 +362,7 @@ class _IosFirstPageState extends State<IosFirstPage> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       )

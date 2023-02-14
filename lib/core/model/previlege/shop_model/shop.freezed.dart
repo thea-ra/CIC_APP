@@ -52,6 +52,19 @@ mixin _$PrivilegeShopModel {
   String? get shopLogo => throw _privateConstructorUsedError;
   @JsonKey(name: "number_shop")
   int? get numberShop => throw _privateConstructorUsedError;
+  @JsonKey(name: "contacts")
+  List<PhoneModel>? get contacts => throw _privateConstructorUsedError;
+  @JsonKey(name: "telegram_link")
+  String? get telegramLink => throw _privateConstructorUsedError;
+  @JsonKey(name: "latitude")
+  double? get latitude => throw _privateConstructorUsedError;
+  @JsonKey(name: "longitude")
+  double? get longitude => throw _privateConstructorUsedError;
+  @JsonKey(name: "product_or_service")
+  String? get productOrService => throw _privateConstructorUsedError;
+  @JsonKey(name: "opening_days")
+  List<OpendayModel>? get openingDays => throw _privateConstructorUsedError;
+  int? get phone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -80,7 +93,14 @@ abstract class $PrivilegeShopModelCopyWith<$Res> {
       @JsonKey(name: "brief_address") String? briefAddress,
       @JsonKey(name: "full_address") String? fullAddress,
       @JsonKey(name: "shop_logo") String? shopLogo,
-      @JsonKey(name: "number_shop") int? numberShop});
+      @JsonKey(name: "number_shop") int? numberShop,
+      @JsonKey(name: "contacts") List<PhoneModel>? contacts,
+      @JsonKey(name: "telegram_link") String? telegramLink,
+      @JsonKey(name: "latitude") double? latitude,
+      @JsonKey(name: "longitude") double? longitude,
+      @JsonKey(name: "product_or_service") String? productOrService,
+      @JsonKey(name: "opening_days") List<OpendayModel>? openingDays,
+      int? phone});
 }
 
 /// @nodoc
@@ -111,6 +131,13 @@ class _$PrivilegeShopModelCopyWithImpl<$Res, $Val extends PrivilegeShopModel>
     Object? fullAddress = freezed,
     Object? shopLogo = freezed,
     Object? numberShop = freezed,
+    Object? contacts = freezed,
+    Object? telegramLink = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? productOrService = freezed,
+    Object? openingDays = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -173,6 +200,34 @@ class _$PrivilegeShopModelCopyWithImpl<$Res, $Val extends PrivilegeShopModel>
           ? _value.numberShop
           : numberShop // ignore: cast_nullable_to_non_nullable
               as int?,
+      contacts: freezed == contacts
+          ? _value.contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<PhoneModel>?,
+      telegramLink: freezed == telegramLink
+          ? _value.telegramLink
+          : telegramLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productOrService: freezed == productOrService
+          ? _value.productOrService
+          : productOrService // ignore: cast_nullable_to_non_nullable
+              as String?,
+      openingDays: freezed == openingDays
+          ? _value.openingDays
+          : openingDays // ignore: cast_nullable_to_non_nullable
+              as List<OpendayModel>?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -200,7 +255,14 @@ abstract class _$$_PrivilegeShopModelCopyWith<$Res>
       @JsonKey(name: "brief_address") String? briefAddress,
       @JsonKey(name: "full_address") String? fullAddress,
       @JsonKey(name: "shop_logo") String? shopLogo,
-      @JsonKey(name: "number_shop") int? numberShop});
+      @JsonKey(name: "number_shop") int? numberShop,
+      @JsonKey(name: "contacts") List<PhoneModel>? contacts,
+      @JsonKey(name: "telegram_link") String? telegramLink,
+      @JsonKey(name: "latitude") double? latitude,
+      @JsonKey(name: "longitude") double? longitude,
+      @JsonKey(name: "product_or_service") String? productOrService,
+      @JsonKey(name: "opening_days") List<OpendayModel>? openingDays,
+      int? phone});
 }
 
 /// @nodoc
@@ -229,6 +291,13 @@ class __$$_PrivilegeShopModelCopyWithImpl<$Res>
     Object? fullAddress = freezed,
     Object? shopLogo = freezed,
     Object? numberShop = freezed,
+    Object? contacts = freezed,
+    Object? telegramLink = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? productOrService = freezed,
+    Object? openingDays = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_$_PrivilegeShopModel(
       id: freezed == id
@@ -291,6 +360,34 @@ class __$$_PrivilegeShopModelCopyWithImpl<$Res>
           ? _value.numberShop
           : numberShop // ignore: cast_nullable_to_non_nullable
               as int?,
+      contacts: freezed == contacts
+          ? _value.contacts
+          : contacts // ignore: cast_nullable_to_non_nullable
+              as List<PhoneModel>?,
+      telegramLink: freezed == telegramLink
+          ? _value.telegramLink
+          : telegramLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      productOrService: freezed == productOrService
+          ? _value.productOrService
+          : productOrService // ignore: cast_nullable_to_non_nullable
+              as String?,
+      openingDays: freezed == openingDays
+          ? _value.openingDays
+          : openingDays // ignore: cast_nullable_to_non_nullable
+              as List<OpendayModel>?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -313,7 +410,14 @@ class _$_PrivilegeShopModel implements _PrivilegeShopModel {
       @JsonKey(name: "brief_address") this.briefAddress,
       @JsonKey(name: "full_address") this.fullAddress,
       @JsonKey(name: "shop_logo") this.shopLogo,
-      @JsonKey(name: "number_shop") this.numberShop});
+      @JsonKey(name: "number_shop") this.numberShop,
+      @JsonKey(name: "contacts") this.contacts,
+      @JsonKey(name: "telegram_link") this.telegramLink,
+      @JsonKey(name: "latitude") this.latitude,
+      @JsonKey(name: "longitude") this.longitude,
+      @JsonKey(name: "product_or_service") this.productOrService,
+      @JsonKey(name: "opening_days") this.openingDays,
+      this.phone});
 
   factory _$_PrivilegeShopModel.fromJson(Map<String, dynamic> json) =>
       _$$_PrivilegeShopModelFromJson(json);
@@ -363,10 +467,30 @@ class _$_PrivilegeShopModel implements _PrivilegeShopModel {
   @override
   @JsonKey(name: "number_shop")
   final int? numberShop;
+  @override
+  @JsonKey(name: "contacts")
+  final List<PhoneModel>? contacts;
+  @override
+  @JsonKey(name: "telegram_link")
+  final String? telegramLink;
+  @override
+  @JsonKey(name: "latitude")
+  final double? latitude;
+  @override
+  @JsonKey(name: "longitude")
+  final double? longitude;
+  @override
+  @JsonKey(name: "product_or_service")
+  final String? productOrService;
+  @override
+  @JsonKey(name: "opening_days")
+  final List<OpendayModel>? openingDays;
+  @override
+  final int? phone;
 
   @override
   String toString() {
-    return 'PrivilegeShopModel(id: $id, status: $status, isFavorite: $isFavorite, pointAccepted: $pointAccepted, currentPoint: $currentPoint, slogan: $slogan, discountRate: $discountRate, discountBgColor: $discountBgColor, discountBgColorEnd: $discountBgColorEnd, shopNameInKhmer: $shopNameInKhmer, shopNameInEnglish: $shopNameInEnglish, briefAddress: $briefAddress, fullAddress: $fullAddress, shopLogo: $shopLogo, numberShop: $numberShop)';
+    return 'PrivilegeShopModel(id: $id, status: $status, isFavorite: $isFavorite, pointAccepted: $pointAccepted, currentPoint: $currentPoint, slogan: $slogan, discountRate: $discountRate, discountBgColor: $discountBgColor, discountBgColorEnd: $discountBgColorEnd, shopNameInKhmer: $shopNameInKhmer, shopNameInEnglish: $shopNameInEnglish, briefAddress: $briefAddress, fullAddress: $fullAddress, shopLogo: $shopLogo, numberShop: $numberShop, contacts: $contacts, telegramLink: $telegramLink, latitude: $latitude, longitude: $longitude, productOrService: $productOrService, openingDays: $openingDays, phone: $phone)';
   }
 
   @JsonKey(ignore: true)
@@ -386,36 +510,28 @@ class _$_PrivilegeShopModel implements _PrivilegeShopModel {
 
 abstract class _PrivilegeShopModel implements PrivilegeShopModel {
   factory _PrivilegeShopModel(
-      {@JsonKey(name: "id")
-          final int? id,
-      @JsonKey(name: "status")
-          final String? status,
-      @JsonKey(name: "is_favorite")
-          bool? isFavorite,
-      @JsonKey(name: "point_accepted")
-          final bool? pointAccepted,
-      @JsonKey(name: "current_point")
-          final int? currentPoint,
-      @JsonKey(name: "slogan")
-          final String? slogan,
-      @JsonKey(name: "discount_rate")
-          final String? discountRate,
-      @JsonKey(name: "discount_bg_color")
-          final String? discountBgColor,
-      @JsonKey(name: "discount_bg_color_end")
-          final String? discountBgColorEnd,
-      @JsonKey(name: "shop_name_in_khmer")
-          final String? shopNameInKhmer,
-      @JsonKey(name: "shop_name_in_english")
-          final String? shopNameInEnglish,
-      @JsonKey(name: "brief_address")
-          final String? briefAddress,
-      @JsonKey(name: "full_address")
-          final String? fullAddress,
-      @JsonKey(name: "shop_logo")
-          final String? shopLogo,
-      @JsonKey(name: "number_shop")
-          final int? numberShop}) = _$_PrivilegeShopModel;
+      {@JsonKey(name: "id") final int? id,
+      @JsonKey(name: "status") final String? status,
+      @JsonKey(name: "is_favorite") bool? isFavorite,
+      @JsonKey(name: "point_accepted") final bool? pointAccepted,
+      @JsonKey(name: "current_point") final int? currentPoint,
+      @JsonKey(name: "slogan") final String? slogan,
+      @JsonKey(name: "discount_rate") final String? discountRate,
+      @JsonKey(name: "discount_bg_color") final String? discountBgColor,
+      @JsonKey(name: "discount_bg_color_end") final String? discountBgColorEnd,
+      @JsonKey(name: "shop_name_in_khmer") final String? shopNameInKhmer,
+      @JsonKey(name: "shop_name_in_english") final String? shopNameInEnglish,
+      @JsonKey(name: "brief_address") final String? briefAddress,
+      @JsonKey(name: "full_address") final String? fullAddress,
+      @JsonKey(name: "shop_logo") final String? shopLogo,
+      @JsonKey(name: "number_shop") final int? numberShop,
+      @JsonKey(name: "contacts") final List<PhoneModel>? contacts,
+      @JsonKey(name: "telegram_link") final String? telegramLink,
+      @JsonKey(name: "latitude") final double? latitude,
+      @JsonKey(name: "longitude") final double? longitude,
+      @JsonKey(name: "product_or_service") final String? productOrService,
+      @JsonKey(name: "opening_days") final List<OpendayModel>? openingDays,
+      final int? phone}) = _$_PrivilegeShopModel;
 
   factory _PrivilegeShopModel.fromJson(Map<String, dynamic> json) =
       _$_PrivilegeShopModel.fromJson;
@@ -467,6 +583,26 @@ abstract class _PrivilegeShopModel implements PrivilegeShopModel {
   @override
   @JsonKey(name: "number_shop")
   int? get numberShop;
+  @override
+  @JsonKey(name: "contacts")
+  List<PhoneModel>? get contacts;
+  @override
+  @JsonKey(name: "telegram_link")
+  String? get telegramLink;
+  @override
+  @JsonKey(name: "latitude")
+  double? get latitude;
+  @override
+  @JsonKey(name: "longitude")
+  double? get longitude;
+  @override
+  @JsonKey(name: "product_or_service")
+  String? get productOrService;
+  @override
+  @JsonKey(name: "opening_days")
+  List<OpendayModel>? get openingDays;
+  @override
+  int? get phone;
   @override
   @JsonKey(ignore: true)
   _$$_PrivilegeShopModelCopyWith<_$_PrivilegeShopModel> get copyWith =>
