@@ -60,6 +60,8 @@ mixin _$AccountModel {
   String? get website => throw _privateConstructorUsedError;
   @JsonKey(name: "address")
   String? get address => throw _privateConstructorUsedError;
+  @JsonKey(name: "personal_interest")
+  String? get personalinterest => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -93,7 +95,8 @@ abstract class $AccountModelCopyWith<$Res> {
       @JsonKey(name: "name") String? name,
       @JsonKey(name: "logo") String? logo,
       @JsonKey(name: "website") String? website,
-      @JsonKey(name: "address") String? address});
+      @JsonKey(name: "address") String? address,
+      @JsonKey(name: "personal_interest") String? personalinterest});
 }
 
 /// @nodoc
@@ -129,6 +132,7 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
     Object? logo = freezed,
     Object? website = freezed,
     Object? address = freezed,
+    Object? personalinterest = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -211,6 +215,10 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      personalinterest: freezed == personalinterest
+          ? _value.personalinterest
+          : personalinterest // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -243,7 +251,8 @@ abstract class _$$_AccountModelCopyWith<$Res>
       @JsonKey(name: "name") String? name,
       @JsonKey(name: "logo") String? logo,
       @JsonKey(name: "website") String? website,
-      @JsonKey(name: "address") String? address});
+      @JsonKey(name: "address") String? address,
+      @JsonKey(name: "personal_interest") String? personalinterest});
 }
 
 /// @nodoc
@@ -277,6 +286,7 @@ class __$$_AccountModelCopyWithImpl<$Res>
     Object? logo = freezed,
     Object? website = freezed,
     Object? address = freezed,
+    Object? personalinterest = freezed,
   }) {
     return _then(_$_AccountModel(
       id: freezed == id
@@ -359,6 +369,10 @@ class __$$_AccountModelCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      personalinterest: freezed == personalinterest
+          ? _value.personalinterest
+          : personalinterest // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -386,7 +400,8 @@ class _$_AccountModel implements _AccountModel {
       @JsonKey(name: "name") this.name,
       @JsonKey(name: "logo") this.logo,
       @JsonKey(name: "website") this.website,
-      @JsonKey(name: "address") this.address})
+      @JsonKey(name: "address") this.address,
+      @JsonKey(name: "personal_interest") this.personalinterest})
       : _companies = companies;
 
   factory _$_AccountModel.fromJson(Map<String, dynamic> json) =>
@@ -460,10 +475,13 @@ class _$_AccountModel implements _AccountModel {
   @override
   @JsonKey(name: "address")
   final String? address;
+  @override
+  @JsonKey(name: "personal_interest")
+  final String? personalinterest;
 
   @override
   String toString() {
-    return 'AccountModel(id: $id, code: $code, iscustomer: $iscustomer, customerid: $customerid, profile: $profile, firstname: $firstname, fullname: $fullname, investmentAmount: $investmentAmount, lastname: $lastname, dataofbirth: $dataofbirth, phone: $phone, email: $email, companyname: $companyname, about: $about, companies: $companies, title: $title, name: $name, logo: $logo, website: $website, address: $address)';
+    return 'AccountModel(id: $id, code: $code, iscustomer: $iscustomer, customerid: $customerid, profile: $profile, firstname: $firstname, fullname: $fullname, investmentAmount: $investmentAmount, lastname: $lastname, dataofbirth: $dataofbirth, phone: $phone, email: $email, companyname: $companyname, about: $about, companies: $companies, title: $title, name: $name, logo: $logo, website: $website, address: $address, personalinterest: $personalinterest)';
   }
 
   @override
@@ -499,7 +517,9 @@ class _$_AccountModel implements _AccountModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.logo, logo) || other.logo == logo) &&
             (identical(other.website, website) || other.website == website) &&
-            (identical(other.address, address) || other.address == address));
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.personalinterest, personalinterest) ||
+                other.personalinterest == personalinterest));
   }
 
   @JsonKey(ignore: true)
@@ -525,7 +545,8 @@ class _$_AccountModel implements _AccountModel {
         name,
         logo,
         website,
-        address
+        address,
+        personalinterest
       ]);
 
   @JsonKey(ignore: true)
@@ -544,26 +565,28 @@ class _$_AccountModel implements _AccountModel {
 
 abstract class _AccountModel implements AccountModel {
   factory _AccountModel(
-      {@JsonKey(name: "id") final int? id,
-      @JsonKey(name: "code") final String? code,
-      @JsonKey(name: "is_customer") final int? iscustomer,
-      @JsonKey(name: "customer_id") final int? customerid,
-      @JsonKey(name: "profile") final String? profile,
-      @JsonKey(name: "first_name") final String? firstname,
-      @JsonKey(name: "full_name") final String? fullname,
-      @JsonKey(name: "investment_amount") final String? investmentAmount,
-      @JsonKey(name: "last_name") final String? lastname,
-      @JsonKey(name: "date_of_birth") final String? dataofbirth,
-      @JsonKey(name: "phone") final String? phone,
-      @JsonKey(name: "email") final String? email,
-      @JsonKey(name: "company_name") final String? companyname,
-      @JsonKey(name: "about") final String? about,
-      @JsonKey(name: "companies") final Map<String, dynamic>? companies,
-      @JsonKey(name: "title") final String? title,
-      @JsonKey(name: "name") final String? name,
-      @JsonKey(name: "logo") final String? logo,
-      @JsonKey(name: "website") final String? website,
-      @JsonKey(name: "address") final String? address}) = _$_AccountModel;
+          {@JsonKey(name: "id") final int? id,
+          @JsonKey(name: "code") final String? code,
+          @JsonKey(name: "is_customer") final int? iscustomer,
+          @JsonKey(name: "customer_id") final int? customerid,
+          @JsonKey(name: "profile") final String? profile,
+          @JsonKey(name: "first_name") final String? firstname,
+          @JsonKey(name: "full_name") final String? fullname,
+          @JsonKey(name: "investment_amount") final String? investmentAmount,
+          @JsonKey(name: "last_name") final String? lastname,
+          @JsonKey(name: "date_of_birth") final String? dataofbirth,
+          @JsonKey(name: "phone") final String? phone,
+          @JsonKey(name: "email") final String? email,
+          @JsonKey(name: "company_name") final String? companyname,
+          @JsonKey(name: "about") final String? about,
+          @JsonKey(name: "companies") final Map<String, dynamic>? companies,
+          @JsonKey(name: "title") final String? title,
+          @JsonKey(name: "name") final String? name,
+          @JsonKey(name: "logo") final String? logo,
+          @JsonKey(name: "website") final String? website,
+          @JsonKey(name: "address") final String? address,
+          @JsonKey(name: "personal_interest") final String? personalinterest}) =
+      _$_AccountModel;
 
   factory _AccountModel.fromJson(Map<String, dynamic> json) =
       _$_AccountModel.fromJson;
@@ -628,6 +651,9 @@ abstract class _AccountModel implements AccountModel {
   @override
   @JsonKey(name: "address")
   String? get address;
+  @override
+  @JsonKey(name: "personal_interest")
+  String? get personalinterest;
   @override
   @JsonKey(ignore: true)
   _$$_AccountModelCopyWith<_$_AccountModel> get copyWith =>

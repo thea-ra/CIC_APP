@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:cic_project/ui/pages/account/model/accoun/model_account.dart';
 import 'package:cic_project/ui/pages/account/model/company/model_company.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../util/helper/api_base_helper.dart';
 
@@ -25,6 +29,8 @@ class AccountController extends GetxController {
   final apibasehelper = ApiBaseHelper();
   final user = AccountModel().obs;
   final compareVal = ModelCompany().obs;
+  File? fileimage;
+  File? imageUpload;
 
   //final compareValcopy = ModelCompany().obs;
 
@@ -86,12 +92,13 @@ class AccountController extends GetxController {
             "phone_number": compareVal.value.phone,
             'email': compareVal.value.email,
             'address': compareVal.value.address,
-            'personal_interest': compareVal.value.website,
+            'company_product_and_service':
+                compareVal.value.companyproductandservice,
+            'personal_interest': compareVal.value.personalinterest,
           }).then((value) {
         debugPrint('value => : $value');
         fetchData();
         getCompanyInfo();
-        context.go('/account');
       });
     } catch (e) {}
     isloading(false);
@@ -120,5 +127,66 @@ class AccountController extends GetxController {
       });
     } catch (e) {}
     isloading(false);
+  }
+
+  // Get Image
+
+  getFromGallery() async {
+    // ignore: deprecated_member_use
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      fileimage = File(pickedFile.path);
+    }
+    await updateImage();
+  }
+
+  // update image
+  Future<void> updateImage() async {
+    List<int> images = fileimage!.readAsBytesSync();
+    String base64image = base64Encode(images);
+    try {
+      await apibasehelper.onNetworkRequesting(
+          url: 'user/change-profile',
+          methode: METHODE.post,
+          isAuthorize: true,
+          body: {
+            'profile': 'data:image/png;base64,$base64image',
+          }).then((res) {
+        debugPrint('Success');
+        print(base64image.toString());
+      });
+    } catch (e) {}
+  }
+
+  getCompanylog() async {
+    // ignore: deprecated_member_use
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      imageUpload = File(pickedFile.path);
+    }
+    await updateCompanyLogo(companyData.value.id);
+  }
+
+  // update image
+  Future<void> updateCompanyLogo(int? id) async {
+    List<int> image = imageUpload!.readAsBytesSync();
+    String base64image = base64Encode(image);
+    try {
+      await apibasehelper.onNetworkRequesting(
+          url: 'v4/company/createOrUpdate',
+          methode: METHODE.post,
+          isAuthorize: true,
+          body: {
+            'company_id': id,
+            'company_logo': 'data:image/png;base64,$base64image',
+          }).then((res) {
+        debugPrint('Success');
+        print(companyData.value.id);
+      });
+    } catch (e) {}
   }
 }

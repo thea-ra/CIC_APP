@@ -28,6 +28,7 @@ _$_AccountModel _$$_AccountModelFromJson(Map<String, dynamic> json) =>
       logo: json['logo'] as String?,
       website: json['website'] as String?,
       address: json['address'] as String?,
+      personalinterest: json['personal_interest'] as String?,
     );
 
 Map<String, dynamic> _$$_AccountModelToJson(_$_AccountModel instance) =>
@@ -52,4 +53,5 @@ Map<String, dynamic> _$$_AccountModelToJson(_$_AccountModel instance) =>
       'logo': instance.logo,
       'website': instance.website,
       'address': instance.address,
+      'personal_interest': instance.personalinterest,
     };

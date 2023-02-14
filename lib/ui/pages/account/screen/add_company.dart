@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../share/component/button.dart';
 import '../../../share/component/custome_textfiel_uppdateinfo.dart';
+import '../controller/showAdap_controller.dart';
 
 class AddCompany extends StatefulWidget {
   const AddCompany({super.key});
@@ -14,6 +15,7 @@ class AddCompany extends StatefulWidget {
 
 class _AddCompanyState extends State<AddCompany> {
   final con = Get.put(AccountController());
+  final showadap = Get.put(ShowAdaptive());
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +67,8 @@ class _AddCompanyState extends State<AddCompany> {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: NetworkImage(
-                                  con.datamemeber.value.profile.toString()),
-                              fit: BoxFit.contain,
+                                  con.companyData.value.companylogo.toString()),
+                              fit: BoxFit.cover,
                             ),
                             border: Border.all(width: 3, color: Colors.blue),
                             shape: BoxShape.circle,
@@ -75,55 +77,65 @@ class _AddCompanyState extends State<AddCompany> {
                         ),
                       )),
                     ),
-                    const Text(
-                      'Change profile',
-                      style: TextStyle(
-                          fontFamily: 'DMSans',
-                          fontSize: 18,
-                          color: Color(0xff0F50A4),
-                          fontWeight: FontWeight.w700),
+                    GestureDetector(
+                      onTap: () {
+                        showadap.showAdapticvebottom(
+                            context, con.getCompanylog);
+                      },
+                      child: const Text(
+                        'Change profile',
+                        style: TextStyle(
+                            fontFamily: 'DMSans',
+                            fontSize: 18,
+                            color: Color(0xff0F50A4),
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                     TextFieldInput(
-                      initialval: con.datamemeber.value.fullname,
+                      initialval: con.companyData.value.companyname,
                       onchange: (value) {
-                        con.user.value =
-                            con.user.value.copyWith(fullname: value);
+                        con.compareVal.value =
+                            con.compareVal.value.copyWith(companyname: value);
                       },
                       text: 'Name',
                     ),
                     TextFieldInput(
-                      initialval: con.datamemeber.value.title,
+                      initialval: con.companyData.value.companyslogan,
                       onchange: (value) {
-                        con.user.value = con.user.value.copyWith(title: value);
+                        con.compareVal.value =
+                            con.compareVal.value.copyWith(companyslogan: value);
                       },
                       text: 'Title',
                     ),
                     TextFieldInput(
-                      initialval: con.datamemeber.value.phone,
+                      initialval: con.companyData.value.phone,
                       onchange: (value) {
-                        con.user.value = con.user.value.copyWith(phone: value);
+                        con.compareVal.value =
+                            con.compareVal.value.copyWith(phone: value);
                       },
                       text: 'Phone',
                     ),
                     TextFieldInput(
-                      initialval: con.datamemeber.value.email,
+                      initialval: con.companyData.value.email,
                       onchange: (value) {
-                        con.user.value = con.user.value.copyWith(email: value);
+                        con.compareVal.value =
+                            con.compareVal.value.copyWith(email: value);
                       },
                       text: 'Email',
                     ),
                     TextFieldInput(
-                      initialval: con.datamemeber.value.address,
+                      initialval: con.companyData.value.address,
                       onchange: (value) {
-                        con.user.value =
-                            con.user.value.copyWith(address: value);
+                        con.compareVal.value =
+                            con.compareVal.value.copyWith(address: value);
                       },
                       text: 'Telegram',
                     ),
                     TextFieldInput(
-                      initialval: con.datamemeber.value.title,
+                      initialval: con.companyData.value.website,
                       onchange: (value) {
-                        con.user.value = con.user.value.copyWith(title: value);
+                        con.compareVal.value =
+                            con.compareVal.value.copyWith(website: value);
                       },
                       text: 'Website',
                     ),
@@ -132,7 +144,7 @@ class _AddCompanyState extends State<AddCompany> {
                           const EdgeInsets.only(left: 20, right: 20, top: 15),
                       child: Container(
                         width: double.infinity,
-                        height: 100,
+                        height: 150,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                           color: const Color(0xffF2F2F2),
@@ -140,6 +152,12 @@ class _AddCompanyState extends State<AddCompany> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8, top: 0),
                           child: TextFormField(
+                            initialValue:
+                                con.companyData.value.personalinterest,
+                            onChanged: (value) {
+                              con.compareVal.value = con.compareVal.value
+                                  .copyWith(personalinterest: value);
+                            },
                             decoration: const InputDecoration(
                                 label: Text('About Us'),
                                 border: InputBorder.none),
@@ -152,7 +170,7 @@ class _AddCompanyState extends State<AddCompany> {
                           const EdgeInsets.only(left: 20, right: 20, top: 15),
                       child: Container(
                         width: double.infinity,
-                        height: 100,
+                        height: 150,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                           color: const Color(0xffF2F2F2),
@@ -160,6 +178,12 @@ class _AddCompanyState extends State<AddCompany> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8, top: 0),
                           child: TextFormField(
+                            initialValue:
+                                con.companyData.value.companyproductandservice,
+                            onChanged: (value) {
+                              con.compareVal.value = con.compareVal.value
+                                  .copyWith(companyproductandservice: value);
+                            },
                             decoration: const InputDecoration(
                                 label: Text('Product & Service'),
                                 border: InputBorder.none),
@@ -175,18 +199,23 @@ class _AddCompanyState extends State<AddCompany> {
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Padding(
+                children: [
+                  const Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: CustomeButton(
                       text: 'Cancel',
                       color: Color(0xff0F50A4),
                     ),
                   ),
-                  CustomeButton(
-                    text: 'Done',
-                    color: Color(0xffFFFFFF),
-                    background: Color(0xff0F50A4),
+                  InkWell(
+                    onTap: () {
+                      con.updataCompany(context, con.companyData.value.id);
+                    },
+                    child: const CustomeButton(
+                      text: 'Done',
+                      color: Color(0xffFFFFFF),
+                      background: Color(0xff0F50A4),
+                    ),
                   ),
                 ],
               ),

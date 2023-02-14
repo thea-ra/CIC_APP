@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../share/component/custome_textfiel_uppdateinfo.dart';
+import '../controller/showAdap_controller.dart';
 
 class UpdateInfo extends StatefulWidget {
   const UpdateInfo({super.key});
@@ -15,7 +16,7 @@ class UpdateInfo extends StatefulWidget {
 
 class _UpdateInfoState extends State<UpdateInfo> {
   final con = Get.put(AccountController());
-
+  final showadap = Get.put(ShowAdaptive());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +39,10 @@ class _UpdateInfoState extends State<UpdateInfo> {
                   () => InkWell(
                     onTap: con.companyData.value != con.compareVal.value
                         ? () {
+                            const AlertDialog(
+                              title: Text("Success"),
+                              content: Text("Saved successfully"),
+                            );
                             con.updataCompany(
                                 context, con.companyData.value.id);
                           }
@@ -67,24 +72,47 @@ class _UpdateInfoState extends State<UpdateInfo> {
       ),
       body: Obx(
         () => SingleChildScrollView(
-          scrollDirection: Axis.vertical,
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 28),
-                child: Center(
-                  child: SvgPicture.asset(
-                    'asset/svg/updat_logo_cic.svg',
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 28),
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.red,
+                        border: Border.all(width: 3, color: Colors.white),
+                      ),
+                      width: 100,
+                      height: 100,
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                con.companyData.value.companylogo.toString()),
+                            fit: BoxFit.cover,
+                          ),
+                          border: Border.all(width: 3, color: Colors.blue),
+                          shape: BoxShape.circle,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                  )),
+              GestureDetector(
+                onTap: () {
+                  showadap.showAdapticvebottom(context, con.getCompanylog);
+                },
+                child: const Text(
+                  'Change Company Logo',
+                  style: TextStyle(
+                      fontFamily: 'DMSans',
+                      fontSize: 18,
+                      color: Color(0xff0F50A4),
+                      fontWeight: FontWeight.w700),
                 ),
-              ),
-              const Text(
-                'Change Company Logo',
-                style: TextStyle(
-                    fontFamily: 'DMSans',
-                    fontSize: 18,
-                    color: Color(0xff0F50A4),
-                    fontWeight: FontWeight.w700),
               ),
               TextFieldInput(
                 isValidate: con.ischeck.value,
@@ -139,7 +167,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
                 child: Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14),
                     color: const Color(0xffF2F2F2),
@@ -147,6 +175,11 @@ class _UpdateInfoState extends State<UpdateInfo> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8, top: 0),
                     child: TextFormField(
+                      initialValue: con.companyData.value.personalinterest,
+                      onChanged: (value) {
+                        con.compareVal.value = con.compareVal.value
+                            .copyWith(personalinterest: value);
+                      },
                       decoration: const InputDecoration(
                           label: Text('About Us'), border: InputBorder.none),
                     ),
@@ -157,7 +190,7 @@ class _UpdateInfoState extends State<UpdateInfo> {
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
                 child: Container(
                   width: double.infinity,
-                  height: 100,
+                  height: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14),
                     color: const Color(0xffF2F2F2),
@@ -165,6 +198,12 @@ class _UpdateInfoState extends State<UpdateInfo> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8, top: 0),
                     child: TextFormField(
+                      initialValue:
+                          con.companyData.value.companyproductandservice,
+                      onChanged: (value) {
+                        con.compareVal.value = con.compareVal.value
+                            .copyWith(companyproductandservice: value);
+                      },
                       decoration: const InputDecoration(
                           label: Text('Product & Service'),
                           border: InputBorder.none),
