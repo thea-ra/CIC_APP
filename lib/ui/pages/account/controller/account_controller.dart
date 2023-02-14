@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:cic_project/ui/pages/account/model/accoun/model_account.dart';
 import 'package:cic_project/ui/pages/account/model/company/model_company.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../util/helper/api_base_helper.dart';
 
@@ -15,20 +19,20 @@ class AccountController extends GetxController {
     super.onInit();
   }
 
+  final ischeck = false.obs;
+  final isControll = false.obs;
   final currentpage = 0.obs;
   final isloading = false.obs;
   final datamemeber = AccountModel().obs;
   final companyList = <ModelCompany>[].obs;
   final companyData = ModelCompany().obs;
   final apibasehelper = ApiBaseHelper();
-  final emailContoller = TextEditingController().obs;
-  final company = AccountModel().obs;
-  final companyController = TextEditingController().obs;
-  final sloganController = TextEditingController().obs;
-  final phoneController = TextEditingController().obs;
-  final titleController = TextEditingController().obs;
-  final locationController = TextEditingController().obs;
-  final aboutController = TextEditingController().obs;
+  final user = AccountModel().obs;
+  final compareVal = ModelCompany().obs;
+  File? fileimage;
+  File? imageUpload;
+
+  //final compareValcopy = ModelCompany().obs;
 
   //Get data from api
   Future<AccountModel> fetchData() async {
@@ -83,39 +87,106 @@ class AccountController extends GetxController {
           isAuthorize: true,
           body: {
             "company_id": id,
-            "company_name": companyController.value.text == ''
-                ? companyData.value.companyname
-                : companyController.value.text,
-            "company_slogan": sloganController.value.text == ''
-                ? companyData.value.companyslogan
-                : sloganController.value.text,
-            "phone_number": phoneController.value.text == ''
-                ? companyData.value.phone
-                : phoneController.value.text,
-            'email': emailContoller.value.text == ''
-                ? companyData.value.email
-                : emailContoller.value.text,
-            'address': locationController.value.text == ''
-                ? companyData.value.address
-                : locationController.value.text,
-            'personal_interest': aboutController.value.text
+            "company_name": compareVal.value.companyname,
+            "company_slogan": compareVal.value.companyslogan,
+            "phone_number": compareVal.value.phone,
+            'email': compareVal.value.email,
+            'address': compareVal.value.address,
+            'company_product_and_service':
+                compareVal.value.companyproductandservice,
+            'personal_interest': compareVal.value.personalinterest,
           }).then((value) {
         debugPrint('value => : $value');
         fetchData();
         getCompanyInfo();
+      });
+    } catch (e) {}
+    isloading(false);
+  }
+
+  Future<dynamic> updateUser(BuildContext context, int? id) async {
+    debugPrint("Function updateUser Worded");
+    isloading(true);
+    try {
+      await apibasehelper.onNetworkRequesting(
+          url: 'v4/member-profile/update',
+          methode: METHODE.post,
+          isAuthorize: true,
+          body: {
+            'member_id': id,
+            'full_name': user.value.fullname,
+            'title': user.value.title,
+            'phone': user.value.phone,
+            'email': user.value.email,
+            'website': user.value.website,
+            'about': user.value.about,
+          }).then((value) {
+        debugPrint('value => : $value');
+        fetchData();
         context.go('/account');
       });
     } catch (e) {}
     isloading(false);
   }
 
-  void collectionController() {
-    companyController.value.text = companyData.value.companyname.toString();
-    sloganController.value.text = companyData.value.companyslogan.toString();
-    phoneController.value.text = companyData.value.phone.toString();
-    emailContoller.value.text = companyData.value.email.toString();
-    titleController.value.text = companyData.value.companyname.toString();
-    locationController.value.text =
-        datamemeber.value.companies!['logo'].toString();
+  // Get Image
+
+  getFromGallery() async {
+    // ignore: deprecated_member_use
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      fileimage = File(pickedFile.path);
+    }
+    await updateImage();
+  }
+
+  // update image
+  Future<void> updateImage() async {
+    List<int> images = fileimage!.readAsBytesSync();
+    String base64image = base64Encode(images);
+    try {
+      await apibasehelper.onNetworkRequesting(
+          url: 'user/change-profile',
+          methode: METHODE.post,
+          isAuthorize: true,
+          body: {
+            'profile': 'data:image/png;base64,$base64image',
+          }).then((res) {
+        debugPrint('Success');
+        print(base64image.toString());
+      });
+    } catch (e) {}
+  }
+
+  getCompanylog() async {
+    // ignore: deprecated_member_use
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      imageUpload = File(pickedFile.path);
+    }
+    await updateCompanyLogo(companyData.value.id);
+  }
+
+  // update image
+  Future<void> updateCompanyLogo(int? id) async {
+    List<int> image = imageUpload!.readAsBytesSync();
+    String base64image = base64Encode(image);
+    try {
+      await apibasehelper.onNetworkRequesting(
+          url: 'v4/company/createOrUpdate',
+          methode: METHODE.post,
+          isAuthorize: true,
+          body: {
+            'company_id': id,
+            'company_logo': 'data:image/png;base64,$base64image',
+          }).then((res) {
+        debugPrint('Success');
+        print(companyData.value.id);
+      });
+    } catch (e) {}
   }
 }

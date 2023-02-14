@@ -20,6 +20,10 @@ class ModelCompany with _$ModelCompany {
     @JsonKey(name: "company_name") final String? companyname,
     @JsonKey(name: "personal_interest") final String? personalinterest,
     @JsonKey(name: "company_diagnostic_report") final String? report,
+    @JsonKey(name: "telegram") final String? telegram,
+    @JsonKey(name: "messenger") final String? messenger,
+    @JsonKey(name: "website") final String? website,
+    @JsonKey(name: "linkedin") final String? linkedin,
   }) = _ModelCompany;
 
   factory ModelCompany.fromJson(Map<String, dynamic> json) =>

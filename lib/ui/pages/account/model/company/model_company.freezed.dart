@@ -46,6 +46,14 @@ mixin _$ModelCompany {
   String? get personalinterest => throw _privateConstructorUsedError;
   @JsonKey(name: "company_diagnostic_report")
   String? get report => throw _privateConstructorUsedError;
+  @JsonKey(name: "telegram")
+  String? get telegram => throw _privateConstructorUsedError;
+  @JsonKey(name: "messenger")
+  String? get messenger => throw _privateConstructorUsedError;
+  @JsonKey(name: "website")
+  String? get website => throw _privateConstructorUsedError;
+  @JsonKey(name: "linkedin")
+  String? get linkedin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -85,7 +93,15 @@ abstract class $ModelCompanyCopyWith<$Res> {
       @JsonKey(name: "personal_interest")
           String? personalinterest,
       @JsonKey(name: "company_diagnostic_report")
-          String? report});
+          String? report,
+      @JsonKey(name: "telegram")
+          String? telegram,
+      @JsonKey(name: "messenger")
+          String? messenger,
+      @JsonKey(name: "website")
+          String? website,
+      @JsonKey(name: "linkedin")
+          String? linkedin});
 }
 
 /// @nodoc
@@ -114,6 +130,10 @@ class _$ModelCompanyCopyWithImpl<$Res, $Val extends ModelCompany>
     Object? companyname = freezed,
     Object? personalinterest = freezed,
     Object? report = freezed,
+    Object? telegram = freezed,
+    Object? messenger = freezed,
+    Object? website = freezed,
+    Object? linkedin = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -168,6 +188,22 @@ class _$ModelCompanyCopyWithImpl<$Res, $Val extends ModelCompany>
           ? _value.report
           : report // ignore: cast_nullable_to_non_nullable
               as String?,
+      telegram: freezed == telegram
+          ? _value.telegram
+          : telegram // ignore: cast_nullable_to_non_nullable
+              as String?,
+      messenger: freezed == messenger
+          ? _value.messenger
+          : messenger // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      linkedin: freezed == linkedin
+          ? _value.linkedin
+          : linkedin // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -206,7 +242,15 @@ abstract class _$$_ModelCompanyCopyWith<$Res>
       @JsonKey(name: "personal_interest")
           String? personalinterest,
       @JsonKey(name: "company_diagnostic_report")
-          String? report});
+          String? report,
+      @JsonKey(name: "telegram")
+          String? telegram,
+      @JsonKey(name: "messenger")
+          String? messenger,
+      @JsonKey(name: "website")
+          String? website,
+      @JsonKey(name: "linkedin")
+          String? linkedin});
 }
 
 /// @nodoc
@@ -233,6 +277,10 @@ class __$$_ModelCompanyCopyWithImpl<$Res>
     Object? companyname = freezed,
     Object? personalinterest = freezed,
     Object? report = freezed,
+    Object? telegram = freezed,
+    Object? messenger = freezed,
+    Object? website = freezed,
+    Object? linkedin = freezed,
   }) {
     return _then(_$_ModelCompany(
       id: freezed == id
@@ -287,6 +335,22 @@ class __$$_ModelCompanyCopyWithImpl<$Res>
           ? _value.report
           : report // ignore: cast_nullable_to_non_nullable
               as String?,
+      telegram: freezed == telegram
+          ? _value.telegram
+          : telegram // ignore: cast_nullable_to_non_nullable
+              as String?,
+      messenger: freezed == messenger
+          ? _value.messenger
+          : messenger // ignore: cast_nullable_to_non_nullable
+              as String?,
+      website: freezed == website
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String?,
+      linkedin: freezed == linkedin
+          ? _value.linkedin
+          : linkedin // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -320,7 +384,15 @@ class _$_ModelCompany implements _ModelCompany {
       @JsonKey(name: "personal_interest")
           this.personalinterest,
       @JsonKey(name: "company_diagnostic_report")
-          this.report});
+          this.report,
+      @JsonKey(name: "telegram")
+          this.telegram,
+      @JsonKey(name: "messenger")
+          this.messenger,
+      @JsonKey(name: "website")
+          this.website,
+      @JsonKey(name: "linkedin")
+          this.linkedin});
 
   factory _$_ModelCompany.fromJson(Map<String, dynamic> json) =>
       _$$_ModelCompanyFromJson(json);
@@ -364,10 +436,22 @@ class _$_ModelCompany implements _ModelCompany {
   @override
   @JsonKey(name: "company_diagnostic_report")
   final String? report;
+  @override
+  @JsonKey(name: "telegram")
+  final String? telegram;
+  @override
+  @JsonKey(name: "messenger")
+  final String? messenger;
+  @override
+  @JsonKey(name: "website")
+  final String? website;
+  @override
+  @JsonKey(name: "linkedin")
+  final String? linkedin;
 
   @override
   String toString() {
-    return 'ModelCompany(id: $id, code: $code, companylogo: $companylogo, companyslogan: $companyslogan, companyproductandservice: $companyproductandservice, companyprofile: $companyprofile, streetno: $streetno, address: $address, phone: $phone, email: $email, companyname: $companyname, personalinterest: $personalinterest, report: $report)';
+    return 'ModelCompany(id: $id, code: $code, companylogo: $companylogo, companyslogan: $companyslogan, companyproductandservice: $companyproductandservice, companyprofile: $companyprofile, streetno: $streetno, address: $address, phone: $phone, email: $email, companyname: $companyname, personalinterest: $personalinterest, report: $report, telegram: $telegram, messenger: $messenger, website: $website, linkedin: $linkedin)';
   }
 
   @override
@@ -395,7 +479,14 @@ class _$_ModelCompany implements _ModelCompany {
                 other.companyname == companyname) &&
             (identical(other.personalinterest, personalinterest) ||
                 other.personalinterest == personalinterest) &&
-            (identical(other.report, report) || other.report == report));
+            (identical(other.report, report) || other.report == report) &&
+            (identical(other.telegram, telegram) ||
+                other.telegram == telegram) &&
+            (identical(other.messenger, messenger) ||
+                other.messenger == messenger) &&
+            (identical(other.website, website) || other.website == website) &&
+            (identical(other.linkedin, linkedin) ||
+                other.linkedin == linkedin));
   }
 
   @JsonKey(ignore: true)
@@ -414,7 +505,11 @@ class _$_ModelCompany implements _ModelCompany {
       email,
       companyname,
       personalinterest,
-      report);
+      report,
+      telegram,
+      messenger,
+      website,
+      linkedin);
 
   @JsonKey(ignore: true)
   @override
@@ -457,7 +552,15 @@ abstract class _ModelCompany implements ModelCompany {
       @JsonKey(name: "personal_interest")
           final String? personalinterest,
       @JsonKey(name: "company_diagnostic_report")
-          final String? report}) = _$_ModelCompany;
+          final String? report,
+      @JsonKey(name: "telegram")
+          final String? telegram,
+      @JsonKey(name: "messenger")
+          final String? messenger,
+      @JsonKey(name: "website")
+          final String? website,
+      @JsonKey(name: "linkedin")
+          final String? linkedin}) = _$_ModelCompany;
 
   factory _ModelCompany.fromJson(Map<String, dynamic> json) =
       _$_ModelCompany.fromJson;
@@ -501,6 +604,18 @@ abstract class _ModelCompany implements ModelCompany {
   @override
   @JsonKey(name: "company_diagnostic_report")
   String? get report;
+  @override
+  @JsonKey(name: "telegram")
+  String? get telegram;
+  @override
+  @JsonKey(name: "messenger")
+  String? get messenger;
+  @override
+  @JsonKey(name: "website")
+  String? get website;
+  @override
+  @JsonKey(name: "linkedin")
+  String? get linkedin;
   @override
   @JsonKey(ignore: true)
   _$$_ModelCompanyCopyWith<_$_ModelCompany> get copyWith =>

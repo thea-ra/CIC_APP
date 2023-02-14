@@ -21,6 +21,10 @@ _$_ModelCompany _$$_ModelCompanyFromJson(Map<String, dynamic> json) =>
       companyname: json['company_name'] as String?,
       personalinterest: json['personal_interest'] as String?,
       report: json['company_diagnostic_report'] as String?,
+      telegram: json['telegram'] as String?,
+      messenger: json['messenger'] as String?,
+      website: json['website'] as String?,
+      linkedin: json['linkedin'] as String?,
     );
 
 Map<String, dynamic> _$$_ModelCompanyToJson(_$_ModelCompany instance) =>
@@ -38,4 +42,8 @@ Map<String, dynamic> _$$_ModelCompanyToJson(_$_ModelCompany instance) =>
       'company_name': instance.companyname,
       'personal_interest': instance.personalinterest,
       'company_diagnostic_report': instance.report,
+      'telegram': instance.telegram,
+      'messenger': instance.messenger,
+      'website': instance.website,
+      'linkedin': instance.linkedin,
     };
