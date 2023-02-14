@@ -78,7 +78,7 @@ class SliderImageController extends GetxController {
     await apibasehelper
         .onNetworkRequesting(
       url: onSelect == 'Home'
-          ? 'v4/privilege/shop'
+          ? 'v4/privilege/shop/'
           : 'v4/privilege/shop?favorite=true',
       methode: METHODE.get,
       isAuthorize: true,
@@ -126,6 +126,28 @@ class SliderImageController extends GetxController {
         .onError(
           (ErrorModel error, stackTrace) => print('Error:${error.bodyString}'),
         );
+  }
+
+  //
+  final isloadingShopId = false.obs;
+  final shopmodelId = PrivilegeShopModel().obs;
+  final shopmodelListId = <PrivilegeShopModel>[].obs;
+  Future<PrivilegeShopModel> getShopId({int? id}) async {
+    await apibasehelper
+        .onNetworkRequesting(
+      url: 'v4/privilege/shop/$id',
+      methode: METHODE.get,
+      isAuthorize: true,
+    )
+        .then(
+      (res) {
+        shopmodelId.value = PrivilegeShopModel.fromJson(res['data']);
+
+        print('======================== shop:${shopmodelId.value}');
+      },
+    );
+    isloadingShopId(false);
+    return shopmodelId.value;
   }
 
   @override

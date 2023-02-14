@@ -9,18 +9,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class NewClass extends StatefulWidget {
+class PrivilageHomePage extends StatefulWidget {
   final list = [1, 2, 3, 4, 8, 4, 5, 6, 78];
-  NewClass({super.key});
+  PrivilageHomePage({super.key});
 
   @override
-  State<NewClass> createState() => _NewState();
+  State<PrivilageHomePage> createState() => _NewState();
 }
 
-class _NewState extends State<NewClass> with SingleTickerProviderStateMixin {
+class _NewState extends State<PrivilageHomePage>
+    with SingleTickerProviderStateMixin {
   final conPrevilege = Get.put(SliderImageController());
   List image = ['asset/image/reference.png', 'asset/image/reference.png'];
   late TabController tabController;
@@ -38,6 +40,12 @@ class _NewState extends State<NewClass> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(
+        leading: IconButton(
+            onPressed: () {
+              context.go('/');
+            },
+            icon: const Icon(Icons.arrow_back)),
+        context: context,
         widgetTitle: Row(
           children: [
             SvgPicture.asset('asset/svg/cic logo.svg'),
