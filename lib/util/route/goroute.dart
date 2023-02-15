@@ -131,15 +131,6 @@ final router = GoRouter(
           key: state.pageKey,
         );
       },
-    ),
-    GoRoute(
-      path: '/user',
-      name: 'user',
-      builder: (_, state) {
-        return UpdateUser(
-          key: state.pageKey,
-        );
-      },
       routes: [
         GoRoute(
           path: 'iso-second',
@@ -186,6 +177,15 @@ final router = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: '/user',
+      name: 'user',
+      builder: (_, state) {
+        return UpdateUser(
+          key: state.pageKey,
+        );
+      },
     ),
   ],
 );
