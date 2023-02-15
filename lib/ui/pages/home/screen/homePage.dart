@@ -169,7 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         selected = mydata.label.toString();
                                         selected == 'Investment'
                                             ? context.go('/myinvest')
-                                            : null;
+                                            : selected == 'Directory'
+                                                ? context.go('/previlege')
+                                                : null;
                                       },
                                       child: Column(
                                         children: [

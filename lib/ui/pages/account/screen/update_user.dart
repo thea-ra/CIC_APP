@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../share/component/custome_textfiel_uppdateinfo.dart';
+import '../controller/showAdap_controller.dart';
 
 class UpdateUser extends StatefulWidget {
   const UpdateUser({super.key});
@@ -15,6 +16,7 @@ class UpdateUser extends StatefulWidget {
 
 class _UpdateUserState extends State<UpdateUser> {
   final con = Get.put(AccountController());
+  final showadap = Get.put(ShowAdaptive());
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,7 @@ class _UpdateUserState extends State<UpdateUser> {
                       image: DecorationImage(
                         image: NetworkImage(
                             con.datamemeber.value.profile.toString()),
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                       border: Border.all(width: 3, color: Colors.blue),
                       shape: BoxShape.circle,
@@ -97,13 +99,18 @@ class _UpdateUserState extends State<UpdateUser> {
                   ),
                 )),
               ),
-              const Text(
-                'Change profile',
-                style: TextStyle(
-                    fontFamily: 'DMSans',
-                    fontSize: 18,
-                    color: Color(0xff0F50A4),
-                    fontWeight: FontWeight.w700),
+              InkWell(
+                onTap: () async {
+                  showadap.showAdapticvebottom(context, con.getFromGallery);
+                },
+                child: const Text(
+                  'Change profile',
+                  style: TextStyle(
+                      fontFamily: 'DMSans',
+                      fontSize: 18,
+                      color: Color(0xff0F50A4),
+                      fontWeight: FontWeight.w700),
+                ),
               ),
               TextFieldInput(
                 initialval: con.datamemeber.value.fullname,

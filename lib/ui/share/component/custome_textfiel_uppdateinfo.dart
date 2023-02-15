@@ -41,8 +41,6 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 widget.onchange?.call(v);
               },
               decoration: InputDecoration(
-                  filled: true, //<-- SEE HERE
-                  fillColor: widget.color,
                   label: Text(widget.text!),
                   hintStyle: const TextStyle(
                       fontSize: 12,
