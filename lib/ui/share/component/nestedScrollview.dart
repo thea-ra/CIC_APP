@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class NestedScrollView extends StatefulWidget {
@@ -26,7 +28,7 @@ class _NestedScrollViewState extends State<NestedScrollView> {
                 expandedHeight: 220,
                 stretch: true,
                 elevation: 0,
-                backgroundColor:Colors.transparent,
+                backgroundColor: Colors.transparent,
                 onStretchTrigger: () async {
                   debugPrint('stretch');
                 },

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cic_project/core/model/previlege/previlege_meta/pre_meta.dart';
 import 'package:cic_project/core/model/previlege/shop_model/shop.dart';
 import 'package:cic_project/core/model/previlege/slider_image_model/category_model/category_model.dart';
@@ -28,9 +30,6 @@ class SliderImageController extends GetxController {
             SliderImageModel.fromJson(e),
           );
         }).toList();
-        print('Lenght');
-        print(sliderImageModelList.length);
-        print('Pic : ${sliderImageModelList[0].image}');
       },
     ).onError((ErrorModel error, stackTrace) {});
     isloadingImage(false);
@@ -53,7 +52,6 @@ class SliderImageController extends GetxController {
         res['data'].map((e) {
           categoryModelList.add(CategoryModel.fromJson(e));
         }).toList();
-        print('Lenght category:${categoryModelList.length}');
       },
     ).onError((ErrorModel error, stackTrace) {});
     isloadingCate(false);
@@ -102,7 +100,6 @@ class SliderImageController extends GetxController {
         if (currentPage.value < meta.value.perPage!) {
           currentPage.value++;
         }
-        print('Lenght shop:${shopmodelList.length}');
       },
     );
     isloadingShop(false);
@@ -143,8 +140,6 @@ class SliderImageController extends GetxController {
         .then(
       (res) {
         shopmodelId.value = PrivilegeShopModel.fromJson(res['data']);
-
-        print('======================== shop:${shopmodelId.value}');
       },
     );
     isloadingShopId(false);
@@ -157,6 +152,7 @@ class SliderImageController extends GetxController {
     getCategory();
     getShop();
     getShopId();
+    // ignore: todo
     // TODO: implement onInit
     super.onInit();
   }

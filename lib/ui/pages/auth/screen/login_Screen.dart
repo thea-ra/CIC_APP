@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cic_project/ui/pages/auth/screen/cic_main_page.dart';
 import 'package:cic_project/ui/share/component/phone_button.dart';
 

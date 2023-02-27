@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -10,7 +12,7 @@ class Login extends GetxController {
   final con = Get.put(GlobleData());
   Future login(BuildContext context) async {
     debugPrint(
-        'phone===============: ${con.phoneController.value.text.substring(1)}');
+        'phone===============:+855${con.phoneController.value.text.substring(1)}');
     debugPrint('password===============: ${con.passwordController.value.text}');
     await con.apiBaseHelper.onNetworkRequesting(
         url: 'v4/login',
@@ -23,7 +25,6 @@ class Login extends GetxController {
       debugPrint('success===============');
       LocalStorage.storeData(key: 'token', value: res['access_token']);
       context.go('/');
-     
     }).onError((ErrorModel error, stackTrace) {
       print(
           "error from body login :${error.bodyString} : status: ${error.statusCode}");

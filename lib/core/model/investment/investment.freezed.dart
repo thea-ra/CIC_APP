@@ -20,10 +20,13 @@ InvestmentModel _$InvestmentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$InvestmentModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: "id")
-  num? get id => throw _privateConstructorUsedError;
+  num? get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "price")
-  String? get price => throw _privateConstructorUsedError;
+  String? get price =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "price_unformat")
   num? get priceunformat => throw _privateConstructorUsedError;
 
@@ -136,12 +139,15 @@ class _$_InvestmentModel implements _InvestmentModel {
   factory _$_InvestmentModel.fromJson(Map<String, dynamic> json) =>
       _$$_InvestmentModelFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "id")
   final num? id;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "price")
   final String? price;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "price_unformat")
   final num? priceunformat;
@@ -190,13 +196,13 @@ abstract class _InvestmentModel implements InvestmentModel {
   factory _InvestmentModel.fromJson(Map<String, dynamic> json) =
       _$_InvestmentModel.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "id")
   num? get id;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "price")
   String? get price;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "price_unformat")
   num? get priceunformat;
   @override

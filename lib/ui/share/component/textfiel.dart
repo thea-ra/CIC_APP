@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -5,11 +7,18 @@ import 'package:get/get.dart';
 import '../../../util/helper/globle_data.dart';
 
 class ComponentTextfiel extends StatelessWidget {
-  const ComponentTextfiel(
-      {super.key, this.icons, this.text, this.color, this.controller});
+  ComponentTextfiel({
+    super.key,
+    this.icons,
+    this.text,
+    this.color,
+    this.controller,
+  
+  });
   final String? icons;
   final String? text;
   final Color? color;
+
   final TextEditingController? controller;
 
   @override
@@ -36,18 +45,15 @@ class ComponentTextfiel extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8),
             child: SizedBox(
               width: 250,
-              child: TextFormField(
+              child: TextField(
+                autofocus: true,
+                autocorrect: true,
                 controller: controller,
                 decoration: InputDecoration(
                     border: InputBorder.none, hintText: text.toString()),
               ),
             ),
           ),
-
-
-
-
-          
         ],
       ),
     );

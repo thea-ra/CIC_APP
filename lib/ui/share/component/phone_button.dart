@@ -1,4 +1,6 @@
 // ignore: implementation_imports
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

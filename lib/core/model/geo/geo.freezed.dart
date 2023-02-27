@@ -20,8 +20,10 @@ Geo _$GeoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Geo {
+// ignore: invalid_annotation_target
   @JsonKey(name: "lat")
-  int? get id => throw _privateConstructorUsedError;
+  int? get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "lng")
   String? get name => throw _privateConstructorUsedError;
 
@@ -109,9 +111,11 @@ class _$_Geo implements _Geo {
 
   factory _$_Geo.fromJson(Map<String, dynamic> json) => _$$_GeoFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "lat")
   final int? id;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "lng")
   final String? name;
@@ -155,10 +159,10 @@ abstract class _Geo implements Geo {
 
   factory _Geo.fromJson(Map<String, dynamic> json) = _$_Geo.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "lat")
   int? get id;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "lng")
   String? get name;
   @override

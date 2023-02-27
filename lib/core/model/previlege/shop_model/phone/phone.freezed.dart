@@ -20,8 +20,10 @@ PhoneModel _$PhoneModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PhoneModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: "phone")
-  String? get phone => throw _privateConstructorUsedError;
+  String? get phone =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "mobile")
   String? get mobile => throw _privateConstructorUsedError;
 
@@ -121,9 +123,11 @@ class _$_PhoneModel implements _PhoneModel {
   factory _$_PhoneModel.fromJson(Map<String, dynamic> json) =>
       _$$_PhoneModelFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "phone")
   final String? phone;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "mobile")
   final String? mobile;
@@ -168,10 +172,10 @@ abstract class _PhoneModel implements PhoneModel {
   factory _PhoneModel.fromJson(Map<String, dynamic> json) =
       _$_PhoneModel.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "phone")
   String? get phone;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "mobile")
   String? get mobile;
   @override

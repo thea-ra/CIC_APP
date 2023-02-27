@@ -20,48 +20,69 @@ PrivilegeShopModel _$PrivilegeShopModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PrivilegeShopModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: "id")
-  int? get id => throw _privateConstructorUsedError;
+  int? get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "status")
-  String? get status => throw _privateConstructorUsedError;
+  String? get status =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "is_favorite")
-  bool? get isFavorite => throw _privateConstructorUsedError;
+  bool? get isFavorite =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "is_favorite")
-  set isFavorite(bool? value) => throw _privateConstructorUsedError;
+  set isFavorite(bool? value) =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "point_accepted")
-  bool? get pointAccepted => throw _privateConstructorUsedError;
+  bool? get pointAccepted =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "current_point")
-  int? get currentPoint => throw _privateConstructorUsedError;
+  int? get currentPoint =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "slogan")
-  String? get slogan => throw _privateConstructorUsedError;
+  String? get slogan =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "discount_rate")
-  String? get discountRate => throw _privateConstructorUsedError;
+  String? get discountRate =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "discount_bg_color")
-  String? get discountBgColor => throw _privateConstructorUsedError;
+  String? get discountBgColor =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "discount_bg_color_end")
   String? get discountBgColorEnd => throw _privateConstructorUsedError;
   @JsonKey(name: "shop_name_in_khmer")
-  String? get shopNameInKhmer => throw _privateConstructorUsedError;
+  String? get shopNameInKhmer =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "shop_name_in_english")
-  String? get shopNameInEnglish => throw _privateConstructorUsedError;
+  String? get shopNameInEnglish =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "brief_address")
-  String? get briefAddress => throw _privateConstructorUsedError;
+  String? get briefAddress =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "full_address")
-  String? get fullAddress => throw _privateConstructorUsedError;
+  String? get fullAddress =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "shop_logo")
-  String? get shopLogo => throw _privateConstructorUsedError;
+  String? get shopLogo =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "number_shop")
-  int? get numberShop => throw _privateConstructorUsedError;
+  int? get numberShop =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "contacts")
-  List<PhoneModel>? get contacts => throw _privateConstructorUsedError;
+  List<PhoneModel>? get contacts =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "telegram_link")
-  String? get telegramLink => throw _privateConstructorUsedError;
+  String? get telegramLink =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "latitude")
-  double? get latitude => throw _privateConstructorUsedError;
+  double? get latitude =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "longitude")
-  double? get longitude => throw _privateConstructorUsedError;
+  double? get longitude =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "product_or_service")
-  String? get productOrService => throw _privateConstructorUsedError;
+  String? get productOrService =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "opening_days")
   List<OpendayModel>? get openingDays => throw _privateConstructorUsedError;
   int? get phone => throw _privateConstructorUsedError;
@@ -422,66 +443,86 @@ class _$_PrivilegeShopModel implements _PrivilegeShopModel {
   factory _$_PrivilegeShopModel.fromJson(Map<String, dynamic> json) =>
       _$$_PrivilegeShopModelFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "id")
   final int? id;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "status")
   final String? status;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "is_favorite")
   bool? isFavorite;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "point_accepted")
   final bool? pointAccepted;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "current_point")
   final int? currentPoint;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "slogan")
   final String? slogan;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "discount_rate")
   final String? discountRate;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "discount_bg_color")
   final String? discountBgColor;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "discount_bg_color_end")
   final String? discountBgColorEnd;
   @override
   @JsonKey(name: "shop_name_in_khmer")
   final String? shopNameInKhmer;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "shop_name_in_english")
   final String? shopNameInEnglish;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "brief_address")
   final String? briefAddress;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "full_address")
   final String? fullAddress;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "shop_logo")
   final String? shopLogo;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "number_shop")
   final int? numberShop;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "contacts")
   final List<PhoneModel>? contacts;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "telegram_link")
   final String? telegramLink;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "latitude")
   final double? latitude;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "longitude")
   final double? longitude;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "product_or_service")
   final String? productOrService;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "opening_days")
   final List<OpendayModel>? openingDays;
@@ -536,69 +577,69 @@ abstract class _PrivilegeShopModel implements PrivilegeShopModel {
   factory _PrivilegeShopModel.fromJson(Map<String, dynamic> json) =
       _$_PrivilegeShopModel.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "id")
   int? get id;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "status")
   String? get status;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "is_favorite")
-  bool? get isFavorite;
+  bool? get isFavorite; // ignore: invalid_annotation_target
   @JsonKey(name: "is_favorite")
   set isFavorite(bool? value);
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "point_accepted")
   bool? get pointAccepted;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "current_point")
   int? get currentPoint;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "slogan")
   String? get slogan;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "discount_rate")
   String? get discountRate;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "discount_bg_color")
   String? get discountBgColor;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "discount_bg_color_end")
   String? get discountBgColorEnd;
   @override
   @JsonKey(name: "shop_name_in_khmer")
   String? get shopNameInKhmer;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "shop_name_in_english")
   String? get shopNameInEnglish;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "brief_address")
   String? get briefAddress;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "full_address")
   String? get fullAddress;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "shop_logo")
   String? get shopLogo;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "number_shop")
   int? get numberShop;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "contacts")
   List<PhoneModel>? get contacts;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "telegram_link")
   String? get telegramLink;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "latitude")
   double? get latitude;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "longitude")
   double? get longitude;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "product_or_service")
   String? get productOrService;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "opening_days")
   List<OpendayModel>? get openingDays;
   @override

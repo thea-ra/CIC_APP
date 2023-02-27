@@ -74,7 +74,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
         ));
         break;
       case 2:
-        GoRouter.of(context).go('/account');
+        GoRouter.of(context).go('/event');
 
         break;
       case 3:

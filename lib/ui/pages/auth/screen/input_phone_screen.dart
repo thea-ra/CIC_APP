@@ -70,6 +70,7 @@ class _InputPhoneScreenState extends State<InputPhoneScreen> {
                       padding:
                           const EdgeInsets.only(top: 24, left: 20, right: 20),
                       child: ComponentTextfiel(
+                 
                         icons: 'asset/svg/cell_phone.svg',
                         text: 'Phone number',
                         controller: con.phoneController.value,

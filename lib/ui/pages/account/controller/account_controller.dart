@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, empty_catches
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -13,6 +15,7 @@ import '../../../../util/helper/api_base_helper.dart';
 class AccountController extends GetxController {
   @override
   void onInit() {
+    // ignore: todo
     // TODO: implement onInit
     fetchData();
     getCompanyInfo();
@@ -43,7 +46,7 @@ class AccountController extends GetxController {
               url: 'v4/user', methode: METHODE.get, isAuthorize: true)
           .then((res) {
         datamemeber.value = AccountModel.fromJson(res);
-        debugPrint(datamemeber.value.fullname);
+        debugPrint('user====${datamemeber.value.profile}');
       }).onError((ErrorModel error, stackTrace) {
         debugPrint(error.bodyString);
       });

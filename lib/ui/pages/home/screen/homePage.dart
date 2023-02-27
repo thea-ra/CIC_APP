@@ -1,4 +1,7 @@
+// ignore: duplicate_ignore
 // ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cic_project/ui/pages/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';

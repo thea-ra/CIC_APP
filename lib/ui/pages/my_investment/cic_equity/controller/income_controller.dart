@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 
 import '../model/cic_fixed_income/income.dart';
 
-
 class IncomeController extends GetxController {
   @override
   void onInit() {
+    // ignore: todo
     // TODO: implement onInit
     getIncome();
     super.onInit();
@@ -21,10 +21,9 @@ class IncomeController extends GetxController {
 
   Future<List<ModelIncome>> getIncome() async {
     try {
- 
       await apibasehelper
           .onNetworkRequesting(
-              url: 'fif-application?type=pending',
+              url: 'v4/fif-application?type=pending',
               methode: METHODE.get,
               isAuthorize: true)
           .then((res) {

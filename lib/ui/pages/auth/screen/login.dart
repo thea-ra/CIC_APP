@@ -92,7 +92,7 @@ class _UserLoginState extends State<UserLogin> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 10, bottom: 10),
+                  left: 20, right: 20, top: 10, bottom: 20),
               child: GestureDetector(
                 onTap: () {
                   con.login(context);
@@ -106,7 +106,7 @@ class _UserLoginState extends State<UserLogin> {
                       color: const Color(0xff0F50A4),
                       border: Border.all(color: Colors.white)),
                   child: const Padding(
-                    padding: EdgeInsets.only(top: 14, bottom: 14),
+                    padding: EdgeInsets.only(top: 14, bottom: 20),
                     child: Center(
                         child: Text(
                       'Login',

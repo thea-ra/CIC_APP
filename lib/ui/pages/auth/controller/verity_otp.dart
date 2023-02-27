@@ -19,6 +19,7 @@ class VerifyOTP extends GetxController {
           "verify_code": con.otpController.value.text
         }).then((response) {
       var mytoken = response['access_token'];
+      // ignore: avoid_print
       print(mytoken);
       LocalStorage.storeData(key: 'token', value: mytoken);
       if (mytoken != '') {
@@ -29,6 +30,7 @@ class VerifyOTP extends GetxController {
         debugPrint('token is null');
       }
     }).onError((ErrorModel error, stackTrace) {
+      // ignore: avoid_print
       print(error.bodyString);
     });
   }

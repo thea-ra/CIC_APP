@@ -13,6 +13,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../ui/pages/account/screen/add_company.dart';
 import '../../ui/pages/account/screen/update_user.dart';
+import '../../ui/pages/event/screen/event_detail.dart';
+import '../../ui/pages/event/screen/event_homescreen.dart';
 import '../../ui/pages/qr_code/qr_code.dart';
 import '../../ui/pages/salary_saving/salary_saving.dart';
 import '../../ui/share/component/buttom_navigation.dart';
@@ -54,6 +56,23 @@ final router = GoRouter(
             );
           },
         ),
+        GoRoute(
+            path: '/event',
+            name: 'event',
+            builder: (context, state) {
+              return EventHomeScreen(
+                key: state.pageKey,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: 'eventdetail',
+                name: 'Event Detail',
+                builder: (context, state) {
+                  return const EventDetail();
+                },
+              )
+            ]),
         GoRoute(
           path: '/account',
           name: 'Account',

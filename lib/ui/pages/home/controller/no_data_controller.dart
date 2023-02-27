@@ -6,6 +6,7 @@ class ControllerHome extends GetxController {
   final datalist = <ControllerHomeModel>[].obs;
   @override
   void onInit() {
+    // ignore: todo
     // TODO: implement onInit
     fetchdata();
     super.onInit();

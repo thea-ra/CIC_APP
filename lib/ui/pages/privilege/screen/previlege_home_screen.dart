@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, avoid_print
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cic_project/ui/pages/privilege/controller/previlege_controller.dart';
 import 'package:cic_project/ui/pages/privilege/screen/ios_first_page.dart';
@@ -29,6 +31,7 @@ class _NewState extends State<PrivilageHomePage>
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
+    // ignore: todo
     // TODO: implement initState
     super.initState();
   }

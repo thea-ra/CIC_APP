@@ -1,11 +1,13 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../share/component/no_description.dart';
+import '../../auth/controller/logout_controller.dart';
 import '../controller/showAdap_controller.dart';
 import '../controller/account_controller.dart';
 
@@ -29,6 +31,7 @@ class _MyAppState extends State<ProfileScreen> {
     var phone = con.companyData.value.phone;
     var email = con.companyData.value.email;
     var address = con.companyData.value.address;
+    final logout = Logout();
     // print(con.getUser());
     return DefaultTabController(
       length: 2,
@@ -60,7 +63,11 @@ class _MyAppState extends State<ProfileScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(14.0),
-                      child: SvgPicture.asset('asset/svg/Setting.svg'),
+                      child: InkWell(
+                          onTap: () {
+                            logout.logout(context);
+                          },
+                          child: SvgPicture.asset('asset/svg/Setting.svg')),
                     ),
                   ],
                   flexibleSpace: FlexibleSpaceBar(
@@ -117,7 +124,7 @@ class _MyAppState extends State<ProfileScreen> {
                                           ? const Center(
                                               child:
                                                   CircularProgressIndicator())
-                                          : Text(con.datamemeber.value.fullname
+                                          : Text(con.datamemeber.value.title
                                               .toString())),
                                     ],
                                   ),
@@ -221,22 +228,26 @@ class _MyAppState extends State<ProfileScreen> {
                               child: Container(
                                 width: 100,
                                 height: 100,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(con
-                                        .datamemeber.value.profile
-                                        .toString()),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  border:
-                                      Border.all(width: 3, color: Colors.blue),
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.blue,
                                 ),
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: (con.datamemeber.value.profile != null)
+                                    ? CachedNetworkImage(
+                                        imageUrl:
+                                            con.datamemeber.value.profile!,
+                                        placeholder: (context, url) =>
+                                            const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                      )
+                                    : Image.asset('asset/image/aba.png'),
                               ),
                             ),
                           ),
                         ),
+
                         Positioned(
                           top: 130,
                           left: 90,
@@ -313,10 +324,8 @@ class _MyAppState extends State<ProfileScreen> {
                                         child: SizedBox(
                                           width: double.infinity,
                                           height: 300,
-                                          child: SvgPicture.asset(
-                                            'asset/svg/empty.svg',
-                                            color: Colors.grey,
-                                          ),
+                                          child: Image.asset(
+                                              'asset/image/reading.png'),
                                         ),
                                       ),
                                       const Text(

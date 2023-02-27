@@ -20,10 +20,13 @@ CompanyMode _$CompanyModeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CompanyMode {
+// ignore: invalid_annotation_target
   @JsonKey(name: "name")
-  String? get name => throw _privateConstructorUsedError;
+  String? get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "catchPhrase")
-  String? get catchPhrase => throw _privateConstructorUsedError;
+  String? get catchPhrase =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "bs")
   String? get bs => throw _privateConstructorUsedError;
 
@@ -136,12 +139,15 @@ class _$_CompanyMode implements _CompanyMode {
   factory _$_CompanyMode.fromJson(Map<String, dynamic> json) =>
       _$$_CompanyModeFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "name")
   final String? name;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "catchPhrase")
   final String? catchPhrase;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "bs")
   final String? bs;
@@ -189,13 +195,13 @@ abstract class _CompanyMode implements CompanyMode {
   factory _CompanyMode.fromJson(Map<String, dynamic> json) =
       _$_CompanyMode.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "name")
   String? get name;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "catchPhrase")
   String? get catchPhrase;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "bs")
   String? get bs;
   @override

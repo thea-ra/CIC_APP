@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cic_project/ui/pages/home/home_model/home_model.dart';
 import 'package:get/get.dart';
 import '../../../../core/model/graph/graph_model.dart';
@@ -11,6 +13,7 @@ class HomeController extends GetxController {
     fetchData();
     // investment();
     ongetGraph();
+    // ignore: todo
     // TODO: implement onInit
     super.onInit();
   }

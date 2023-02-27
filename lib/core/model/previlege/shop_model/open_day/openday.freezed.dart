@@ -20,10 +20,13 @@ OpendayModel _$OpendayModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OpendayModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: "day_name")
-  String? get dayName => throw _privateConstructorUsedError;
+  String? get dayName =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "shift_a_hours")
-  String? get shiftAHours => throw _privateConstructorUsedError;
+  String? get shiftAHours =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "shift_b_hours")
   String? get shiftBHours => throw _privateConstructorUsedError;
 
@@ -136,12 +139,15 @@ class _$_OpendayModel implements _OpendayModel {
   factory _$_OpendayModel.fromJson(Map<String, dynamic> json) =>
       _$$_OpendayModelFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "day_name")
   final String? dayName;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "shift_a_hours")
   final String? shiftAHours;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "shift_b_hours")
   final String? shiftBHours;
@@ -192,13 +198,13 @@ abstract class _OpendayModel implements OpendayModel {
   factory _OpendayModel.fromJson(Map<String, dynamic> json) =
       _$_OpendayModel.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "day_name")
   String? get dayName;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "shift_a_hours")
   String? get shiftAHours;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "shift_b_hours")
   String? get shiftBHours;
   @override

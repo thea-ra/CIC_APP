@@ -5,7 +5,6 @@ import '../../../../util/helper/api_base_helper.dart';
 import '../../../../util/helper/globle_data.dart';
 import '../../home/screen/homePage.dart';
 
-
 class Setpassword extends GetxController {
   final con = Get.put(GlobleData());
   Future setPassword(BuildContext context) async {
@@ -24,6 +23,7 @@ class Setpassword extends GetxController {
         debugPrint("Erro");
       }
     }).onError((ErrorModel error, stackTrace) {
+      // ignore: avoid_print
       print(error.bodyString);
     });
   }

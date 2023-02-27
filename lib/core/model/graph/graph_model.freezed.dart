@@ -20,12 +20,16 @@ Synfusion _$SynfusionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Synfusion {
+// ignore: invalid_annotation_target
   @JsonKey(name: "date")
-  String? get date => throw _privateConstructorUsedError;
+  String? get date =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "month")
-  String? get month => throw _privateConstructorUsedError;
+  String? get month =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "year")
-  String? get year => throw _privateConstructorUsedError;
+  String? get year =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "price")
   num? get price => throw _privateConstructorUsedError;
 
@@ -149,15 +153,19 @@ class _$_Synfusion implements _Synfusion {
   factory _$_Synfusion.fromJson(Map<String, dynamic> json) =>
       _$$_SynfusionFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "date")
   final String? date;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "month")
   final String? month;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "year")
   final String? year;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "price")
   final num? price;
@@ -206,16 +214,16 @@ abstract class _Synfusion implements Synfusion {
   factory _Synfusion.fromJson(Map<String, dynamic> json) =
       _$_Synfusion.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "date")
   String? get date;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "month")
   String? get month;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "year")
   String? get year;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "price")
   num? get price;
   @override

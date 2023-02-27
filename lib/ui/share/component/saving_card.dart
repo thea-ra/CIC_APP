@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:cic_project/ui/pages/my_investment/cic_income/screen/cic_fixed_income/controller/card_controller.dart';
 import 'package:cic_project/ui/share/apphelper/textstyle.dart';
 import 'package:cic_project/ui/share/component/pop_Menuitem.dart';

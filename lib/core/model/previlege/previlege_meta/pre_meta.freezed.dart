@@ -20,12 +20,16 @@ MetaModel _$MetaModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MetaModel {
+// ignore: invalid_annotation_target
   @JsonKey(name: "current_page")
-  int? get currentPage => throw _privateConstructorUsedError;
+  int? get currentPage =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "from")
-  int? get from => throw _privateConstructorUsedError;
+  int? get from =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "last_page")
-  int? get lastPage => throw _privateConstructorUsedError;
+  int? get lastPage =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "per_page")
   int? get perPage => throw _privateConstructorUsedError;
 
@@ -149,15 +153,19 @@ class _$_MetaModel implements _MetaModel {
   factory _$_MetaModel.fromJson(Map<String, dynamic> json) =>
       _$$_MetaModelFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "current_page")
   final int? currentPage;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "from")
   final int? from;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "last_page")
   final int? lastPage;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: "per_page")
   final int? perPage;
@@ -209,16 +217,16 @@ abstract class _MetaModel implements MetaModel {
   factory _MetaModel.fromJson(Map<String, dynamic> json) =
       _$_MetaModel.fromJson;
 
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "current_page")
   int? get currentPage;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "from")
   int? get from;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "last_page")
   int? get lastPage;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "per_page")
   int? get perPage;
   @override

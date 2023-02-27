@@ -15,6 +15,7 @@ class _TogglebuttonState extends State<Togglebutton>
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     tabController = TabController(length: 2, vsync: this);
     super.initState();
@@ -56,8 +57,6 @@ class _TogglebuttonState extends State<Togglebutton>
           // ),
         ],
       ),
-      
     );
-    
   }
 }

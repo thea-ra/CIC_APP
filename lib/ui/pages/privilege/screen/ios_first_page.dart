@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cic_project/ui/pages/privilege/controller/previlege_controller.dart';
 import 'package:cic_project/ui/share/component/custom_favourite.dart';
 import 'package:cic_project/util/color/app_color.dart';
@@ -20,6 +22,7 @@ class _IosFirstPageState extends State<IosFirstPage> {
   void initState() {
     conPrevilege.getShop(onSelect: 'Home');
 
+    // ignore: todo
     // TODO: implement initState
     super.initState();
   }

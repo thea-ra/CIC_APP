@@ -20,6 +20,7 @@ class _IosSecondPageState extends State<IosSecondPage> {
   @override
   void initState() {
     conPrevilege.getShop(onSelect: 'Fav');
+    // ignore: todo
     // TODO: implement initState
     super.initState();
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:cic_project/ui/pages/privilege/controller/previlege_controller.dart';
 import 'package:cic_project/ui/share/component/custom_favourite.dart';
 import 'package:cic_project/util/color/app_color.dart';
@@ -27,6 +29,7 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     _tabController.animateTo(0);
+    // ignore: todo
     // TODO: implement initState
     super.initState();
   }
@@ -487,7 +490,6 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
               children: [
                 IconButton(
                   onPressed: () async {
-                    print('tab ');
                     String lat = "${con.shopmodelId.value.latitude}";
                     String lng = "${con.shopmodelId.value.longitude}";
                     String mapUrl = "geo:$lat,$lng";
@@ -501,11 +503,9 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
                 ),
                 IconButton(
                   onPressed: () async {
-                    print('object');
                     String telephoneNumber =
                         '${con.shopmodelId.value.contacts![1].mobile}';
                     String telephoneUrl = "tel:$telephoneNumber";
-                    print(telephoneUrl);
                     if (await canLaunch(telephoneUrl)) {
                       await launch(telephoneUrl);
                     } else {
@@ -520,7 +520,6 @@ class _DetailShopState extends State<DetailShop> with TickerProviderStateMixin {
                     size: 25,
                   ),
                   onPressed: () async {
-                    print('yes');
                     var url =
                         Uri.parse('${con.shopmodelId.value.telegramLink}');
                     await launchUrl(
