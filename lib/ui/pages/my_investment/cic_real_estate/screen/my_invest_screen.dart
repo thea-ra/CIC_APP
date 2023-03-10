@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../home/controller/home_controller.dart';
 import '../../../../../util/helper/globle_data.dart';
-import '../../cic_equity/cic_equity_screen.dart';
+import '../../cic_equity/screen/cic_equity_screen.dart';
 import '../../cic_income/screen/cic_fixed_income/cic_income.dart';
 
 class MyInvest extends StatefulWidget {
@@ -16,7 +16,21 @@ class MyInvest extends StatefulWidget {
   State<MyInvest> createState() => _MyInvestState();
 }
 
-class _MyInvestState extends State<MyInvest> {
+class _MyInvestState extends State<MyInvest> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
   final con = Get.put(HomeController());
   final data = Get.put(GlobleData());
   @override
@@ -37,48 +51,69 @@ class _MyInvestState extends State<MyInvest> {
             height: 88,
             color: const Color(0xff12539F),
           ),
-          Obx((() => (con.loading.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Column(
-                    children: [
-                      SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: data.list.map((e) {
-                              return Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      data.selected.value = e;
-                                      debugPrint(data.selected.value);
-                                    });
-                                  },
-                                  child: Text(
-                                    e,
-                                    style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Color(0xffFFFFFF),
-                                        fontWeight: FontWeight.w700,
-                                        fontFamily: 'DMSans'),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          )),
-                      Expanded(
-                          child: data.selected.value == 'CIC FIXED INCOME FUND'
-                              ? const CICFixedIncome()
-                              : data.selected.value == 'CIC EQUIT FUND'
-                                  ? const EquityScreen()
-                                  : const CICFixedIncome())
-                    ],
-                  ),
-                ))))
+          Obx(
+            (() => (con.loading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 0),
+                    child: Column(
+                      children: [
+                        TabBar(
+                          physics: const BouncingScrollPhysics(),
+                          isScrollable: true,
+                          labelStyle: const TextStyle(
+                              fontSize: 13,
+                              fontFamily: "DMSans",
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xffFFFFFF)),
+                          unselectedLabelStyle: const TextStyle(
+                            fontSize: 13,
+                            fontFamily: "DMSans",
+                            fontWeight: FontWeight.w500,
+                          ),
+                          controller: _tabController,
+                          // give the indicator a decoration (color and border radius)
+                          indicatorColor: Colors.transparent,
+                          labelColor: const Color(0xffFFFFFF),
+                          unselectedLabelColor: const Color(0xffFFFFFF),
+                          tabs: const [
+                            // first tab [you can add an icon using the icon property]
+                            Tab(
+                              text: 'CIC EQUIT FUND',
+                            ),
+
+                            // second tab [you can add an icon using the icon property]
+                            Tab(
+                              text: 'CIC FIXED INCOME FUND',
+                            ),
+                            Tab(
+                              text: 'CIC REAL ESTATE',
+                            ),
+                          ],
+                        ),
+                        // Expanded(
+                        //     child:
+                        //         data.selected.value == 'CIC FIXED INCOME FUND'
+                        //             ? const CICFixedIncome()
+                        //             : data.selected.value == 'CIC EQUIT FUND'
+                        //                 ? const EquityScreen()
+                        //                 : const CICFixedIncome())
+
+                        Expanded(
+                          child: TabBarView(
+                              controller: _tabController,
+                              children: const [
+                                EquityScreen(),
+                                CICFixedIncome(),
+                                EquityScreen()
+                              ]),
+                        )
+                      ],
+                    ),
+                  ))),
+          )
         ],
       ),
     );

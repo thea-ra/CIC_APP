@@ -29,7 +29,7 @@ class CICFixedIncome extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: const [StretchMode.zoomBackground],
               background: Padding(
-                padding: const EdgeInsets.only(top: 24, left: 20, right: 20),
+                padding: const EdgeInsets.only(top: 4, left: 20, right: 20),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(

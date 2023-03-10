@@ -2,7 +2,6 @@ import 'package:cic_project/ui/pages/account/screen/profile_screen.dart';
 import 'package:cic_project/ui/pages/account/screen/update_company.dart';
 import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
-import 'package:cic_project/ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
 import 'package:cic_project/ui/pages/privilege/screen/detail_shop.dart';
 import 'package:cic_project/ui/pages/privilege/screen/ios_first_page.dart';
 import 'package:cic_project/ui/pages/privilege/screen/ios_second_page.dart';
@@ -15,6 +14,11 @@ import '../../ui/pages/account/screen/add_company.dart';
 import '../../ui/pages/account/screen/update_user.dart';
 import '../../ui/pages/event/screen/event_detail.dart';
 import '../../ui/pages/event/screen/event_homescreen.dart';
+
+import '../../ui/pages/get_funding/screen/get_funding_homeScreen.dart';
+import '../../ui/pages/get_funding/screen/preview_form.dart';
+import '../../ui/pages/my_investment/cic_equity/screen/ut_subscrip.dart';
+import '../../ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
 import '../../ui/pages/qr_code/qr_code.dart';
 import '../../ui/pages/salary_saving/salary_saving.dart';
 import '../../ui/share/component/buttom_navigation.dart';
@@ -57,6 +61,26 @@ final router = GoRouter(
           },
         ),
         GoRoute(
+            path: '/myinvest',
+            name: 'My Investment',
+            builder: (_, state) {
+              return MyInvest(
+                key: state.pageKey,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: 'utscreen',
+                name: 'UT Subscribe',
+                builder: (_, state) {
+                  return UTSubscribe(
+                    key: state.pageKey,
+                  );
+                },
+              )
+            ]),
+
+        GoRoute(
             path: '/event',
             name: 'event',
             builder: (context, state) {
@@ -73,6 +97,7 @@ final router = GoRouter(
                 },
               )
             ]),
+
         GoRoute(
           path: '/account',
           name: 'Account',
@@ -92,18 +117,29 @@ final router = GoRouter(
             );
           },
         ),
+        GoRoute(
+            path: '/getfunding',
+            name: 'getfunding',
+            builder: (context, state) {
+              return GetFundingHomeScreen(
+                key: state.pageKey,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: 'preview',
+                builder: (_, state) {
+                  return PreviewForm(
+                    key: state.pageKey,
+                  );
+                },
+              ),
+            ]),
       ],
     ),
-    GoRoute(
-      path: '/myinvest',
-      parentNavigatorKey: _rootNavigatorKey,
-      name: 'My Investment',
-      builder: (_, state) {
-        return MyInvest(
-          key: state.pageKey,
-        );
-      },
-    ),
+
+    //
+
     GoRoute(
       path: '/salaryscreen',
       parentNavigatorKey: _rootNavigatorKey,

@@ -155,48 +155,49 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       : Stack(
                           children: [
-                            Center(
-                              child: GridView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  gridDelegate:
-                                      const SliverGridDelegateWithMaxCrossAxisExtent(
-                                          maxCrossAxisExtent: 250,
-                                          childAspectRatio: 3 / 2.2,
-                                          mainAxisSpacing: 20),
-                                  itemCount: data.homeList.length,
-                                  itemBuilder: (BuildContext ctx, index) {
-                                    final mydata = data.homeList[index];
-                                    String selected = '';
-                                    return GestureDetector(
-                                      onTap: () {
-                                        selected = mydata.label.toString();
-                                        selected == 'Investment'
-                                            ? context.go('/myinvest')
-                                            : selected == 'Directory'
-                                                ? context.go('/previlege')
-                                                : null;
-                                      },
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                              width: 30,
-                                              height: 30,
-                                              child: SvgPicture.network(
-                                                  mydata.icon.toString())),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 14),
-                                            child: Text(
-                                              mydata.label.toString(),
-                                              style: const TextStyle(
-                                                  fontFamily: 'DMSans'),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            ),
+                            GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                        maxCrossAxisExtent: 250,
+                                        crossAxisSpacing: 20,
+                                        childAspectRatio: 3 / 2.2,
+                                        mainAxisSpacing: 30),
+                                itemCount: data.homeList.length,
+                                itemBuilder: (BuildContext ctx, index) {
+                                  final mydata = data.homeList[index];
+                                  String selected = '';
+                                  return GestureDetector(
+                                    onTap: () {
+                                      selected = mydata.label.toString();
+                                      selected == 'Investment'
+                                          ? context.go('/myinvest')
+                                          : selected == 'Directory'
+                                              ? context.go('/previlege')
+                                              : selected == 'Get Funding'
+                                                  ? context.go('/getfunding')
+                                                  : null;
+                                    },
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                            width: 30,
+                                            height: 30,
+                                            child: SvgPicture.network(
+                                                mydata.icon.toString())),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 14),
+                                          child: Text(
+                                            mydata.label.toString(),
+                                            style: const TextStyle(
+                                                fontFamily: 'DMSans'),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }),
                             AspectRatio(
                               aspectRatio: 318 / 401,
                               child: Column(

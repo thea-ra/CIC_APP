@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class ScaffoldWithNavBar extends StatelessWidget {
+class ScaffoldWithNavBar extends StatefulWidget {
   /// Constructs an [ScaffoldWithNavBar].
   const ScaffoldWithNavBar({
     this.child,
@@ -15,36 +15,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
   final Widget? child;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('asset/svg/homesvg.svg'),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('asset/svg/Qrcode.svg'),
-            label: 'QR Scan',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('asset/svg/event.svg'),
-            label: 'Event',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset('asset/svg/account.svg'),
-            label: 'Account',
-          ),
-        ],
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (int idx) => _onItemTapped(idx, context),
-        selectedLabelStyle: const TextStyle(
-            fontSize: 11, color: Colors.black, fontWeight: FontWeight.w400),
-      ),
-    );
-  }
+  State<ScaffoldWithNavBar> createState() => _ScaffoldWithNavBarState();
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
@@ -61,6 +32,73 @@ class ScaffoldWithNavBar extends StatelessWidget {
       return 3;
     }
     return 0;
+  }
+}
+
+class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: widget.child,
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        showUnselectedLabels: true,
+        elevation: 3,
+        selectedLabelStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          // color: AppColor.mainColor,
+          fontFamily: 'DM San',
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          fontFamily: 'DM San',
+          // color: AppColor.darkTextColor,
+        ),
+        selectedItemColor: const Color(0xff0F50A4),
+        selectedFontSize: 14,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 3.51),
+              child: SvgPicture.asset(
+                'asset/svg/homesvg.svg',
+                width: 20,
+                height: 20,
+              ),
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 3.53),
+              child: SvgPicture.asset('asset/svg/Qrcode.svg',
+                  width: 20, height: 20),
+            ),
+            label: 'QR Scan',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 3.51),
+              child: SvgPicture.asset('asset/svg/event.svg',
+                  width: 20, height: 20),
+            ),
+            label: 'Event',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 5),
+              child: SvgPicture.asset('asset/svg/account.svg',
+                  width: 20, height: 20),
+            ),
+            label: 'Account',
+          ),
+        ],
+        currentIndex: ScaffoldWithNavBar._calculateSelectedIndex(context),
+        onTap: (int idx) => _onItemTapped(idx, context),
+      ),
+    );
   }
 
   void _onItemTapped(int index, BuildContext context) {

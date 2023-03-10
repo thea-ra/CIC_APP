@@ -15,8 +15,10 @@ enum METHODE {
   update,
 }
 
+// https://cicstaging.z1central.com/api
+//https://pre-cic.z1platform.com/api/
 class ApiBaseHelper extends GetConnect {
-  final String baseurl = "https://pre-cic.z1platform.com/api/";
+  final String baseurl = "https://cicstaging.z1central.com/api/";
   Future<dynamic> onNetworkRequesting(
       {required String url,
       Map<String, String>? header,

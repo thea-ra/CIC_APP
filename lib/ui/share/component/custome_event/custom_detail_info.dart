@@ -12,29 +12,31 @@ class DetailInfo extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset('$svgpic'),
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '$eventby',
-                style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'DMSans',
-                    fontSize: 13),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Text(
-                  '$info',
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '$eventby',
                   style: const TextStyle(
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                       fontFamily: 'DMSans',
-                      fontSize: 11),
+                      fontSize: 13),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(
+                    '$info',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'DMSans',
+                        fontSize: 11),
+                  ),
+                ),
+              ],
+            ),
           ),
         )
       ],

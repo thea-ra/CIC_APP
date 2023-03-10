@@ -34,8 +34,9 @@ class _FirstLoginScreenState extends State<FirstLoginScreen> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 42, left: 310),
+                padding: const EdgeInsets.only(top: 52, right: 20),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
                     Text(
                       'En',
@@ -105,6 +106,7 @@ class _FirstLoginScreenState extends State<FirstLoginScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 20, right: 10),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: 145,
@@ -133,8 +135,11 @@ class _FirstLoginScreenState extends State<FirstLoginScreen> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 22, left: 98),
+                  padding: const EdgeInsets.only(
+                    top: 22,
+                  ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         'Do not you have account?',

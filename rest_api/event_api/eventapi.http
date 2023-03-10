@@ -1,0 +1,34 @@
+@baseUrl=https://cicstaging.z1central.com/api/
+
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiM2QxOTI4YTVmZTJmMGIxMWY5YjI5ZjE4M2RmZGIxNWI4ZWU3ZTBjNTBmNDhmODU4ZmI4ZmY3ODdiZGUzYmU3YTI5MDY5NDdlNjk3MTY1ZmEiLCJpYXQiOjE2NzgzMzAxNTQuNjIxNzI3LCJuYmYiOjE2NzgzMzAxNTQuNjIxNzMsImV4cCI6MTcwOTk1MjU1NC42MTMyMTksInN1YiI6IjUyIiwic2NvcGVzIjpbIioiXX0.M7li3ihQ2SaNrM6nEgvIkgJT6VMKk5ifUCehBSYONnBS14YdSscuWHJUBrkOBaJG8Zco_sJCj0NMbY55gmUB6W550uirUevT5gsBYyQfDOfjkgrA7eDs3ZcuSWXAzOH9uFhVvc0mRgRov2NJN4If5Nxcsc9w1qeAV2HCcumdo9fK9Rb71aq88KMxfcqYJriboRPJk7myUN4JYygQxeXJIJOKiOj05cAJYcvqrnOtPajxkxpGARVpp06RGdZyh6PZRx3rlOaI5wlQRWbte877LD4c9HlSEjYlgpqCVAo91U9peOmuAhWDBAQ67qkSoDBLLZHPMRW1xPWkAVSeRzAVMNuDWYwlWdCzORqyfNxXFsBoenyH1ub-b456iKNrH0BECz_sh645zlTd-xLWW7ykD_xVuaIjegMh4oZRvAUTDLCP6l0lupogLMzwNc4NoQ4ZPhbuoYZWbWu0Nm5Mv3LY-zXEB6dgtQZm4zQ37v2TS7RTNGJ_hAU-wqT_CAMqoVjX-shod5ZhVcm5dgWRmfZriXsSASiyvnRLu1R0cXdeGBXcqcCSP8_vzVX1K049wVMcfkNjWF-1sHuinAN4XoVMFz--G0AUENR4Oi07kOzvpKlbvdHzsJwmaK_FlOf-pX-IeuPbpBwLnUFYY60Zfxq6E1VRKeH96oEDBzXd5h1YF6w
+Accept: application/json
+Content-Type: application/json
+
+{
+    "phone" : "+85510305096",
+    "password" : "Admin@2022"   
+}
+
+###
+Get {{baseUrl}}v4/member?page=1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+POST  {{baseUrl}}v4/event-registration
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+"member_id": 3,
+"event_id": 22,
+"invite_id": [10]
+}
+
+###
+Get {{baseUrl}}v4/event/22
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}

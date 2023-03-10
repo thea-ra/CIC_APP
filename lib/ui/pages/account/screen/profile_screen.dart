@@ -225,25 +225,27 @@ class _MyAppState extends State<ProfileScreen> {
                               ),
                               width: 100,
                               height: 100,
-                              child: Container(
-                                width: 100,
-                                height: 100,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.blue,
-                                ),
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: (con.datamemeber.value.profile != null)
-                                    ? CachedNetworkImage(
-                                        imageUrl:
-                                            con.datamemeber.value.profile!,
-                                        placeholder: (context, url) =>
-                                            const CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
-                                      )
-                                    : Image.asset('asset/image/aba.png'),
-                              ),
+                              child: (con.datamemeber.value.profile != null)
+                                  ? CachedNetworkImage(
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover),
+                                        ),
+                                      ),
+                                      imageUrl: con.datamemeber.value.profile!,
+                                      fit: BoxFit.contain,
+                                      placeholder: (context, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                    )
+                                  : Image.asset('asset/image/aba.png'),
                             ),
                           ),
                         ),
@@ -432,24 +434,35 @@ class _MyAppState extends State<ProfileScreen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  '${con.companyData.value.companyname}',
-                                                  style: const TextStyle(
-                                                      // color: AppColor.darkColor,
-                                                      fontSize: 16,
-                                                      color: Color(0xff0A0B09),
-                                                      fontFamily: 'DMSans',
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  '${con.companyData.value.companyslogan}',
-                                                  style: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontFamily: 'DMSans',
-                                                    // color: AppColor.mainColor,
-                                                  ),
-                                                ),
+                                                con.companyData.value
+                                                            .companyname !=
+                                                        ''
+                                                    ? Text(
+                                                        '${con.companyData.value.companyname}',
+                                                        style: const TextStyle(
+                                                            // color: AppColor.darkColor,
+                                                            fontSize: 16,
+                                                            color: Color(
+                                                                0xff0A0B09),
+                                                            fontFamily:
+                                                                'DMSans',
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w700),
+                                                      )
+                                                    : Container(),
+                                                con.companyData.value
+                                                            .companyslogan !=
+                                                        ''
+                                                    ? Text(
+                                                        '${con.companyData.value.companyslogan}',
+                                                        style: const TextStyle(
+                                                          fontSize: 12,
+                                                          fontFamily: 'DMSans',
+                                                          // color: AppColor.mainColor,
+                                                        ),
+                                                      )
+                                                    : Container(),
                                               ],
                                             ),
                                           ),

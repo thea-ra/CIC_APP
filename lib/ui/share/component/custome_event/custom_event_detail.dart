@@ -1,17 +1,21 @@
 import 'dart:ui';
 
+import 'package:cic_project/ui/pages/event/controller/registered_member_controller.dart';
 import 'package:cic_project/ui/share/component/custome_event/custom_detail_info.dart';
+import 'package:cic_project/ui/share/component/custome_event/custome_invite_member.dart';
 import 'package:cic_project/ui/share/component/custome_event/detail_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../pages/event/controller/event_controller.dart';
-import '../../widget/showbottomsheet.dart';
 import '../button.dart';
 import 'custome_addmemer.dart';
+import 'custome_button_submit.dart';
 import 'custome_joiner.dart';
+import 'custome_registered.dart';
 
 class CustomeEventDetail extends StatefulWidget {
   const CustomeEventDetail({super.key});
@@ -22,6 +26,7 @@ class CustomeEventDetail extends StatefulWidget {
 
 class _CustomeEventDetailState extends State<CustomeEventDetail> {
   final con = Get.put(EventController());
+  final getcon = Get.put(RegisterContoller());
   ScrollController scrollController = ScrollController();
   bool isScroll = false;
   @override
@@ -50,6 +55,7 @@ class _CustomeEventDetailState extends State<CustomeEventDetail> {
               SingleChildScrollView(
                 controller: scrollController,
                 scrollDirection: Axis.vertical,
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Stack(
                   children: [
                     Container(
@@ -172,7 +178,7 @@ class _CustomeEventDetailState extends State<CustomeEventDetail> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                left: 15, right: 15, top: 20),
+                                left: 0, right: 15, top: 20),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -251,18 +257,25 @@ class _CustomeEventDetailState extends State<CustomeEventDetail> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 15),
-                            child: DetailInfo(
-                              svgpic: 'asset/svg/locate.svg',
-                              eventby: 'Location',
-                              info: con.eventdetail.value.location,
-                            ),
+                            child: con.eventdetail.value.location != null
+                                ? DetailInfo(
+                                    svgpic: 'asset/svg/locate.svg',
+                                    eventby: 'Location',
+                                    info: con.address,
+                                  )
+                                : const Text(''),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 10, top: 20),
                             child: GestureDetector(
                               onTap: () {
-                                showButtomSheet(context,
-                                    '${con.eventdetail.value.registernumber}');
+                                getcon.getRegisteredUser(
+                                    con.eventdetail.value.id!);
+                                CupertinoScaffold.showCupertinoModalBottomSheet(
+                                    enableDrag: false,
+                                    context: context,
+                                    builder: (context) =>
+                                        const CustomeRegistered());
                               },
                               child: Row(
                                 mainAxisAlignment:
@@ -286,7 +299,18 @@ class _CustomeEventDetailState extends State<CustomeEventDetail> {
                               ),
                             ),
                           ),
-                          const AddMemeber(),
+                          InkWell(
+                              onTap: () {
+                                getcon.index.value = 2000;
+                                getcon.inviteUser();
+                                CupertinoScaffold.showCupertinoModalBottomSheet(
+                                    enableDrag: false,
+                                    useRootNavigator: false,
+                                    context: context,
+                                    builder: (context) =>
+                                        const CustomeMemmerInvite());
+                              },
+                              child: const AddMemeber()),
                         ],
                       ),
                     ),
@@ -301,26 +325,28 @@ class _CustomeEventDetailState extends State<CustomeEventDetail> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: CustomeButton(
-                  text: 'Add Guest',
-                  color: Color(0xff0F50A4),
+        Obx(() => con.eventdetail.value.isregister!
+            ? Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.only(right: 10),
+                      child: CustomeButton(
+                        text: 'Add Guest',
+                        color: Color(0xff0F50A4),
+                      ),
+                    ),
+                    CustomeButton(
+                      text: 'Check in',
+                      color: Color(0xffFFFFFF),
+                      background: Color(0xff0F50A4),
+                    ),
+                  ],
                 ),
-              ),
-              CustomeButton(
-                text: 'Check in',
-                color: Color(0xffFFFFFF),
-                background: Color(0xff0F50A4),
-              ),
-            ],
-          ),
-        )
+              )
+            : createButton('Register Now', const Color(0xff0F50A4)))
       ],
     );
   }

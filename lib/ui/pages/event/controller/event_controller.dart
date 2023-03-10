@@ -2,16 +2,18 @@
 
 import 'package:cic_project/ui/pages/event/model/event_model.dart/event_model.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
-import 'package:number_paginator/number_paginator.dart';
 
 import '../../../../util/helper/api_base_helper.dart';
 
 class EventController extends GetxController {
-  final controller = NumberPaginatorController().obs;
   final isLoading = false.obs;
   final isShow = false.obs;
   final interestor = 0.obs;
+  double late = 0;
+  double lng = 0;
+  String address = '';
   final eventdetail = EventModel().obs;
   final dataList = <EventModel>[].obs;
   final pastData = <EventModel>[].obs;
@@ -21,6 +23,7 @@ class EventController extends GetxController {
     // ignore: todo
     // TODO: implement onInit
     getUpcomping();
+    getAddressFromLatLng(11.587872925529721, 104.89773410019525);
     getPastEvent();
     super.onInit();
   }
@@ -37,6 +40,7 @@ class EventController extends GetxController {
         .then((res) {
       res['data'].map((e) {
         dataList.add(EventModel.fromJson(e));
+        print(dataList);
       }).toList();
     });
     isLoading(false);
@@ -75,6 +79,8 @@ class EventController extends GetxController {
               url: 'v4/event/$id', methode: METHODE.get, isAuthorize: true)
           .then((res) {
         eventdetail.value = EventModel.fromJson(res['data']);
+        late = double.parse(eventdetail.value.latitude.toString());
+        lng = double.parse(eventdetail.value.longitude.toString());
       }).onError((ErrorModel error, stackTrace) {
         debugPrint('Errorr: ${error.bodyString}');
       });
@@ -83,5 +89,20 @@ class EventController extends GetxController {
     }
     isLoading(false);
     return eventdetail.value;
+  }
+
+  // event address
+  Future<String> getAddressFromLatLng(double late, double long) async {
+    await placemarkFromCoordinates(late, long)
+        .then((List<Placemark> placemarks) {
+      Placemark place = placemarks[0];
+      address = '${place.name}';
+      // print('my street : ${place.name}');
+      print('here is flexible location: $address');
+    }).catchError((e) {
+      debugPrint(e);
+    });
+
+    return address;
   }
 }

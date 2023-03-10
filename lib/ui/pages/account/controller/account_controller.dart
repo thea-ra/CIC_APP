@@ -46,7 +46,7 @@ class AccountController extends GetxController {
               url: 'v4/user', methode: METHODE.get, isAuthorize: true)
           .then((res) {
         datamemeber.value = AccountModel.fromJson(res);
-        debugPrint('user====${datamemeber.value.profile}');
+        debugPrint('user====${datamemeber.value.customerid}===========');
       }).onError((ErrorModel error, stackTrace) {
         debugPrint(error.bodyString);
       });

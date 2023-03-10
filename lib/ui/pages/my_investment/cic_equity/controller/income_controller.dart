@@ -3,9 +3,21 @@ import 'package:cic_project/util/helper/globle_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../model/cic_fixed_income/income.dart';
+import '../model/cic_fixed_income/income/income.dart';
 
 class IncomeController extends GetxController {
+  final years = [
+    '2022',
+    '2021',
+    '2020',
+    '2019',
+    '2018',
+    '2017',
+    '2016',
+    '2015',
+    '2014'
+  ].obs;
+
   @override
   void onInit() {
     // ignore: todo
@@ -18,6 +30,8 @@ class IncomeController extends GetxController {
   final apibasehelper = Get.put(ApiBaseHelper());
   final globle = Get.put(GlobleData());
   final mydata = <ModelIncome>[].obs;
+  final controller = TextEditingController().obs;
+  final editcontroller = TextEditingController().obs;
 
   Future<List<ModelIncome>> getIncome() async {
     try {
@@ -43,5 +57,14 @@ class IncomeController extends GetxController {
     }
 
     return mydata;
+  }
+
+  final isTap = false.obs;
+  void chageColor() {
+    if (isTap.value = false) {
+      isTap.value = true;
+    } else {
+      isTap.value = false;
+    }
   }
 }
