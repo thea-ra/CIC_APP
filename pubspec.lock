@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.17"
+  action_slider:
+    dependency: "direct main"
+    description:
+      name: action_slider
+      sha256: "8dc65fd8001203a6a641b041b9aedad71a6e894428d7e00f19038ca9a21615ce"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.1"
   adaptive_action_sheet:
     dependency: "direct main"
     description:
@@ -273,6 +281,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.8"
+  dotted_line:
+    dependency: "direct main"
+    description:
+      name: dotted_line
+      sha256: "453e6d0ec4fe923ae00469dbc2973b9e9b11ef1c71abcded003d05af0a219d23"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   email_validator:
     dependency: "direct main"
     description:
@@ -520,6 +536,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  geocoding:
+    dependency: "direct main"
+    description:
+      name: geocoding
+      sha256: "26218460a902d4249b81e6baf9d55ce400fd1ebe6fc0a7e92b2c12b0b8e1e14e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
+  geocoding_platform_interface:
+    dependency: transitive
+    description:
+      name: geocoding_platform_interface
+      sha256: "8848605d307d844d89937cdb4b8ad7dfa880552078f310fa24d8a460f6dddab4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   get:
     dependency: "direct main"
     description:
@@ -824,6 +856,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  modal_bottom_sheet:
+    dependency: "direct main"
+    description:
+      path: modal_bottom_sheet
+      ref: HEAD
+      resolved-ref: d79185a564c6d1b1535568ea7dfef060e20a049d
+      url: "https://github.com/danReynolds/modal_bottom_sheet.git"
+    source: git
+    version: "2.1.2"
   mustache_template:
     dependency: transitive
     description:
@@ -848,6 +889,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  passcode_screen:
+    dependency: "direct main"
+    description:
+      name: passcode_screen
+      sha256: "66f162b0c6fa0b922597b600f66a0b0f8350b2b3aa7c09301c41e11713170317"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   path:
     dependency: transitive
     description:
@@ -944,6 +993,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
+  pie_chart:
+    dependency: "direct main"
+    description:
+      name: pie_chart
+      sha256: "5dba6d0eb4718e8ed00a9079361cd8947c3f84ac5a5d76f05a27f4ec5e27589e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.3.2"
   pin_code_fields:
     dependency: "direct main"
     description:
@@ -1141,6 +1198,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slider_button:
+    dependency: "direct main"
+    description:
+      name: slider_button
+      sha256: "9e23a806af48fa615b0891a18be87bb751ae3b6ca8dd5a299ecaafdf351623ef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   smooth_page_indicator:
     dependency: "direct main"
     description:
@@ -1373,6 +1438,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  vibration:
+    dependency: transitive
+    description:
+      name: vibration
+      sha256: "1dc9d1a0d62b12f1276eb7146b21585db5fe01771b8ca0234fefdf74ba51f963"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.7.6"
   watcher:
     dependency: transitive
     description:

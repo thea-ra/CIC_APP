@@ -9,6 +9,7 @@ class Saving extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           '$title',
@@ -18,23 +19,26 @@ class Saving extends StatelessWidget {
               color: Color(0xffFFFFFF),
               fontWeight: FontWeight.w400),
         ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 5),
-              child: Icon(
-                Icons.circle,
-                color: color,
-                size: 14,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 5),
+                child: Icon(
+                  Icons.circle,
+                  color: color,
+                  size: 14,
+                ),
               ),
-            ),
-            Text('$text',
-                style: const TextStyle(
-                    fontFamily: 'DMSans',
-                    fontSize: 14,
-                    color: Color(0xffFFFFFF),
-                    fontWeight: FontWeight.w700))
-          ],
+              Text('$text',
+                  style: const TextStyle(
+                      fontFamily: 'DMSans',
+                      fontSize: 14,
+                      color: Color(0xffFFFFFF),
+                      fontWeight: FontWeight.w700))
+            ],
+          ),
         )
       ],
     );

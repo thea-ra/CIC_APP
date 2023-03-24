@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../get_funding/screen/debt_investment.dart';
+import 'debt_investment.dart';
 import 'new_subscribe.dart';
 
 class UTSubscribe extends StatefulWidget {
@@ -58,6 +58,18 @@ class _UTSubscribeState extends State<UTSubscribe>
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: TabBar(
+                labelColor: const Color(0xff0F50A4),
+                unselectedLabelColor: const Color(0xff4a4a4a),
+                unselectedLabelStyle: const TextStyle(
+                  fontFamily: 'DMSans',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+                labelStyle: const TextStyle(
+                  fontFamily: 'DMSans',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
                 indicator: const UnderlineTabIndicator(
                     borderSide:
                         BorderSide(width: 4.0, color: Color(0xff0F50A4)),
@@ -66,25 +78,18 @@ class _UTSubscribeState extends State<UTSubscribe>
                 physics: const AlwaysScrollableScrollPhysics(),
                 controller: _tabController,
                 tabs: const [
-                  Text(
-                    'New Subscription',
-                    style: TextStyle(
-                        fontFamily: 'DMSans',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xff0F50A4)),
+                  Tab(
+                    text: 'New Subscription',
                   ),
-                  Text(
-                    'Subscription History',
-                    style: TextStyle(
-                        fontFamily: 'DMSans',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xff0F50A4)),
-                  )
+
+                  // second tab [you can add an icon using the icon property]
+                  Tab(
+                    text: 'Subscription History',
+                  ),
                 ],
               ),
             ),
+        
           ),
           Expanded(
             child: TabBarView(

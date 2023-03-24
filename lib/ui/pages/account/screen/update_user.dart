@@ -37,7 +37,7 @@ class _UpdateUserState extends State<UpdateUser> {
                   effect: const ExpandingDotsEffect(dotWidth: 6, dotHeight: 6),
                 )
               : Obx(
-                  () => InkWell(
+                  () => GestureDetector(
                     onTap: con.datamemeber.value != con.user.value
                         ? () {
                             con.updateUser(
@@ -195,6 +195,7 @@ class _UpdateUserState extends State<UpdateUser> {
           ),
         ),
       ),
+    
     );
   }
 }

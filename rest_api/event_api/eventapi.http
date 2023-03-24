@@ -32,3 +32,16 @@ Get {{baseUrl}}v4/event/22
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+###
+Get {{baseUrl}}v4/event?posted=upcoming&type=new&event_date=
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+###
+Get {{baseUrl}}v4/event?member_id=432&posted=past/18
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}

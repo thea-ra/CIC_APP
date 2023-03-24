@@ -1,53 +1,55 @@
 import 'dart:ui';
 
-import 'package:cic_project/ui/pages/event/controller/registered_member_controller.dart';
-import 'package:cic_project/ui/share/component/custome_event/custom_detail_info.dart';
-import 'package:cic_project/ui/share/component/custome_event/custome_invite_member.dart';
-import 'package:cic_project/ui/share/component/custome_event/detail_header.dart';
+import 'package:cic_project/ui/pages/event/controller/event_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-import '../../../pages/event/controller/event_controller.dart';
-import '../button.dart';
-import 'custome_addmemer.dart';
-import 'custome_button_submit.dart';
-import 'custome_joiner.dart';
-import 'custome_registered.dart';
+import '../../../share/component/button.dart';
+import '../../../share/component/custome_event/custom_detail_info.dart';
+import '../../../share/component/custome_event/custome_addmemer.dart';
+import '../../../share/component/custome_event/custome_button_submit.dart';
+import '../../../share/component/custome_event/custome_invite_member.dart';
+import '../../../share/component/custome_event/custome_joiner.dart';
+import '../../../share/component/custome_event/custome_registered.dart';
+import '../../../share/component/custome_event/detail_header.dart';
+import '../controller/registered_member_controller.dart';
 
-class CustomeEventDetail extends StatefulWidget {
-  const CustomeEventDetail({super.key});
+class EventDetail extends StatefulWidget {
+  const EventDetail({super.key});
 
   @override
-  State<CustomeEventDetail> createState() => _CustomeEventDetailState();
+  State<EventDetail> createState() => _EventDetailState();
 }
 
-class _CustomeEventDetailState extends State<CustomeEventDetail> {
-  final con = Get.put(EventController());
-  final getcon = Get.put(RegisterContoller());
-  ScrollController scrollController = ScrollController();
-  bool isScroll = false;
-  @override
-  void initState() {
-    scrollController.addListener(() {
-      if (scrollController.offset >= 50) {
-        setState(() {
-          isScroll = true;
-        });
-      } else {
-        setState(() {
-          isScroll = false;
-        });
-      }
-    });
-    super.initState();
-  }
-
+class _EventDetailState extends State<EventDetail> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    final con = Get.put(EventController());
+
+    final getcon = Get.put(RegisterContoller());
+    ScrollController scrollController = ScrollController();
+    bool isScroll = false;
+    @override
+    void initState() {
+      scrollController.addListener(() {
+        if (scrollController.offset >= 50) {
+          setState(() {
+            isScroll = true;
+          });
+        } else {
+          setState(() {
+            isScroll = false;
+          });
+        }
+      });
+      super.initState();
+    }
+
+    return Scaffold(
+        body: Column(
       children: [
         Expanded(
           child: Stack(
@@ -284,12 +286,21 @@ class _CustomeEventDetailState extends State<CustomeEventDetail> {
                                   CustomeJoinerEvent(
                                     joiner:
                                         con.eventdetail.value.registernumber,
-                                    image: con
-                                        .eventdetail.value.registerprofile![0],
-                                    image2: con
-                                        .eventdetail.value.registerprofile![2],
-                                    image1: con
-                                        .eventdetail.value.registerprofile![1],
+                                    image: con.eventdetail.value
+                                            .registerprofile!.isNotEmpty
+                                        ? con.eventdetail.value
+                                            .registerprofile![0]
+                                        : '',
+                                    image2: con.eventdetail.value
+                                            .registerprofile!.isNotEmpty
+                                        ? con.eventdetail.value
+                                            .registerprofile![1]
+                                        : '',
+                                    image1: con.eventdetail.value
+                                            .registerprofile!.isNotEmpty
+                                        ? con.eventdetail.value
+                                            .registerprofile![2]
+                                        : '',
                                   ),
                                   SvgPicture.asset(
                                     'asset/svg/arrow_award.svg',
@@ -346,8 +357,9 @@ class _CustomeEventDetailState extends State<CustomeEventDetail> {
                   ],
                 ),
               )
-            : createButton('Register Now', const Color(0xff0F50A4)))
+            : createButton('Register Now', const Color(0xff0F50A4),
+                const Color(0xffFFFFFF)))
       ],
-    );
+    ));
   }
 }

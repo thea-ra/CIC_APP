@@ -2,6 +2,7 @@ import 'package:cic_project/ui/pages/event/controller/event_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import 'custom_newevent_card.dart';
 
@@ -24,7 +25,7 @@ class PastEvent extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.only(left: 20, top: 20),
                         child: Text(
-                          'New Event',
+                          'Past Event',
                           style: TextStyle(
                               fontFamily: 'DMSans',
                               fontSize: 20,
@@ -34,13 +35,20 @@ class PastEvent extends StatelessWidget {
                       ),
                       Column(
                         children: con.pastData.map((e) {
-                          return CardNewEvent(
-                            date: e.date,
-                            image: e.cover,
-                            image1: e.registerprofile?[0],
-                            image2: e.cover,
-                            title: e.title,
-                            interested: e.interested,
+                          return GestureDetector(
+                            onTap: () {
+                              print('Event Ids : ${e.id}');
+                              con.getPastEventDetail(e.id as num);
+                              context.go('/event/pasteventdetail');
+                            },
+                            child: CardNewEvent(
+                              date: e.date,
+                              image: e.cover,
+                              image1: e.cover,
+                              image2: e.cover,
+                              title: e.title,
+                              interested: e.interested,
+                            ),
                           );
                         }).toList(),
                       )

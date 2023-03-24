@@ -1,13 +1,14 @@
-@baseUrl=https://cicstaging.z1central.com/api/
-
-@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiM2QxOTI4YTVmZTJmMGIxMWY5YjI5ZjE4M2RmZGIxNWI4ZWU3ZTBjNTBmNDhmODU4ZmI4ZmY3ODdiZGUzYmU3YTI5MDY5NDdlNjk3MTY1ZmEiLCJpYXQiOjE2NzgzMzAxNTQuNjIxNzI3LCJuYmYiOjE2NzgzMzAxNTQuNjIxNzMsImV4cCI6MTcwOTk1MjU1NC42MTMyMTksInN1YiI6IjUyIiwic2NvcGVzIjpbIioiXX0.M7li3ihQ2SaNrM6nEgvIkgJT6VMKk5ifUCehBSYONnBS14YdSscuWHJUBrkOBaJG8Zco_sJCj0NMbY55gmUB6W550uirUevT5gsBYyQfDOfjkgrA7eDs3ZcuSWXAzOH9uFhVvc0mRgRov2NJN4If5Nxcsc9w1qeAV2HCcumdo9fK9Rb71aq88KMxfcqYJriboRPJk7myUN4JYygQxeXJIJOKiOj05cAJYcvqrnOtPajxkxpGARVpp06RGdZyh6PZRx3rlOaI5wlQRWbte877LD4c9HlSEjYlgpqCVAo91U9peOmuAhWDBAQ67qkSoDBLLZHPMRW1xPWkAVSeRzAVMNuDWYwlWdCzORqyfNxXFsBoenyH1ub-b456iKNrH0BECz_sh645zlTd-xLWW7ykD_xVuaIjegMh4oZRvAUTDLCP6l0lupogLMzwNc4NoQ4ZPhbuoYZWbWu0Nm5Mv3LY-zXEB6dgtQZm4zQ37v2TS7RTNGJ_hAU-wqT_CAMqoVjX-shod5ZhVcm5dgWRmfZriXsSASiyvnRLu1R0cXdeGBXcqcCSP8_vzVX1K049wVMcfkNjWF-1sHuinAN4XoVMFz--G0AUENR4Oi07kOzvpKlbvdHzsJwmaK_FlOf-pX-IeuPbpBwLnUFYY60Zfxq6E1VRKeH96oEDBzXd5h1YF6w
+@baseUrl= https://cicstaging.z1central.com/api/
+# https://cicstaging.z1central.com/api/
+#https://pre-cic.z1platform.com/api/
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiYzliZTI2N2Y1Y2U3NWJlYzg3YzI0NGIxMzg3YjQzMDkxZGYwNzEwMWM0NTdlNTVmNTk4YzhmMzJiZjdiOTY5ZjlhM2ViYWUyZmZkMzFmMjgiLCJpYXQiOjE2NzkyODcyNDEuNzEzNTY5LCJuYmYiOjE2NzkyODcyNDEuNzEzNTcyLCJleHAiOjE3MTA5MDk2NDEuNzAzMDkyLCJzdWIiOiI4MyIsInNjb3BlcyI6WyIqIl19.vMI8QkSI1u38NzZP4bkBOeO57h4TEZm5tOyPxja-IU9k_WoYmfcPXBj1wwBBPfNidyYtRKmedQfd9ilqTiXdBYEr0zfhtTizqPYfdEg3mCSSvqtZzE9v8A7Ht3F_zeQyz3cwsjvhy0SD7Ysz-256K35lWiGfVL6GtF53jYknrYKVRU0K7mX1b5Mr5EjLQwfqwco8YRWQDFRfxUm5ilSJnL-h4_tmGD-aAzdqkB65IyBELZC8ncwIebWGsjT70vZFqsGjpG_1zp4ysQpuq1hpKZjlpnMTkuZ8g-NR65N3ErDlcZxHMX8_63R77AefcEjAxAWw6Uzf-NW-3nda032WDdVkgxd40jsUnvKhSQMgbLM7RYxqLv88RCoLRV2qi0US8AoZxp0qqjDtRFjCfbLIy_uQn5dYokg8NFRdrARhWNois0OPDVGtM6r5AjNLo6d113uNXtvR-7OMWFWTPvW9GPOh8nM-J6ZRYxrFszpCOjo3EKD1zzgzskChsD6t2GY9n9KO8jJD5kT1ZaY-rRmlL0sYMFcxQgKCf4_z9cnb5oLPMoHOKL7siW9-xPpL9kXSlfVL62yY7Kfe_Y-Cnma9ad-elReewtsfcqZMAiadkIsJHCz3b4nYwFkOqkuQBLeRfQeQQmYwX9rGbFIpR6GCNUtSNvl7zPcrQsbHYcIFIFU
 POST {{baseUrl}}v4/login
 Accept: application/json
 Content-Type: application/json
 
 {
-    "phone" : "+855889002920",
-    "password" : "Theara123"   
+    "phone" : "+85510305096",
+    "password" : "Admin@2022"   
 }
 
 ###
@@ -52,10 +53,11 @@ Accept: application/json
 }
     
 ###
-Get {{baseUrl}}v4/debt-investment?
+Get {{baseUrl}}v4/fif-application?type=pending
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
 =======
 ###
 GET {{baseUrl}}v4/slide?module=privilege
@@ -76,7 +78,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ###
-GET {{baseUrl}}v4/privilege/shop?favorite
+GET {{baseUrl}}v4/return-on-investment
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -98,4 +100,44 @@ Get {{baseUrl}}v4/privilege/category?origin=11.59313872370917, 104.8832875052872
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+
+// submit subscribe
+###
+POST {{baseUrl}}user/verify-pin-code
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+{
+    "pin_code": 2222
+}
+
+
+
+// submit subscribe
+###
+GET  {{baseUrl}}v4/fif-account?hide=0
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+
+
+# fif-account?total_investment=1&hide=1
+
+
+
+###
+POST   {{baseUrl}}v4/fif-account-hide-show
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+      "id": 4,
+      "type": true
+}
 

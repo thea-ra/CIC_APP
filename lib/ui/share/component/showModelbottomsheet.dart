@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:cic_project/ui/pages/salary_saving/controller/salary_controller.dart';
+import 'package:cic_project/ui/pages/my_investment/cic_income/screen/cic_fixed_income/salary_saving/controller/salary_controller.dart';
 import 'package:cic_project/ui/share/component/create_acc_showbottom.dart';
 import 'package:cic_project/ui/share/component/dort.dart';
 import 'package:flutter/material.dart';

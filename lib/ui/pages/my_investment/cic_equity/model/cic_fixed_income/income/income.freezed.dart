@@ -26,6 +26,8 @@ mixin _$ModelIncome {
   String? get code => throw _privateConstructorUsedError;
   @JsonKey(name: "color")
   String? get color => throw _privateConstructorUsedError;
+  @JsonKey(name: "hide")
+  bool? get hide => throw _privateConstructorUsedError;
   @JsonKey(name: "account_name")
   String? get accountName => throw _privateConstructorUsedError;
   @JsonKey(name: "status")
@@ -59,6 +61,7 @@ abstract class $ModelIncomeCopyWith<$Res> {
       {@JsonKey(name: "id") int? id,
       @JsonKey(name: "code") String? code,
       @JsonKey(name: "color") String? color,
+      @JsonKey(name: "hide") bool? hide,
       @JsonKey(name: "account_name") String? accountName,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "date") String? date,
@@ -85,6 +88,7 @@ class _$ModelIncomeCopyWithImpl<$Res, $Val extends ModelIncome>
     Object? id = freezed,
     Object? code = freezed,
     Object? color = freezed,
+    Object? hide = freezed,
     Object? accountName = freezed,
     Object? status = freezed,
     Object? date = freezed,
@@ -107,6 +111,10 @@ class _$ModelIncomeCopyWithImpl<$Res, $Val extends ModelIncome>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      hide: freezed == hide
+          ? _value.hide
+          : hide // ignore: cast_nullable_to_non_nullable
+              as bool?,
       accountName: freezed == accountName
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
@@ -155,6 +163,7 @@ abstract class _$$_ModelIncomeCopyWith<$Res>
       {@JsonKey(name: "id") int? id,
       @JsonKey(name: "code") String? code,
       @JsonKey(name: "color") String? color,
+      @JsonKey(name: "hide") bool? hide,
       @JsonKey(name: "account_name") String? accountName,
       @JsonKey(name: "status") String? status,
       @JsonKey(name: "date") String? date,
@@ -179,6 +188,7 @@ class __$$_ModelIncomeCopyWithImpl<$Res>
     Object? id = freezed,
     Object? code = freezed,
     Object? color = freezed,
+    Object? hide = freezed,
     Object? accountName = freezed,
     Object? status = freezed,
     Object? date = freezed,
@@ -201,6 +211,10 @@ class __$$_ModelIncomeCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
+      hide: freezed == hide
+          ? _value.hide
+          : hide // ignore: cast_nullable_to_non_nullable
+              as bool?,
       accountName: freezed == accountName
           ? _value.accountName
           : accountName // ignore: cast_nullable_to_non_nullable
@@ -244,6 +258,7 @@ class _$_ModelIncome implements _ModelIncome {
       {@JsonKey(name: "id") this.id,
       @JsonKey(name: "code") this.code,
       @JsonKey(name: "color") this.color,
+      @JsonKey(name: "hide") this.hide,
       @JsonKey(name: "account_name") this.accountName,
       @JsonKey(name: "status") this.status,
       @JsonKey(name: "date") this.date,
@@ -265,6 +280,9 @@ class _$_ModelIncome implements _ModelIncome {
   @override
   @JsonKey(name: "color")
   final String? color;
+  @override
+  @JsonKey(name: "hide")
+  final bool? hide;
   @override
   @JsonKey(name: "account_name")
   final String? accountName;
@@ -292,7 +310,7 @@ class _$_ModelIncome implements _ModelIncome {
 
   @override
   String toString() {
-    return 'ModelIncome(id: $id, code: $code, color: $color, accountName: $accountName, status: $status, date: $date, investmentAmount: $investmentAmount, originalAmount: $originalAmount, returnPaymentMethod: $returnPaymentMethod, mmaAccountId: $mmaAccountId, bankId: $bankId)';
+    return 'ModelIncome(id: $id, code: $code, color: $color, hide: $hide, accountName: $accountName, status: $status, date: $date, investmentAmount: $investmentAmount, originalAmount: $originalAmount, returnPaymentMethod: $returnPaymentMethod, mmaAccountId: $mmaAccountId, bankId: $bankId)';
   }
 
   @override
@@ -303,6 +321,7 @@ class _$_ModelIncome implements _ModelIncome {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.color, color) || other.color == color) &&
+            (identical(other.hide, hide) || other.hide == hide) &&
             (identical(other.accountName, accountName) ||
                 other.accountName == accountName) &&
             (identical(other.status, status) || other.status == status) &&
@@ -325,6 +344,7 @@ class _$_ModelIncome implements _ModelIncome {
       id,
       code,
       color,
+      hide,
       accountName,
       status,
       date,
@@ -353,6 +373,7 @@ abstract class _ModelIncome implements ModelIncome {
       {@JsonKey(name: "id") final int? id,
       @JsonKey(name: "code") final String? code,
       @JsonKey(name: "color") final String? color,
+      @JsonKey(name: "hide") final bool? hide,
       @JsonKey(name: "account_name") final String? accountName,
       @JsonKey(name: "status") final String? status,
       @JsonKey(name: "date") final String? date,
@@ -374,6 +395,9 @@ abstract class _ModelIncome implements ModelIncome {
   @override
   @JsonKey(name: "color")
   String? get color;
+  @override
+  @JsonKey(name: "hide")
+  bool? get hide;
   @override
   @JsonKey(name: "account_name")
   String? get accountName;

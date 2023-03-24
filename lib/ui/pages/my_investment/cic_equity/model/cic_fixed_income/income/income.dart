@@ -11,6 +11,7 @@ class ModelIncome with _$ModelIncome {
     @JsonKey(name: "id") final int? id,
     @JsonKey(name: "code") final String? code,
     @JsonKey(name: "color") final String? color,
+    @JsonKey(name: "hide") final bool? hide,
     @JsonKey(name: "account_name") final String? accountName,
     @JsonKey(name: "status") final String? status,
     @JsonKey(name: "date") final String? date,

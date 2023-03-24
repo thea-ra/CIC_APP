@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../pages/home/controller/home_controller.dart';
+import '../../../pages/my_investment/cic_equity/controller/ut_subscribe_controller.dart';
 
 class CustomeTextFormField extends StatefulWidget {
-  const CustomeTextFormField(
-      {super.key,
-      this.isclick,
-      this.type,
-      this.color,
-      this.label,
-      this.validated,
-      this.controller});
+  const CustomeTextFormField({
+    super.key,
+    this.isclick,
+    this.type,
+    this.color,
+    this.label,
+    this.validated,
+  });
   final bool? isclick;
   final TextInputType? type;
   final Color? color;
   final String? label;
   final bool? validated;
-  final TextEditingController? controller;
 
   @override
   State<CustomeTextFormField> createState() => _CustomeTextFormFieldState();
@@ -24,29 +27,19 @@ RegExp digitValidator = RegExp("[0-9]+");
 bool isANumber = true;
 
 class _CustomeTextFormFieldState extends State<CustomeTextFormField> {
+  final con = Get.put(UTController());
+  final getcon = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20),
       child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter your user name.';
-          } else if (value.contains('@')) {
-            return 'Please don\'t use the @ char.';
-          }
-
-          return null;
-        },
         onChanged: (inputValue) {
-          if (inputValue.isEmpty || digitValidator.hasMatch(inputValue)) {
-            setValidator(true);
-          } else {
-            setValidator(false);
-          }
+          con.utval.value = inputValue;
+          con.total = double.parse(inputValue);
         },
         enabled: widget.isclick,
-        controller: widget.controller,
         keyboardType: widget.type,
         decoration: InputDecoration(
             fillColor: widget.color,

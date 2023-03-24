@@ -42,9 +42,9 @@ mixin _$EventModel {
   @JsonKey(name: "location")
   String? get location => throw _privateConstructorUsedError;
   @JsonKey(name: "latitude")
-  String? get latitude => throw _privateConstructorUsedError;
+  num? get latitude => throw _privateConstructorUsedError;
   @JsonKey(name: "longitude")
-  String? get longitude => throw _privateConstructorUsedError;
+  num? get longitude => throw _privateConstructorUsedError;
   @JsonKey(name: "register_profile")
   List<dynamic>? get registerprofile => throw _privateConstructorUsedError;
   @JsonKey(name: "is_interested")
@@ -89,8 +89,8 @@ abstract class $EventModelCopyWith<$Res> {
       @JsonKey(name: "register_number") num? registernumber,
       @JsonKey(name: "place") String? place,
       @JsonKey(name: "location") String? location,
-      @JsonKey(name: "latitude") String? latitude,
-      @JsonKey(name: "longitude") String? longitude,
+      @JsonKey(name: "latitude") num? latitude,
+      @JsonKey(name: "longitude") num? longitude,
       @JsonKey(name: "register_profile") List<dynamic>? registerprofile,
       @JsonKey(name: "is_interested") bool? isinterested,
       @JsonKey(name: "from_time") String? fromtime,
@@ -183,11 +183,11 @@ class _$EventModelCopyWithImpl<$Res, $Val extends EventModel>
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       registerprofile: freezed == registerprofile
           ? _value.registerprofile
           : registerprofile // ignore: cast_nullable_to_non_nullable
@@ -251,8 +251,8 @@ abstract class _$$_EventModelCopyWith<$Res>
       @JsonKey(name: "register_number") num? registernumber,
       @JsonKey(name: "place") String? place,
       @JsonKey(name: "location") String? location,
-      @JsonKey(name: "latitude") String? latitude,
-      @JsonKey(name: "longitude") String? longitude,
+      @JsonKey(name: "latitude") num? latitude,
+      @JsonKey(name: "longitude") num? longitude,
       @JsonKey(name: "register_profile") List<dynamic>? registerprofile,
       @JsonKey(name: "is_interested") bool? isinterested,
       @JsonKey(name: "from_time") String? fromtime,
@@ -343,11 +343,11 @@ class __$$_EventModelCopyWithImpl<$Res>
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       registerprofile: freezed == registerprofile
           ? _value._registerprofile
           : registerprofile // ignore: cast_nullable_to_non_nullable
@@ -456,10 +456,10 @@ class _$_EventModel implements _EventModel {
   final String? location;
   @override
   @JsonKey(name: "latitude")
-  final String? latitude;
+  final num? latitude;
   @override
   @JsonKey(name: "longitude")
-  final String? longitude;
+  final num? longitude;
   final List<dynamic>? _registerprofile;
   @override
   @JsonKey(name: "register_profile")
@@ -600,8 +600,8 @@ abstract class _EventModel implements EventModel {
       @JsonKey(name: "register_number") final num? registernumber,
       @JsonKey(name: "place") final String? place,
       @JsonKey(name: "location") final String? location,
-      @JsonKey(name: "latitude") final String? latitude,
-      @JsonKey(name: "longitude") final String? longitude,
+      @JsonKey(name: "latitude") final num? latitude,
+      @JsonKey(name: "longitude") final num? longitude,
       @JsonKey(name: "register_profile") final List<dynamic>? registerprofile,
       @JsonKey(name: "is_interested") final bool? isinterested,
       @JsonKey(name: "from_time") final String? fromtime,
@@ -648,10 +648,10 @@ abstract class _EventModel implements EventModel {
   String? get location;
   @override
   @JsonKey(name: "latitude")
-  String? get latitude;
+  num? get latitude;
   @override
   @JsonKey(name: "longitude")
-  String? get longitude;
+  num? get longitude;
   @override
   @JsonKey(name: "register_profile")
   List<dynamic>? get registerprofile;

@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomeDetailSummary extends StatelessWidget {
+class CustomeDetailSummary extends StatefulWidget {
   const CustomeDetailSummary(
       {super.key, this.svgpic, this.title, this.trialing});
   final String? svgpic;
   final String? title;
   final String? trialing;
+
+  @override
+  State<CustomeDetailSummary> createState() => _CustomeDetailSummaryState();
+}
+
+class _CustomeDetailSummaryState extends State<CustomeDetailSummary> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,27 +21,27 @@ class CustomeDetailSummary extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(
-            '$svgpic',
+            '${widget.svgpic}',
             color: Colors.red,
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                '$title',
+                '${widget.title}',
                 style: const TextStyle(
                     fontFamily: 'DMSans',
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: FontWeight.w400,
                     color: Color(0xff000000)),
               ),
             ),
           ),
           Text(
-            '$trialing',
+            '${widget.trialing}',
             style: const TextStyle(
                 fontFamily: 'DMSans',
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
                 color: Color(0xff000000)),
           )

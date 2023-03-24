@@ -1,4 +1,3 @@
-import 'package:cic_project/ui/pages/qr_code/qr_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -47,23 +46,22 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w700,
-          // color: AppColor.mainColor,
+          color: Color(0xffFFFFFF),
           fontFamily: 'DM San',
         ),
         unselectedLabelStyle: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w700,
-          fontFamily: 'DM San',
-          // color: AppColor.darkTextColor,
-        ),
-        selectedItemColor: const Color(0xff0F50A4),
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+            fontFamily: 'DM San',
+            color: Color(0xff000000)),
         selectedFontSize: 14,
+      
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(bottom: 3.51),
               child: SvgPicture.asset(
-                'asset/svg/homesvg.svg',
+                'asset/svg/btnhome.svg',
                 width: 20,
                 height: 20,
               ),
@@ -94,9 +92,14 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
             ),
             label: 'Account',
           ),
+          
         ],
-        currentIndex: ScaffoldWithNavBar._calculateSelectedIndex(context),
-        onTap: (int idx) => _onItemTapped(idx, context),
+          currentIndex: ScaffoldWithNavBar._calculateSelectedIndex(context),
+        onTap: (int idx) {
+          setState(() {
+            _onItemTapped(idx, context);
+          });
+        },
       ),
     );
   }
@@ -107,9 +110,7 @@ class _ScaffoldWithNavBarState extends State<ScaffoldWithNavBar> {
         GoRouter.of(context).go('/');
         break;
       case 1:
-        Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
-          builder: (context) => const QRCodeScreen(),
-        ));
+        context.go('/qrcode');
         break;
       case 2:
         GoRouter.of(context).go('/event');

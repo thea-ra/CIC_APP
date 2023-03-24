@@ -1,4 +1,4 @@
-import 'package:cic_project/ui/pages/salary_saving/controller/salary_controller.dart';
+import 'package:cic_project/ui/pages/my_investment/cic_income/screen/cic_fixed_income/salary_saving/controller/salary_controller.dart';
 import 'package:cic_project/ui/share/component/bank_acc_textfield.dart';
 import 'package:cic_project/ui/share/component/dort.dart';
 import 'package:cic_project/ui/share/component/showModelbottomsheet.dart';

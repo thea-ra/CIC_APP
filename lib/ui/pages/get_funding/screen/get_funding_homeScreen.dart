@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../share/component/get_funding/custom_header.dart';
-import 'debt_investment.dart';
+import '../../my_investment/cic_equity/screen/debt_investment.dart';
 import 'equity_investment.dart';
 
 class GetFundingHomeScreen extends StatefulWidget {

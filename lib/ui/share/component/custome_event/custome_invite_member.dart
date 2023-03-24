@@ -188,7 +188,8 @@ class _CustomeMemmerInviteState extends State<CustomeMemmerInvite> {
                 'Invite member',
                 con.memberlist.isEmpty
                     ? const Color(0xffE0E0E0)
-                    : const Color(0xff0F50A4)),
+                    : const Color(0xff0F50A4),
+                const Color(0xffFFFFFF)),
           ),
         )
       ],

@@ -3,7 +3,7 @@ import 'package:cic_project/ui/share/transfer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'cic_aba_transer.dart';
+import 'cic_fixed_income/screen/cic_aba_transer.dart';
 
 class TransterPage extends StatelessWidget {
   const TransterPage({super.key});

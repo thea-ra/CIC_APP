@@ -2,6 +2,8 @@ import 'package:cic_project/ui/pages/account/screen/profile_screen.dart';
 import 'package:cic_project/ui/pages/account/screen/update_company.dart';
 import 'package:cic_project/ui/pages/auth/screen/login_Screen.dart';
 import 'package:cic_project/ui/pages/home/screen/homePage.dart';
+import 'package:cic_project/ui/pages/my_investment/cic_income/screen/cic_fixed_income/screen/pending_screen.dart';
+import 'package:cic_project/ui/pages/my_investment/cic_income/screen/cic_fixed_income/screen/pincode_screen.dart';
 import 'package:cic_project/ui/pages/privilege/screen/detail_shop.dart';
 import 'package:cic_project/ui/pages/privilege/screen/ios_first_page.dart';
 import 'package:cic_project/ui/pages/privilege/screen/ios_second_page.dart';
@@ -12,15 +14,20 @@ import 'package:go_router/go_router.dart';
 
 import '../../ui/pages/account/screen/add_company.dart';
 import '../../ui/pages/account/screen/update_user.dart';
-import '../../ui/pages/event/screen/event_detail.dart';
+import '../../ui/pages/event/screen/up_comming_detail.dart';
 import '../../ui/pages/event/screen/event_homescreen.dart';
 
 import '../../ui/pages/get_funding/screen/get_funding_homeScreen.dart';
 import '../../ui/pages/get_funding/screen/preview_form.dart';
+import '../../ui/pages/my_investment/cic_equity/model/cic_fixed_income/income/income.dart';
+import '../../ui/pages/my_investment/cic_equity/screen/submitted_screen.dart';
 import '../../ui/pages/my_investment/cic_equity/screen/ut_subscrip.dart';
+import '../../ui/pages/my_investment/cic_income/screen/cic_fixed_income/screen/about_FIF_screen.dart';
+import '../../ui/pages/my_investment/cic_income/screen/cic_fixed_income/screen/fix_income_fund.dart';
+import '../../ui/pages/my_investment/cic_income/screen/confirm_screen.dart';
 import '../../ui/pages/my_investment/cic_real_estate/screen/my_invest_screen.dart';
 import '../../ui/pages/qr_code/qr_code.dart';
-import '../../ui/pages/salary_saving/salary_saving.dart';
+import '../../ui/pages/my_investment/cic_income/screen/cic_fixed_income/salary_saving/screen/salary_saving.dart';
 import '../../ui/share/component/buttom_navigation.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'rootKey');
@@ -44,9 +51,11 @@ final router = GoRouter(
         GoRoute(
           path: '/',
           name: 'Home Screen',
-          builder: (_, state) {
-            return HomeScreen(
-              key: state.pageKey,
+          pageBuilder: (_, state) {
+            return NoTransitionPage(
+              child: HomeScreen(
+                key: state.pageKey,
+              ),
             );
           },
         ),
@@ -54,9 +63,11 @@ final router = GoRouter(
           // parentNavigatorKey: _rootNavigatorKey,
           path: '/qrcode',
           name: 'Qrcode',
-          builder: (_, state) {
-            return QRCodeScreen(
-              key: state.pageKey,
+          pageBuilder: (_, state) {
+            return NoTransitionPage(
+              child: QRCodeScreen(
+                key: state.pageKey,
+              ),
             );
           },
         ),
@@ -70,22 +81,106 @@ final router = GoRouter(
             },
             routes: [
               GoRoute(
-                path: 'utscreen',
-                name: 'UT Subscribe',
+                path: 'pincode',
+                parentNavigatorKey: _shellNavigatorKey,
+                name: 'Pin code Screen',
+               
                 builder: (_, state) {
-                  return UTSubscribe(
+                   final data = state.extra as ModelIncome;
+                  return ScreenPinCode(
+                    key: state.pageKey,
+                    modelIncome: data,
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'fixedincome',
+                parentNavigatorKey: _shellNavigatorKey,
+                name: 'Fixed income fund',
+                builder: (_, state) {
+                  return FixedIncomeFund(
                     key: state.pageKey,
                   );
                 },
-              )
+              ),
+              GoRoute(
+                path: 'aboutfif',
+                parentNavigatorKey: _shellNavigatorKey,
+                name: 'aboutfif',
+                builder: (_, state) {
+                  return AboutFIFScreen(
+                    key: state.pageKey,
+                  );
+                },
+              ),
+              GoRoute(
+                  parentNavigatorKey: _rootNavigatorKey,
+                  path: 'utscreen',
+                  name: 'UT Subscribe',
+                  builder: (_, state) {
+                    return UTSubscribe(
+                      key: state.pageKey,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      parentNavigatorKey: _rootNavigatorKey,
+                      path: 'submitted',
+                      name: 'Submit',
+                      builder: (_, state) {
+                        return SubmitScreen(
+                          key: state.pageKey,
+                        );
+                      },
+                    )
+                  ]),
+              GoRoute(
+                  path: 'salaryscreen',
+                  parentNavigatorKey: _shellNavigatorKey,
+                  name: 'Salary Screen',
+                  builder: (_, state) {
+                    final data = state.extra as ModelIncome;
+                    return SalarySaving(
+                      key: state.pageKey,
+                      modelIncome: data,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'detail',
+                      parentNavigatorKey: _shellNavigatorKey,
+                      name: 'Salary detail',
+                      builder: (_, state) {
+                        final data = state.extra as ModelIncome;
+                        return DetailSummary(
+                          key: state.pageKey,
+                          modelIncome: data,
+                        );
+                      },
+                    ),
+                    GoRoute(
+                      path: 'pending',
+                      parentNavigatorKey: _shellNavigatorKey,
+                      name: 'pending',
+                      builder: (_, state) {
+                        final data = state.extra as ModelIncome;
+                        return PendingScreen(
+                          key: state.pageKey,
+                          modelIncome: data,
+                        );
+                      },
+                    ),
+                  ]),
             ]),
 
         GoRoute(
             path: '/event',
             name: 'event',
-            builder: (context, state) {
-              return EventHomeScreen(
-                key: state.pageKey,
+            pageBuilder: (_, state) {
+              return NoTransitionPage(
+                child: EventHomeScreen(
+                  key: state.pageKey,
+                ),
               );
             },
             routes: [
@@ -95,15 +190,24 @@ final router = GoRouter(
                 builder: (context, state) {
                   return const EventDetail();
                 },
-              )
+              ),
+              GoRoute(
+                path: 'pasteventdetail',
+                name: 'Past Event Detail',
+                builder: (context, state) {
+                  return const EventDetail();
+                },
+              ),
             ]),
 
         GoRoute(
           path: '/account',
           name: 'Account',
-          builder: (_, state) {
-            return ProfileScreen(
-              key: state.pageKey,
+          pageBuilder: (_, state) {
+            return NoTransitionPage(
+              child: ProfileScreen(
+                key: state.pageKey,
+              ),
             );
           },
         ),
@@ -140,16 +244,6 @@ final router = GoRouter(
 
     //
 
-    GoRoute(
-      path: '/salaryscreen',
-      parentNavigatorKey: _rootNavigatorKey,
-      name: 'Salary Screen',
-      builder: (_, state) {
-        return SalarySaving(
-          key: state.pageKey,
-        );
-      },
-    ),
     GoRoute(
       path: '/login',
       parentNavigatorKey: _rootNavigatorKey,

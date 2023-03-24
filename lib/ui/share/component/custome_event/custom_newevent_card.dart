@@ -47,7 +47,7 @@ class CardNewEvent extends StatelessWidget {
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(14)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: (image != null)
+                child: (image!.isNotEmpty)
                     ? CachedNetworkImage(
                         imageUrl: image!,
                         fit: BoxFit.cover,
@@ -60,94 +60,69 @@ class CardNewEvent extends StatelessWidget {
                         'https://cicstaging.z1central.com/uploads/files/default/default-user-icon.png'),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '$date',
-                  style: const TextStyle(
-                      fontFamily: 'DMSans',
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xff212525)),
-                ),
-                Text(
-                  '$title',
-                  style: const TextStyle(
-                      fontFamily: 'DMSans',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xff212525)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 14),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset('asset/svg/online.svg'),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 6),
-                                child: Text(
-                                  'Online',
-                                  style: TextStyle(
-                                      fontFamily: 'DMSans',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff212525)),
-                                ),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Row(
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '$date',
+                    style: const TextStyle(
+                        fontFamily: 'DMSans',
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff212525)),
+                  ),
+                  Text(
+                    '$title',
+                    style: const TextStyle(
+                        fontFamily: 'DMSans',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xff212525)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 14),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
                               children: [
-                                Text(
-                                  '$interested Interested',
-                                  style: const TextStyle(
-                                      fontFamily: 'DMSans',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color(0xff212525)),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 90),
-                                  child: Row(
-                                    children: [
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            width: 24.5,
-                                            height: 24.5,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey,
-                                                borderRadius:
-                                                    BorderRadius.circular(14)),
-                                            clipBehavior:
-                                                Clip.antiAliasWithSaveLayer,
-                                            child: (image1 != null)
-                                                ? CachedNetworkImage(
-                                                    imageUrl: image1 ?? '',
-                                                    fit: BoxFit.cover,
-                                                    placeholder: (context,
-                                                            url) =>
-                                                        const CircularProgressIndicator(),
-                                                    errorWidget: (context, url,
-                                                            error) =>
-                                                        const Icon(Icons.error),
-                                                  )
-                                                : Image.network(
-                                                    'https://cicstaging.z1central.com/uploads/files/default/default-user-icon.png'),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 15),
-                                            child: Container(
+                                SvgPicture.asset('asset/svg/online.svg'),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    'Online',
+                                    style: TextStyle(
+                                        fontFamily: 'DMSans',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xff212525)),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '$interested Interested',
+                                    style: const TextStyle(
+                                        fontFamily: 'DMSans',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xff212525)),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 90),
+                                    child: Row(
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Container(
                                               width: 24.5,
                                               height: 24.5,
                                               decoration: BoxDecoration(
@@ -157,9 +132,9 @@ class CardNewEvent extends StatelessWidget {
                                                           14)),
                                               clipBehavior:
                                                   Clip.antiAliasWithSaveLayer,
-                                              child: (image2 != null)
+                                              child: (image1!.isNotEmpty)
                                                   ? CachedNetworkImage(
-                                                      imageUrl: image2!,
+                                                      imageUrl: image1 ?? '',
                                                       fit: BoxFit.cover,
                                                       placeholder: (context,
                                                               url) =>
@@ -172,42 +147,71 @@ class CardNewEvent extends StatelessWidget {
                                                   : Image.network(
                                                       'https://cicstaging.z1central.com/uploads/files/default/default-user-icon.png'),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 32),
-                                            child: Container(
-                                              width: 40.5,
-                                              height: 24.5,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 15),
+                                              child: Container(
+                                                width: 24.5,
+                                                height: 24.5,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            14)),
+                                                clipBehavior:
+                                                    Clip.antiAliasWithSaveLayer,
+                                                child: image2!.isNotEmpty
+                                                    ? CachedNetworkImage(
+                                                        imageUrl: image2!,
+                                                        fit: BoxFit.cover,
+                                                        placeholder: (context,
+                                                                url) =>
+                                                            const CircularProgressIndicator(),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            const Icon(
+                                                                Icons.error),
+                                                      )
+                                                    : Image.network(
+                                                        'https://cicstaging.z1central.com/uploads/files/default/default-user-icon.png'),
                                               ),
-                                              child: Center(
-                                                  child: Text(
-                                                '+ $interested',
-                                                style: const TextStyle(
-                                                    fontFamily: 'DMSans',
-                                                    fontSize: 10,
-                                                    color: Color(0xff0f50a4)),
-                                              )),
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 32),
+                                              child: Container(
+                                                width: 40.5,
+                                                height: 24.5,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                child: Center(
+                                                    child: Text(
+                                                  '+ $interested',
+                                                  style: const TextStyle(
+                                                      fontFamily: 'DMSans',
+                                                      fontSize: 10,
+                                                      color: Color(0xff0f50a4)),
+                                                )),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),

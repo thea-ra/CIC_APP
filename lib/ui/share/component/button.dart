@@ -8,13 +8,14 @@ class CustomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width / 2.39,
       decoration: BoxDecoration(
           border: Border.all(color: const Color(0xff0F50A4)),
           borderRadius: BorderRadius.circular(8),
           color: background),
       child: Center(
           child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Text(
           text.toString(),
           style: TextStyle(

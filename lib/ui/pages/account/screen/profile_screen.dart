@@ -240,8 +240,6 @@ class _MyAppState extends State<ProfileScreen> {
                                       ),
                                       imageUrl: con.datamemeber.value.profile!,
                                       fit: BoxFit.contain,
-                                      placeholder: (context, url) =>
-                                          const CircularProgressIndicator(),
                                       errorWidget: (context, url, error) =>
                                           const Icon(Icons.error),
                                     )

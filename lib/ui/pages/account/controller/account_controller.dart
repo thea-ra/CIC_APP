@@ -158,6 +158,7 @@ class AccountController extends GetxController {
             'profile': 'data:image/png;base64,$base64image',
           }).then((res) {
         debugPrint('Success');
+
         print(base64image.toString());
       });
     } catch (e) {}

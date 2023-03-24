@@ -1,11 +1,13 @@
+import 'package:cic_project/ui/pages/my_investment/cic_equity/controller/ut_subscribe_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:slider_button/slider_button.dart';
 
 import '../../../../share/component/cusotm_myinvestment.dart/custome_inputfield.dart';
 import '../../../../share/component/get_funding/cutome_detail_ut.dart';
 import '../../../../share/component/get_funding/cutome_ut_summary.dart';
-import '../controller/income_controller.dart';
+import '../../../home/controller/home_controller.dart';
 
 class NewSubscribe extends StatefulWidget {
   const NewSubscribe({super.key});
@@ -15,22 +17,21 @@ class NewSubscribe extends StatefulWidget {
 }
 
 class _NewSubscribeState extends State<NewSubscribe> {
-  final con = Get.put(IncomeController());
-
+  final getcon = Get.put(HomeController());
+  final con = Get.put(UTController());
+  double totalvalue = 0;
   @override
-  void dispose() {
-    con.controller.value.dispose();
-    super.dispose();
+  void initState() {
+    totalvalue = con.total * 1.47;
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final con = Get.put(IncomeController());
     return Column(
       children: [
         Expanded(
           child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
             child: Column(
               children: [
                 // UT price
@@ -53,18 +54,40 @@ class _NewSubscribeState extends State<NewSubscribe> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: Column(
-                        children: const [
+                        children: [
                           CustomeTextFormField(
-                            label: '\$1.48',
+                            label: '${getcon.investData.value.price}',
                             isclick: false,
                             type: TextInputType.number,
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: 20),
                             child: CustomeTextFormField(
-                              label: 'UT Subscribe',
+                              label: 'UT Subscription',
                               isclick: true,
                               type: TextInputType.number,
+                            ),
+                          ),
+                          Obx(
+                            () => Padding(
+                              padding: const EdgeInsets.only(left: 20, top: 10),
+                              child: con.utval.value.isEmpty
+                                  ? Row(
+                                      children: [
+                                        SvgPicture.asset('asset/svg/wrong.svg'),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 8),
+                                          child: Text(
+                                              'Please Enter UT to Subscribe',
+                                              style: TextStyle(
+                                                  fontFamily: 'DMSans',
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Color(0xffED1E26))),
+                                        )
+                                      ],
+                                    )
+                                  : Container(),
                             ),
                           )
                         ],
@@ -91,12 +114,12 @@ class _NewSubscribeState extends State<NewSubscribe> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 20),
                         child: Column(
-                          children: const [
-                            CusotmeUTSummary(
+                          children: [
+                            const CusotmeUTSummary(
                               title: 'UT Summary',
                               svgpic: 'asset/svg/right.svg',
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(top: 20),
                               child: CustomeDetailSummary(
                                 svgpic: 'asset/svg/right.svg',
@@ -104,12 +127,14 @@ class _NewSubscribeState extends State<NewSubscribe> {
                                 trialing: '0 UI',
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 20),
-                              child: CustomeDetailSummary(
-                                svgpic: 'asset/svg/right.svg',
-                                title: 'Initial UT Amount',
-                                trialing: '0 UI',
+                            Obx(
+                              () => Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: CustomeDetailSummary(
+                                  svgpic: 'asset/svg/right.svg',
+                                  title: 'New UT Amount',
+                                  trialing: '${con.utval.value} UI',
+                                ),
                               ),
                             ),
                           ],
@@ -135,55 +160,105 @@ class _NewSubscribeState extends State<NewSubscribe> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 20),
                         child: Column(
-                          children: const [
-                            CusotmeUTSummary(
-                              title: 'UT Summary',
+                          children: [
+                            const CusotmeUTSummary(
+                              title: 'Payment Summary',
                               svgpic: 'asset/svg/right.svg',
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 20),
+                              padding: const EdgeInsets.only(top: 20),
                               child: CustomeDetailSummary(
                                 svgpic: 'asset/svg/right.svg',
-                                title: 'Initial UT Amount',
-                                trialing: '0 UI',
+                                title: 'Total Subscription Cost',
+                                trialing: '$totalvalue',
                               ),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(top: 20),
                               child: CustomeDetailSummary(
                                 svgpic: 'asset/svg/right.svg',
-                                title: 'Initial UT Amount',
-                                trialing: '0 UI',
+                                title: 'Last date of payment',
+                                trialing: '',
                               ),
                             ),
                           ],
                         ),
                       )),
                 ),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 20, right: 20),
+                    child: InkWell(
+                      onTap: () {
+                        con.isclick.value = !con.isclick.value;
+                      },
+                      child: Row(
+                        children: [
+                          Obx(
+                            () => Icon(con.isclick.value
+                                ? Icons.radio_button_checked
+                                : Icons.radio_button_unchecked),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Row(
+                              children: const [
+                                Text('I have read and agree to ',
+                                    style: TextStyle(
+                                        fontFamily: 'DMSans',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xff000000))),
+                                Text('CIC Serivce Agreement ',
+                                    style: TextStyle(
+                                        fontFamily: 'DMSans',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xff12539F))),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    )),
               ],
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: Center(
-            child: SliderButton(
-                backgroundColor: const Color(0xffB3C6E0),
-                width: double.infinity,
-                shimmer: true,
-                alignLabel: Alignment.center,
-                action: () {
-                  ///Do something here
-                  Navigator.of(context).pop();
-                },
-                label: const Text(
-                  "Slide to cancel Event",
-                  style: TextStyle(
-                      color: Color(0xff4a4a4a),
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17),
-                ),
-                icon: const Icon(Icons.arrow_forward)),
+            child: Obx(
+              () => SliderButton(
+                
+                  backgroundColor:
+                      con.isclick.value && con.utval.value.isNotEmpty
+                          ? const Color(0xff0F50A4).withOpacity(0.8)
+                          : const Color(0xffB3C6E0),
+                  width: double.infinity,
+                  height: 65,
+                  dismissThresholds: 0.8,
+                  shimmer: true,
+                  buttonSize: 55,
+                  buttonColor: con.isclick.value && con.utval.value.isNotEmpty
+                      ? const Color(0xff0F50A4)
+                      : const Color(0xff0F50A4).withOpacity(0.4),
+                  alignLabel: Alignment.center,
+                  action: () {
+                    con.submitSubscribtion(context);
+                  },
+                  label: const Text(
+                    "Slide to Sumbit",
+                    style: TextStyle(
+                        color: Color(0xff4a4a4a),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 17),
+                  ),
+                  icon: const Icon(
+                    Icons.arrow_forward_ios,
+                    color: Color(0xffFFFFFF),
+                  )),
+            ),
           ),
         )
       ],
